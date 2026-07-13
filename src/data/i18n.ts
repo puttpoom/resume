@@ -8,7 +8,8 @@ export interface I18n {
   skills: { overline: string; title: string; subtitle: string; categories: Record<string, string> }
   experience: { overline: string; title: string }
   education: { overline: string; title: string; degreesLabel: string; certsLabel: string }
-  contact: { overline: string; title: string; subtitle: string; findMeOn: string; footer: string }
+  contact: { overline: string; title: string; subtitle: string; findMeOn: string; footer: string; cta: string }
+  resume: { title: string; download: string }
 }
 
 export const i18n: Record<Lang, I18n> = {
@@ -76,6 +77,11 @@ export const i18n: Record<Lang, I18n> = {
       subtitle: 'Have a project in mind or just want to say hello? My inbox is always open.',
       findMeOn: 'Or find me on',
       footer: 'Built with Next.js · Framer Motion · Tailwind CSS · Lenis',
+      cta: 'Send Message',
+    },
+    resume: {
+      title: 'Résumé',
+      download: 'Download PDF',
     },
   },
   th: {
@@ -142,6 +148,11 @@ export const i18n: Record<Lang, I18n> = {
       subtitle: 'มีโปรเจกต์ในใจหรืออยากแค่ทักทาย? กล่องข้อความเปิดรับเสมอ',
       findMeOn: 'หรือหาฉันได้ที่',
       footer: 'สร้างด้วย Next.js · Framer Motion · Tailwind CSS · Lenis',
+      cta: 'ส่งข้อความ',
+    },
+    resume: {
+      title: 'ประวัติย่อ',
+      download: 'ดาวน์โหลด PDF',
     },
   },
 }
