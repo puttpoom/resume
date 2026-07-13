@@ -1,38 +1,127 @@
 @import "tailwindcss";
 
+/* ─── Apple Design Tokens ──────────────────────────────────────── */
 :root {
-  --background: #111010;
-  --foreground: #F2EFE8;
-  --accent:     #E5C158;
-  --surface:    #1C1A19;
-  --muted:      #8A8278;
-  --border:     rgba(242, 239, 232, 0.07);
+  --system-blue:       #007AFF;
+  --system-blue-hover: #0066d6;
+  --system-red:        #FF3B30;
+  --system-yellow:     #FFCC00;
+  --system-green:      #34C759;
+
+  /* Menubar / chrome */
+  --chrome-bg:    rgba(236, 236, 236, 0.72);
+  --chrome-border: rgba(0,0,0,0.08);
+
+  /* Window */
+  --window-bg:      rgba(255, 255, 255, 0.88);
+  --window-sidebar: rgba(238, 238, 240, 0.92);
+  --window-shadow:  0 32px 64px rgba(0,0,0,0.22), 0 0 0 0.5px rgba(0,0,0,0.12);
+
+  /* Dock */
+  --dock-bg:    rgba(255, 255, 255, 0.28);
+  --dock-border: rgba(255,255,255,0.5);
+
+  /* Text */
+  --text-primary:   #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary:  #aeaeb2;
+
+  /* iOS */
+  --ios-bg:           #f2f2f7;
+  --ios-card-bg:      #ffffff;
+  --ios-separator:    rgba(60,60,67,0.12);
+  --ios-row-hover:    rgba(0,0,0,0.04);
+
+  /* Wallpaper — light */
+  --wallpaper: linear-gradient(160deg, #fde68a 0%, #fb923c 30%, #e85d2f 60%, #be3a1e 100%);
+
+  /* Shape */
+  --radius-window: 12px;
+  --radius-tile:   18px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-surface: var(--surface);
-  --color-muted: var(--muted);
+.dark {
+  --system-blue: #0A84FF;
+  --system-blue-hover: #3a9fff;
+
+  --chrome-bg:    rgba(28, 28, 30, 0.72);
+  --chrome-border: rgba(255,255,255,0.08);
+
+  --window-bg:      rgba(30, 30, 30, 0.90);
+  --window-sidebar: rgba(24, 24, 26, 0.95);
+  --window-shadow:  0 32px 64px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.06);
+
+  --dock-bg:    rgba(40, 40, 45, 0.45);
+  --dock-border: rgba(255,255,255,0.15);
+
+  --text-primary:   #f5f5f7;
+  --text-secondary: #98989d;
+  --text-tertiary:  #636366;
+
+  --ios-bg:        #1c1c1e;
+  --ios-card-bg:   #2c2c2e;
+  --ios-separator: rgba(255,255,255,0.10);
+  --ios-row-hover: rgba(255,255,255,0.05);
+
+  --wallpaper: linear-gradient(135deg, #020917 0%, #0d1b42 35%, #1a2d6b 55%, #0f0a35 100%);
 }
 
-html {
-  scroll-behavior: auto;
-}
+/* ─── Base ──────────────────────────────────────────────────────── */
+html { height: 100%; scroll-behavior: auto; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  overflow-x: hidden;
-  /* Thai font fallback — system Thonburi/Leelawadee cover most Thai OS */
-  font-family: var(--font-geist-sans), 'Thonburi', 'Leelawadee UI', 'Noto Sans Thai', system-ui, sans-serif;
+  height: 100%;
+  margin: 0;
+  background: var(--wallpaper);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: -apple-system, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;   /* desktop has no native scroll */
 }
 
-::-webkit-scrollbar {
-  width: 0;
+/* Reset for mobile: allow scroll */
+body.mobile-view {
+  overflow: auto;
+  background: var(--ios-bg);
 }
 
-section + section {
-  border-top: 1px solid var(--border);
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.35); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(128,128,128,0.55); }
+
+/* ─── Window chrome ─────────────────────────────────────────────── */
+.window-chrome {
+  background: var(--window-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: var(--radius-window);
+  box-shadow: var(--window-shadow);
+}
+
+/* ─── Menubar chrome ────────────────────────────────────────────── */
+.menubar-chrome {
+  background: var(--chrome-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 0.5px solid var(--chrome-border);
+}
+
+/* ─── iOS card ──────────────────────────────────────────────────── */
+.ios-card {
+  background: var(--ios-card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ─── Focus ring ────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 2px;
+}
+
+/* ─── Reduced motion ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
