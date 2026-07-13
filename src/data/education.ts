@@ -2,32 +2,27 @@ import type { Education, Certificate } from '@/types'
 
 export const education: Education[] = [
   {
-    id: 'bachelor',
-    institution: 'University',
-    degree: "Bachelor's Degree",
-    field: 'Computer Science / Information Technology',
-    startYear: 2018,
-    endYear: 2022,
+    id: 'kmutnb',
+    institution: "King Mongkut's University of Technology North Bangkok (KMUTNB)",
+    institutionTh: 'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (KMUTNB)',
+    degree: "Bachelor's Degree of Engineering",
+    degreeTh: 'วิศวกรรมศาสตรบัณฑิต',
+    field: 'Electrical and Electronic Engineering Technology',
+    fieldTh: 'สาขาเทคโนโลยีวิศวกรรมไฟฟ้าและอิเล็กทรอนิกส์',
+    startYear: 2019,
+    endYear: 2023,
+    gpa: '3.03',
+    note: 'TOEIC: 630 (Listening 405 / Reading 225) — Tested 25 Jun 2026',
+    noteTh: 'คะแนน TOEIC: 630 (Listening 405 / Reading 225) — สอบวันที่ 25 มิ.ย. 2569',
   },
 ]
 
 export const certificates: Certificate[] = [
   {
-    id: 'docker-cert',
-    name: 'Docker Certified Associate',
-    issuer: 'Docker, Inc.',
-    issuedDate: '2024-03',
-  },
-  {
-    id: 'k8s-cert',
-    name: 'Certified Kubernetes Application Developer (CKAD)',
-    issuer: 'Cloud Native Computing Foundation',
-    issuedDate: '2024-06',
-  },
-  {
-    id: 'nextjs-cert',
-    name: 'Next.js Advanced Concepts',
-    issuer: 'Vercel / Frontend Masters',
-    issuedDate: '2025-01',
+    id: 'toeic',
+    name: 'TOEIC — Score 630',
+    nameTh: 'TOEIC — คะแนน 630',
+    issuer: 'ETS (Educational Testing Service)',
+    issuedDate: '2026-06',
   },
 ]

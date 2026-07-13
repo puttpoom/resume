@@ -1,67 +1,49 @@
+'use client'
+
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { useLang } from '@/lib/lang'
+import { getStrings } from '@/data/i18n'
 
 export function About() {
+  const { lang } = useLang()
+  const t = getStrings(lang).about
+
   return (
     <section id="about" className="min-h-screen flex items-center px-6 py-24">
       <div className="max-w-6xl mx-auto w-full">
-        <SectionHeading
-          overline="About Me"
-          title="Crafting digital experiences"
-          align="left"
-        />
+        <SectionHeading overline={t.overline} title={t.title} align="left" />
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Bio */}
           <div className="space-y-6">
-            <ScrollReveal delay={0.1}>
-              <p className="text-lg text-zinc-300 leading-relaxed">
-                I&apos;m a Full Stack Developer based in Thailand, passionate about building
-                high-quality web applications that solve real-world problems. I specialise in
-                modern JavaScript ecosystems, PHP backends, and containerised deployments.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <p className="text-lg text-zinc-400 leading-relaxed">
-                Currently at ICHO Co., Ltd., I architect and maintain real-time plant logistics
-                systems handling truck operations, weighing, and fleet monitoring at cement
-                production facilities across Thailand.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.3}>
-              <p className="text-lg text-zinc-400 leading-relaxed">
-                When I&apos;m not writing code, I&apos;m exploring design systems, contributing to open
-                source, and obsessing over smooth scroll interactions.
-              </p>
-            </ScrollReveal>
+            {t.bio.map((para, i) => (
+              <ScrollReveal key={i} delay={0.1 + i * 0.1}>
+                <p className="text-lg text-[#8A8278] leading-relaxed">{para}</p>
+              </ScrollReveal>
+            ))}
 
             <ScrollReveal delay={0.4}>
               <div className="flex flex-wrap gap-6 pt-4">
-                {[
-                  { label: 'Years Experience', value: '4+' },
-                  { label: 'Projects Shipped', value: '20+' },
-                  { label: 'Technologies', value: '15+' },
-                ].map(({ label, value }) => (
+                {t.stats.map(({ label, value }) => (
                   <div key={label}>
-                    <p className="text-3xl font-bold text-white">{value}</p>
-                    <p className="text-sm text-zinc-500 mt-1">{label}</p>
+                    <p className="text-3xl font-bold text-[#F2EFE8]">{value}</p>
+                    <p className="text-sm text-[#8A8278] mt-1">{label}</p>
                   </div>
                 ))}
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Photo placeholder */}
           <ScrollReveal direction="left" delay={0.2}>
             <div className="relative mx-auto w-72 h-72 md:w-96 md:h-96">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10" />
-              <div className="absolute inset-4 rounded-2xl bg-zinc-800/80 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-3xl bg-[#1C1A19] border border-[rgba(242,239,232,0.07)]" />
+              <div className="absolute inset-4 rounded-2xl bg-[#111010] flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 mx-auto mb-4 flex items-center justify-center text-4xl font-bold text-white">
+                  <div className="w-24 h-24 rounded-full bg-[#E5C158] mx-auto mb-4 flex items-center justify-center text-4xl font-bold text-[#111010]">
                     P
                   </div>
-                  <p className="text-white font-semibold">Putthiphoom B.</p>
-                  <p className="text-zinc-500 text-sm">Full Stack Developer</p>
+                  <p className="text-[#F2EFE8] font-semibold">Putthiphoom B.</p>
+                  <p className="text-[#8A8278] text-sm">Full Stack Developer</p>
                 </div>
               </div>
             </div>

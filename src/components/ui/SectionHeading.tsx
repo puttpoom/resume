@@ -20,7 +20,7 @@ export function SectionHeading({
     <div className={cn('mb-16', align === 'center' && 'text-center', className)}>
       {overline && (
         <ScrollReveal>
-          <p className="text-sm font-semibold tracking-widest uppercase text-blue-400 mb-3">
+          <p className="text-sm font-semibold tracking-widest uppercase text-[#E5C158] mb-3">
             {overline}
           </p>
         </ScrollReveal>

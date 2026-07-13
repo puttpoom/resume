@@ -1,32 +1,45 @@
 import type { Skill } from '@/types'
 
 export const skills: Skill[] = [
-  { name: 'TypeScript', category: 'Languages' },
+  // Languages
+  { name: 'Go', category: 'Languages' },
   { name: 'PHP', category: 'Languages' },
-  { name: 'JavaScript', category: 'Languages' },
-  { name: 'Python', category: 'Languages' },
+  { name: 'JavaScript (ES6+)', category: 'Languages' },
   { name: 'SQL', category: 'Languages' },
-  { name: 'Next.js', category: 'Frameworks' },
-  { name: 'React', category: 'Frameworks' },
-  { name: 'Laravel', category: 'Frameworks' },
-  { name: 'Tailwind CSS', category: 'Frameworks' },
-  { name: 'Framer Motion', category: 'Frameworks' },
+
+  // Frontend
+  { name: 'React', category: 'Frontend' },
+  { name: 'Next.js', category: 'Frontend' },
+  { name: 'React Hook Form', category: 'Frontend' },
+  { name: 'TanStack Query', category: 'Frontend' },
+  { name: 'Tailwind CSS', category: 'Frontend' },
+  { name: 'shadcn/ui', category: 'Frontend' },
+
+  // Backend
+  { name: 'Go (Gorilla/Mux)', category: 'Backend' },
+  { name: 'PHP Laravel', category: 'Backend' },
+  { name: 'REST API', category: 'Backend' },
+  { name: 'OAuth 2.0', category: 'Backend' },
+  { name: 'RabbitMQ', category: 'Backend' },
+
+  // Databases
   { name: 'MySQL', category: 'Databases' },
-  { name: 'PostgreSQL', category: 'Databases' },
-  { name: 'Redis', category: 'Databases' },
   { name: 'MongoDB', category: 'Databases' },
-  { name: 'Docker', category: 'DevOps' },
-  { name: 'Kubernetes', category: 'DevOps' },
-  { name: 'GitHub Actions', category: 'DevOps' },
-  { name: 'DigitalOcean', category: 'DevOps' },
+
+  // Tools
   { name: 'Git', category: 'Tools' },
-  { name: 'VS Code', category: 'Tools' },
-  { name: 'Figma', category: 'Tools' },
-  { name: 'Postman', category: 'Tools' },
+  { name: 'Docker', category: 'Tools' },
+  { name: 'Bitbucket', category: 'Tools' },
+  { name: 'Google Maps API', category: 'Tools' },
+  { name: 'Longdo Maps API', category: 'Tools' },
 ]
 
 export const skillCategories: Skill['category'][] = [
-  'Languages', 'Frameworks', 'Databases', 'DevOps', 'Tools',
+  'Languages',
+  'Frontend',
+  'Backend',
+  'Databases',
+  'Tools',
 ]
 
 export function getSkillsByCategory(category: Skill['category']): Skill[] {
