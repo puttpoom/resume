@@ -23,7 +23,11 @@
     "year": 2024,
     "ownership": "company",
     "company": "FreewillFX Co., Ltd.",
-    "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs"]
+    "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs"],
+    "images": [
+      "/projects/isupply/SCR-20260714-spxw.png",
+      "/projects/isupply/SCR-20260714-sqqr.png"
+    ]
   },
   {
     "id": "icho-plant",
