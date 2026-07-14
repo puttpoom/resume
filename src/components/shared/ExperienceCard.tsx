@@ -50,13 +50,13 @@ export function ExperienceCard({ exp, lang, compact = false }: Props) {
       </div>
 
       {/* Bullets */}
-      <div className={`${px} ${compact ? 'py-3 space-y-2.5' : 'py-4 space-y-3'}`}>
+      <div className={`${px} ${compact ? 'py-3 space-y-1.5' : 'py-4 space-y-1.5'}`}>
         {bullets.map((bullet, i) => (
-          <div key={i} className={`flex ${compact ? 'gap-2.5' : 'gap-3'}`}>
+          <div key={i} className="flex gap-2">
             {compact ? (
-              <span className="shrink-0 mt-[3px] text-[10px] text-system-blue">●</span>
+              <span className="shrink-0 mt-[4px] text-[10px] text-system-blue">●</span>
             ) : (
-              <span className="shrink-0 mt-[5px] w-1.5 h-1.5 rounded-full bg-system-blue" />
+              <span className="shrink-0 mt-[4px] w-1.5 h-1.5 rounded-full bg-system-blue" />
             )}
             <BulletText text={bullet} lang={lang} />
           </div>
@@ -65,7 +65,7 @@ export function ExperienceCard({ exp, lang, compact = false }: Props) {
 
       {/* Tech tags */}
       <div
-        className={`${px} ${compact ? 'pb-3.5' : 'pb-4'} pt-2 flex flex-wrap gap-1.5`}
+        className={`${px} pb-3 pt-2 flex flex-wrap gap-1.5`}
         style={{ borderTop: '0.5px solid var(--ios-separator)' }}
       >
         {exp.techStack.map((tech) => <TechTag key={tech} label={tech} />)}
