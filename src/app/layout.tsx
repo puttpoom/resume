@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import { LangProvider } from '@/lib/lang'
 import { ThemeProvider } from '@/lib/theme'
 import { DisplayProvider } from '@/lib/display'
+import { GA_MEASUREMENT_ID } from '@/lib/gtag'
 
 export const metadata: Metadata = {
   title: 'Hello world~',
@@ -22,6 +24,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+      </head>
       <body className="h-full" style={{ overflow: 'hidden' }} suppressHydrationWarning>
         <LangProvider>
           <ThemeProvider>

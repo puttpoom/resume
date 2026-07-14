@@ -3,6 +3,7 @@
 import { IoDownload } from 'react-icons/io5'
 import { useLang } from '@/lib/lang'
 import { getStrings } from '@/data/i18n'
+import { trackEvent } from '@/lib/gtag'
 
 export function ResumePanel() {
   const { lang } = useLang()
@@ -26,6 +27,7 @@ export function ResumePanel() {
         <a
           href={fileUrl}
           download={fileName}
+          onClick={() => trackEvent('download_resume', { language: lang, file_name: fileName })}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-semibold text-white transition-opacity hover:opacity-90"
           style={{ background: 'var(--system-blue)' }}
         >
