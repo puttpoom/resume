@@ -97,7 +97,8 @@
     "year": 2024,
     "ownership": "co",
     "company": "FreewillFX Co., Ltd.",
-    "repos": ["cloudtime-passenger-api", "cloudtime-passenger-react"]
+    "repos": ["cloudtime-passenger-api", "cloudtime-passenger-react"],
+    "images": ["/projects/ct-gis/SCR-20260714-srep.png","/projects/ct-gis/SCR-20260714-srlu.png","/projects/ct-gis/SCR-20260714-srnq.png"]
   },
   {
     "id": "mena-gps",
@@ -145,7 +146,13 @@
     "featured": true,
     "year": 2024,
     "ownership": "personal",
-    "repos": ["whaledorm-fronted", "whealdorm-backend"]
+    "repos": ["whaledorm-fronted", "whealdorm-backend"],
+    "images": [
+      "/projects/wheal-dorm/SCR-20260714-tipb.png",
+      "/projects/wheal-dorm/SCR-20260714-tiiv.png",
+      "/projects/wheal-dorm/SCR-20260714-tinp.png",
+      "/projects/wheal-dorm/SCR-20260714-tirl.png"
+    ]
   },
   {
     "id": "shopping-bot",
@@ -172,9 +179,7 @@
     "year": 2024,
     "ownership": "personal",
     "images": [
-      "/projects/shopping-bot/screen-1.svg",
-      "/projects/shopping-bot/screen-2.svg",
-      "/projects/shopping-bot/screen-3.svg"
+      "/projects/shopping-bot/SCR-20260714-thyr.png"
     ],
     "repos": ["shopping-bot-reactjs-ui", "shopping-bot-expressjs-api"]
   },
