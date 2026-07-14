@@ -23,7 +23,7 @@
     "year": 2024,
     "ownership": "company",
     "company": "FreewillFX Co., Ltd.",
-    "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs", "cpac-isupply-report-go", "cpac-isupply-snaplogic", "cpac-authen-sevice-go"]
+    "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs"]
   },
   {
     "id": "icho-plant",
@@ -115,7 +115,7 @@
     "year": 2025,
     "ownership": "company",
     "company": "FreewillFX Co., Ltd.",
-    "repos": ["interface-gps-data", "interface-gps-tcp"]
+    "repos": ["interface-gps-data"]
   },
   {
     "id": "whaledorm",
@@ -175,30 +175,6 @@
     "repos": ["shopping-bot-reactjs-ui", "shopping-bot-expressjs-api"]
   },
   {
-    "id": "discord-verify",
-    "title": "Discord Verify App",
-    "description": "Discord bot with OAuth 2.0 flow to verify and assign roles to guild members. Uses Discord.js v14, Express, and Prisma to persist verified member state.",
-    "descriptionTh": "Discord bot ที่ใช้ OAuth 2.0 สำหรับยืนยันตัวตนและมอบ role ให้สมาชิกใน server โดยอัตโนมัติ ใช้ Discord.js v14, Express และ Prisma เก็บข้อมูลการยืนยัน",
-    "bullets": [
-      "Built Discord OAuth 2.0 verification flow to automatically assign roles to verified members",
-      "Used Discord.js v14 for bot commands and guild member management",
-      "Built Express.js callback server to handle OAuth redirect and token exchange",
-      "Persisted verified member state with Prisma ORM"
-    ],
-    "bulletsTh": [
-      "พัฒนา OAuth 2.0 verification flow สำหรับ Discord เพื่อมอบ role ให้สมาชิกโดยอัตโนมัติ",
-      "ใช้ Discord.js v14 สำหรับ bot commands และจัดการสมาชิกใน guild",
-      "พัฒนา Express.js server สำหรับรับ OAuth callback และแลกเปลี่ยน token",
-      "เก็บสถานะการยืนยันสมาชิกด้วย Prisma ORM"
-    ],
-    "techStack": ["Node.js", "Discord.js v14", "Express.js", "Prisma", "OAuth 2.0"],
-    "githubUrl": "https://github.com/puttpoom/discord-verify-app",
-    "featured": false,
-    "year": 2025,
-    "ownership": "personal",
-    "repos": ["discord-verify-app"]
-  },
-  {
     "id": "user-dashboard",
     "title": "User Dashboard — TypeScript",
     "description": "Admin dashboard built with React TypeScript and Material-UI. Features form validation with React Hook Form + Joi, JWT-based auth flow, and toast notifications.",
@@ -221,32 +197,5 @@
     "year": 2024,
     "ownership": "personal",
     "repos": ["user-dashboard-typescript"]
-  },
-  {
-    "id": "spa-portfolio",
-    "title": "SPA Portfolio",
-    "description": "Personal portfolio with Apple-product-page iOS/macOS aesthetic. Built with Next.js 16, Framer Motion, and Lenis smooth scroll.",
-    "descriptionTh": "พอร์ตโฟลิโอส่วนตัวสไตล์ Apple iOS/macOS มี scroll animations ด้วย Framer Motion และ Lenis smooth scroll",
-    "bullets": [
-      "Designed and built full-stack SPA portfolio with macOS desktop UI (desktop) and iOS Settings UI (mobile)",
-      "Implemented draggable macOS windows with Framer Motion drag controls and spring physics",
-      "Built dock with magnification effect using useMotionValue + useTransform + useSpring",
-      "Full EN/TH bilingual support with localStorage persistence via custom LangProvider",
-      "Static export to GitHub Pages via GitHub Actions CI/CD pipeline"
-    ],
-    "bulletsTh": [
-      "ออกแบบและพัฒนา SPA portfolio แบบ macOS desktop (desktop) และ iOS Settings (mobile)",
-      "พัฒนา macOS window ที่ลากได้ด้วย Framer Motion drag controls และ spring physics",
-      "สร้าง dock ที่มี magnification effect โดยใช้ useMotionValue + useTransform + useSpring",
-      "รองรับ 2 ภาษา EN/TH พร้อม localStorage persistence ผ่าน LangProvider",
-      "Export แบบ static ไปยัง GitHub Pages ผ่าน GitHub Actions CI/CD"
-    ],
-    "techStack": ["Next.js 16", "TypeScript", "Framer Motion", "Tailwind CSS v4", "Lenis"],
-    "githubUrl": "https://github.com/puttpoom/resume",
-    "liveUrl": "https://puttpoom.github.io/resume",
-    "featured": true,
-    "year": 2025,
-    "ownership": "personal",
-    "repos": ["resume"]
   }
 ]
