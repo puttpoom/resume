@@ -3,8 +3,8 @@ self.__BUILD_MANIFEST = {
     "afterFiles": [],
     "beforeFiles": [
       {
-        "source": "/spa-portfilo//_next/:path+",
-        "destination": "/spa-portfilo/_next/:path+"
+        "source": "/resume//_next/:path+",
+        "destination": "/resume/_next/:path+"
       }
     ],
     "fallback": []
