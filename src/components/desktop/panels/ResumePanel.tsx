@@ -8,7 +8,7 @@ export function ResumePanel() {
   const { lang } = useLang()
   const t = getStrings(lang).resume
 
-  const basePath = process.env.NODE_ENV === 'production' ? '/spa-portfilo' : ''
+  const basePath = process.env.NODE_ENV === 'production' ? '/resume' : ''
   const fileName = `resume_putthiphoom_${lang === 'th' ? 'thai' : 'eng'}.pdf`
   const fileUrl = `${basePath}/docs/${fileName}`
 

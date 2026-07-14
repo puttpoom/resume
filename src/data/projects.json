@@ -242,11 +242,11 @@
       "Export แบบ static ไปยัง GitHub Pages ผ่าน GitHub Actions CI/CD"
     ],
     "techStack": ["Next.js 16", "TypeScript", "Framer Motion", "Tailwind CSS v4", "Lenis"],
-    "githubUrl": "https://github.com/puttpoom/spa-portfilo",
-    "liveUrl": "https://puttpoom.github.io/spa-portfilo",
+    "githubUrl": "https://github.com/puttpoom/resume",
+    "liveUrl": "https://puttpoom.github.io/resume",
     "featured": true,
     "year": 2025,
     "ownership": "personal",
-    "repos": ["spa-portfilo"]
+    "repos": ["resume"]
   }
 ]
