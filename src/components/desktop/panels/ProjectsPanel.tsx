@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { projects } from '@/data/projects'
 import { useLang, loc } from '@/lib/lang'
@@ -17,6 +17,8 @@ interface Props {
 
 export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
   const { lang } = useLang()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const savedScrollY = useRef(0)
 
   const localizedProjects: LocalizedProject[] = projects.map((p) => ({
     ...p,
@@ -26,10 +28,28 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
 
   const selectedProject = localizedProjects.find((p) => p.id === selectedProjectId) ?? null
 
+  const handleSelectProject = (id: string | null) => {
+    if (id !== null && scrollRef.current) {
+      savedScrollY.current = scrollRef.current.scrollTop
+    }
+    onSelectProject(id)
+  }
+
   // Reset detail on language switch to avoid stale localized content
   useEffect(() => {
     onSelectProject(null)
   }, [lang]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Restore scroll position when list remounts after back navigation
+  useEffect(() => {
+    if (!selectedProject && savedScrollY.current > 0) {
+      requestAnimationFrame(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollTop = savedScrollY.current
+        }
+      })
+    }
+  }, [selectedProject])
 
   return (
     <div className="relative h-full overflow-hidden">
@@ -37,6 +57,7 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
         {!selectedProject ? (
           <motion.div
             key="list"
+            ref={scrollRef}
             initial={{ x: '-30%', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: '-30%', opacity: 0 }}
@@ -49,7 +70,7 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
                   key={p.id}
                   project={p}
                   lang={lang}
-                  onClick={() => onSelectProject(p.id)}
+                  onClick={() => handleSelectProject(p.id)}
                 />
               ))}
             </div>
