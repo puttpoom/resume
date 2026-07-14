@@ -118,6 +118,111 @@
     "repos": ["interface-gps-data", "interface-gps-tcp"]
   },
   {
+    "id": "whaledorm",
+    "title": "WhaleDorm — Dormitory Management",
+    "description": "Full-stack dormitory management system with Google Maps integration, Google OAuth, and image uploads. Handles room booking, tenant management, and location-based search.",
+    "descriptionTh": "ระบบจัดการหอพักแบบ Full-stack พร้อม Google Maps, Google OAuth และอัปโหลดรูปภาพ รองรับการจองห้อง จัดการผู้เช่า และค้นหาตามพื้นที่",
+    "bullets": [
+      "Built full-stack dormitory management system with room booking and tenant management features",
+      "Integrated Google Maps API for location-based dormitory search and display",
+      "Implemented Google OAuth for authentication and JWT-based session management",
+      "Handled image uploads via Cloudinary with Multer for dormitory photos",
+      "Built REST API with Express.js, Prisma ORM, and bcryptjs password hashing"
+    ],
+    "bulletsTh": [
+      "พัฒนาระบบจัดการหอพักแบบ Full-stack พร้อมฟีเจอร์จองห้องและจัดการข้อมูลผู้เช่า",
+      "เชื่อมต่อ Google Maps API สำหรับค้นหาและแสดงตำแหน่งหอพักตามพื้นที่",
+      "ใช้ Google OAuth สำหรับการ login และจัดการ session ด้วย JWT",
+      "รองรับอัปโหลดรูปภาพผ่าน Cloudinary โดยใช้ Multer",
+      "พัฒนา REST API ด้วย Express.js, Prisma ORM และเข้ารหัสรหัสผ่านด้วย bcryptjs"
+    ],
+    "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "Google Maps API", "Google OAuth", "Cloudinary", "Tailwind CSS"],
+    "githubUrl": "https://github.com/puttpoom/whaledorm-fronted",
+    "featured": true,
+    "year": 2024,
+    "ownership": "personal",
+    "repos": ["whaledorm-fronted", "whealdorm-backend"]
+  },
+  {
+    "id": "shopping-bot",
+    "title": "Shopping Bot — Lazada Auto-Buy",
+    "description": "Browser extension + backend system to automate product purchases on Lazada. Frontend built as a Chrome extension with FingerprintJS device tracking; backend uses LINE Bot for notifications and node-cron for scheduled buying.",
+    "descriptionTh": "Browser extension และ backend สำหรับซื้อสินค้าบน Lazada แบบอัตโนมัติ ฝั่ง Frontend เป็น Chrome extension ติดตาม device ด้วย FingerprintJS ฝั่ง Backend แจ้งเตือนผ่าน LINE Bot และตั้งเวลาซื้อด้วย node-cron",
+    "bullets": [
+      "Built Chrome extension with vite-plugin-web-extension to automate Lazada purchases",
+      "Tracked device sessions using FingerprintJS for multi-device support",
+      "Built Express.js backend with LINE Bot SDK for purchase notifications",
+      "Implemented scheduled buying with node-cron and JWT authentication",
+      "Used Prisma + MySQL for user and purchase history persistence"
+    ],
+    "bulletsTh": [
+      "พัฒนา Chrome extension ด้วย vite-plugin-web-extension สำหรับซื้อสินค้าบน Lazada อัตโนมัติ",
+      "ติดตาม device session ด้วย FingerprintJS รองรับหลายอุปกรณ์",
+      "พัฒนา backend ด้วย Express.js เชื่อมต่อ LINE Bot SDK สำหรับแจ้งเตือนการซื้อ",
+      "ตั้งเวลาซื้อสินค้าอัตโนมัติด้วย node-cron และรักษาความปลอดภัยด้วย JWT",
+      "ใช้ Prisma + MySQL สำหรับเก็บข้อมูลผู้ใช้และประวัติการซื้อ"
+    ],
+    "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "LINE Bot SDK", "FingerprintJS", "node-cron", "JWT", "Tailwind CSS"],
+    "githubUrl": "https://github.com/puttpoom/shopping-bot-reactjs-ui",
+    "featured": true,
+    "year": 2024,
+    "ownership": "personal",
+    "images": [
+      "/projects/shopping-bot/screen-1.svg",
+      "/projects/shopping-bot/screen-2.svg",
+      "/projects/shopping-bot/screen-3.svg"
+    ],
+    "repos": ["shopping-bot-reactjs-ui", "shopping-bot-expressjs-api"]
+  },
+  {
+    "id": "discord-verify",
+    "title": "Discord Verify App",
+    "description": "Discord bot with OAuth 2.0 flow to verify and assign roles to guild members. Uses Discord.js v14, Express, and Prisma to persist verified member state.",
+    "descriptionTh": "Discord bot ที่ใช้ OAuth 2.0 สำหรับยืนยันตัวตนและมอบ role ให้สมาชิกใน server โดยอัตโนมัติ ใช้ Discord.js v14, Express และ Prisma เก็บข้อมูลการยืนยัน",
+    "bullets": [
+      "Built Discord OAuth 2.0 verification flow to automatically assign roles to verified members",
+      "Used Discord.js v14 for bot commands and guild member management",
+      "Built Express.js callback server to handle OAuth redirect and token exchange",
+      "Persisted verified member state with Prisma ORM"
+    ],
+    "bulletsTh": [
+      "พัฒนา OAuth 2.0 verification flow สำหรับ Discord เพื่อมอบ role ให้สมาชิกโดยอัตโนมัติ",
+      "ใช้ Discord.js v14 สำหรับ bot commands และจัดการสมาชิกใน guild",
+      "พัฒนา Express.js server สำหรับรับ OAuth callback และแลกเปลี่ยน token",
+      "เก็บสถานะการยืนยันสมาชิกด้วย Prisma ORM"
+    ],
+    "techStack": ["Node.js", "Discord.js v14", "Express.js", "Prisma", "OAuth 2.0"],
+    "githubUrl": "https://github.com/puttpoom/discord-verify-app",
+    "featured": false,
+    "year": 2025,
+    "ownership": "personal",
+    "repos": ["discord-verify-app"]
+  },
+  {
+    "id": "user-dashboard",
+    "title": "User Dashboard — TypeScript",
+    "description": "Admin dashboard built with React TypeScript and Material-UI. Features form validation with React Hook Form + Joi, JWT-based auth flow, and toast notifications.",
+    "descriptionTh": "Admin dashboard สร้างด้วย React TypeScript และ Material-UI มีการ validate form ด้วย React Hook Form + Joi, ระบบ login ด้วย JWT และแจ้งเตือนด้วย toast",
+    "bullets": [
+      "Built admin dashboard with Material-UI v6 and React TypeScript",
+      "Implemented form validation using React Hook Form with Joi schema resolvers",
+      "Handled JWT-based authentication flow with protected routes via React Router",
+      "Used react-toastify for user feedback on actions"
+    ],
+    "bulletsTh": [
+      "พัฒนา admin dashboard ด้วย Material-UI v6 และ React TypeScript",
+      "Validate form ด้วย React Hook Form เชื่อมกับ Joi schema",
+      "จัดการ authentication flow ด้วย JWT และ protected routes ผ่าน React Router",
+      "แจ้งเตือนผู้ใช้ด้วย react-toastify"
+    ],
+    "techStack": ["React", "TypeScript", "Material-UI", "React Hook Form", "Joi", "React Router", "Vite"],
+    "githubUrl": "https://github.com/puttpoom/user-dashboard-typescript",
+    "featured": false,
+    "year": 2024,
+    "ownership": "personal",
+    "repos": ["user-dashboard-typescript"]
+  },
+  {
     "id": "spa-portfolio",
     "title": "SPA Portfolio",
     "description": "Personal portfolio with Apple-product-page iOS/macOS aesthetic. Built with Next.js 16, Framer Motion, and Lenis smooth scroll.",

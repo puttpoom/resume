@@ -13,6 +13,12 @@ export interface Project {
   ownership: 'company' | 'co' | 'personal'
   company?: string
   repos?: string[]
+  images?: string[]
+}
+
+export interface LocalizedProject extends Omit<Project, 'bullets'> {
+  description: string
+  bullets: string[]
 }
 
 export interface Skill {

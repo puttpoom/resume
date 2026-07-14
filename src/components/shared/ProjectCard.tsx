@@ -1,5 +1,5 @@
-import { IoLogoGithub, IoOpen, IoBusiness, IoPerson, IoPeople } from 'react-icons/io5'
-import type { Project } from '@/types'
+import { IoLogoGithub, IoOpen, IoBusiness, IoPerson, IoPeople, IoChevronForward } from 'react-icons/io5'
+import type { LocalizedProject } from '@/types'
 import type { Lang } from '@/lib/lang'
 import { BulletText } from '@/components/ui/BulletText'
 import { TechTag } from '@/components/ui/TechTag'
@@ -17,19 +17,15 @@ const OWNERSHIP_ICON = {
   personal: IoPerson,
 } as const
 
-interface LocalizedProject extends Omit<Project, 'bullets'> {
-  description: string
-  bullets: string[]
-}
-
 interface Props {
   project: LocalizedProject
   lang: Lang
   /** compact=true → mobile detail style; false → desktop panel style */
   compact?: boolean
+  onClick?: () => void
 }
 
-export function ProjectCard({ project: p, lang, compact = false }: Props) {
+export function ProjectCard({ project: p, lang, compact = false, onClick }: Props) {
   const t = getStrings(lang)
   const own = OWNERSHIP_STYLE[p.ownership]
   const OwnIcon = OWNERSHIP_ICON[p.ownership]
@@ -39,7 +35,13 @@ export function ProjectCard({ project: p, lang, compact = false }: Props) {
   const bodyPy = compact ? 'py-3' : 'py-4'
 
   return (
-    <div className="rounded-2xl overflow-hidden bg-ios-card">
+    <div
+      className={`rounded-2xl overflow-hidden bg-ios-card${onClick ? ' cursor-pointer transition-opacity active:opacity-70 hover:opacity-90' : ''}`}
+      onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') onClick() } : undefined}
+    >
       {/* Header */}
       <div
         className={`${px} ${compact ? 'pt-4' : 'pt-5'} pb-3`}
@@ -48,6 +50,7 @@ export function ProjectCard({ project: p, lang, compact = false }: Props) {
         <div className="flex items-start gap-2 mb-2">
           <h3 className={`flex-1 ${titleSize} font-semibold leading-snug text-primary`}>{p.title}</h3>
           <span className="text-[12px] tabular-nums shrink-0 mt-0.5 text-tertiary">{p.year}</span>
+          {onClick && <IoChevronForward size={16} className="text-tertiary shrink-0 mt-0.5" />}
         </div>
         <div className="flex flex-wrap gap-1.5">
           <span
@@ -104,6 +107,7 @@ export function ProjectCard({ project: p, lang, compact = false }: Props) {
               href={p.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className={`flex items-center gap-1.5 ${compact ? 'text-[14px]' : 'text-[13px]'} font-semibold transition-opacity hover:opacity-70 text-system-blue`}
             >
               <IoLogoGithub size={compact ? 16 : 15} /> GitHub
@@ -114,6 +118,7 @@ export function ProjectCard({ project: p, lang, compact = false }: Props) {
               href={p.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className={`flex items-center gap-1.5 ${compact ? 'text-[14px]' : 'text-[13px]'} font-semibold transition-opacity hover:opacity-70 text-system-blue`}
             >
               <IoOpen size={compact ? 16 : 15} /> {compact ? 'Live' : 'Live Demo'}

@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="h-dvh antialiased">
-      <body className="h-full" style={{ overflow: 'hidden' }}>
+    <html lang="en" className="h-dvh antialiased" suppressHydrationWarning>
+      <body className="h-full" style={{ overflow: 'hidden' }} suppressHydrationWarning>
         <LangProvider>
           <ThemeProvider>
             <DisplayProvider>

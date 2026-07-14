@@ -31,6 +31,7 @@ export interface I18n {
     download: string
     aboutMe: string
     back: string
+    gallery: string
   }
 }
 
@@ -122,6 +123,7 @@ export const i18n: Record<Lang, I18n> = {
       download: 'Download',
       aboutMe: 'About Me',
       back: 'Portfolio',
+      gallery: 'Gallery',
     },
   },
   th: {
@@ -211,6 +213,7 @@ export const i18n: Record<Lang, I18n> = {
       download: 'ดาวน์โหลด',
       aboutMe: 'เกี่ยวกับฉัน',
       back: 'พอร์ตโฟลิโอ',
+      gallery: 'แกลเลอรี่',
     },
   },
 }

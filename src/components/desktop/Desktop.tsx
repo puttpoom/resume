@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   IoPerson, IoFlash, IoFolder, IoBriefcase,
   IoSchool, IoMail, IoDocumentText,
@@ -37,6 +37,7 @@ interface NavRow {
 
 export function Desktop() {
   const [active, setActive] = useState<Section>('about')
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const { lang, setLang } = useLang()
   const { theme, toggle }  = useTheme()
   const { fontSize, density } = useDisplay()
@@ -55,7 +56,11 @@ export function Desktop() {
   const rowPy = density === 'compact' ? '6px' : density === 'spacious' ? '12px' : '9px'
   const activeLabel = active === 'resume'
     ? t.ui.viewResume
-    : navRows.find(r => r.id === active)?.label ?? ''
+    : selectedProjectId
+      ? projects.find(p => p.id === selectedProjectId)?.title ?? navRows.find(r => r.id === active)?.label ?? ''
+      : navRows.find(r => r.id === active)?.label ?? ''
+
+  useEffect(() => { setSelectedProjectId(null) }, [active])
 
   return (
     <div className="flex flex-col overflow-hidden bg-ios" style={{ height: '100dvh' }}>
@@ -210,11 +215,19 @@ export function Desktop() {
 
         {/* Detail panel */}
         <div className="flex flex-1 flex-col overflow-hidden bg-ios">
-          <PanelToolbar title={activeLabel} />
-          <main key={active} className="flex-1 overflow-y-auto" style={{ zoom: FONT_ZOOM[fontSize] }}>
+          <PanelToolbar
+            title={activeLabel}
+            onBack={selectedProjectId && active === 'projects' ? () => setSelectedProjectId(null) : undefined}
+            backLabel={t.nav.projects}
+          />
+          <main
+            key={active}
+            className={`flex-1 ${active === 'projects' ? 'overflow-hidden' : 'overflow-y-auto'}`}
+            style={{ zoom: FONT_ZOOM[fontSize] }}
+          >
             {active === 'about'      && <AboutPanel />}
             {active === 'skills'     && <SkillsPanel />}
-            {active === 'projects'   && <ProjectsPanel />}
+            {active === 'projects'   && <ProjectsPanel selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} />}
             {active === 'experience' && <ExperiencePanel />}
             {active === 'education'  && <EducationPanel />}
             {active === 'contact'    && <ContactPanel />}

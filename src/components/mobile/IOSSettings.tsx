@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   IoPerson, IoFlash, IoFolder, IoBriefcase, IoSchool, IoMail, IoDocumentText,
@@ -8,10 +8,13 @@ import {
 } from 'react-icons/io5'
 import type { IconType } from 'react-icons'
 import { projects } from '@/data/projects'
+import { loc } from '@/lib/lang'
 import { IOSStatusBar } from './IOSStatusBar'
 import { AboutDetail } from './detail/AboutDetail'
 import { SkillsDetail } from './detail/SkillsDetail'
 import { ProjectsDetail } from './detail/ProjectsDetail'
+import { ProjectDetailView } from '@/components/shared/ProjectDetailView'
+import type { LocalizedProject } from '@/types'
 import { ExperienceDetail } from './detail/ExperienceDetail'
 import { ContactDetail } from './detail/ContactDetail'
 import { EducationDetail } from './detail/EducationDetail'
@@ -39,6 +42,7 @@ function Chevron() {
 
 export function IOSSettings() {
   const [active, setActive] = useState<Section>(null)
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const { lang, setLang } = useLang()
   const { theme, toggle } = useTheme()
   const { fontSize } = useDisplay()
@@ -56,6 +60,20 @@ export function IOSSettings() {
 
   const pdfUrl = resumeUrl(lang)
   const activeRow = rows.find((r) => r.id === active)
+
+  useEffect(() => { setSelectedProjectId(null) }, [active])
+
+  const localizedSelectedProject: LocalizedProject | null = selectedProjectId
+    ? (() => {
+        const p = projects.find((p) => p.id === selectedProjectId)
+        if (!p) return null
+        return {
+          ...p,
+          description: loc(lang, p.descriptionTh, p.description),
+          bullets: (lang === 'th' && p.bulletsTh) ? p.bulletsTh : (p.bullets ?? []),
+        }
+      })()
+    : null
 
   return (
     <div className="relative w-full h-dvh overflow-hidden bg-ios">
@@ -203,11 +221,56 @@ export function IOSSettings() {
             <div className="flex-1 relative overflow-hidden">
               {active === 'about'      && <AboutDetail />}
               {active === 'skills'     && <SkillsDetail />}
-              {active === 'projects'   && <ProjectsDetail />}
+              {active === 'projects'   && (
+                <ProjectsDetail
+                  onSelectProject={setSelectedProjectId}
+                  isSubDetailOpen={!!selectedProjectId}
+                />
+              )}
               {active === 'experience' && <ExperienceDetail />}
               {active === 'education'  && <EducationDetail />}
               {active === 'contact'    && <ContactDetail />}
             </div>
+
+            {/* 3rd level: project detail — covers entire 2nd level panel incl nav bar */}
+            <AnimatePresence>
+              {selectedProjectId && active === 'projects' && localizedSelectedProject && (
+                <motion.div
+                  key={selectedProjectId}
+                  initial={{ x: '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '100%' }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 38 }}
+                  className="absolute inset-0 z-50 flex flex-col bg-ios"
+                >
+                  {/* Nav bar — 3-col grid to avoid absolute-positioning quirks in nested motion.div */}
+                  <div
+                    className="shrink-0 bg-ios-card"
+                    style={{ height: 44 + 44, paddingTop: 44, borderBottom: '0.5px solid var(--ios-separator)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                  >
+                    <div className="h-[44px] grid items-center px-2" style={{ gridTemplateColumns: 'auto 1fr auto' }}>
+                      <button
+                        onClick={() => setSelectedProjectId(null)}
+                        className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
+                      >
+                        <IoChevronBack size={20} />
+                        <span className="text-[17px]">{t.nav.projects}</span>
+                      </button>
+                      <p className="text-center text-[17px] font-semibold text-primary truncate px-2">
+                        {localizedSelectedProject.title}
+                      </p>
+                      <div />
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="flex-1 overflow-y-auto">
+                    <div className="px-4 pt-5 pb-12">
+                      <ProjectDetailView project={localizedSelectedProject} lang={lang} />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
