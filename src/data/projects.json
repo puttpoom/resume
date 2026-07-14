@@ -18,7 +18,7 @@
       "เชื่อมต่อระบบ Login ที่เขียนด้วย Go เข้ากับระบบ PHP โดยใช้ OAuth 2.0",
       "ออกแบบโครงสร้างฐานข้อมูลเชิงสัมพันธ์สำหรับติดตามสต็อกหลายคลังสินค้าข้ามสาขา"
     ],
-    "techStack": ["ReactJS", "PHP Laravel", "Go", "MySQL", "MongoDB", "OAuth 2.0", "SnapLogic"],
+    "techStack": ["ReactJS", "PHP Laravel", "Go", "MySQL", "MongoDB", "OAuth 2.0"],
     "featured": true,
     "year": 2024,
     "ownership": "company",
@@ -173,7 +173,7 @@
       "ตั้งเวลาซื้อสินค้าอัตโนมัติด้วย node-cron และรักษาความปลอดภัยด้วย JWT",
       "ใช้ Prisma + MySQL สำหรับเก็บข้อมูลผู้ใช้และประวัติการซื้อ"
     ],
-    "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "LINE Bot SDK", "FingerprintJS", "node-cron", "JWT", "Tailwind CSS"],
+    "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "LINE Bot SDK", "Tailwind CSS"],
     "githubUrl": "https://github.com/puttpoom/shopping-bot-reactjs-ui",
     "featured": true,
     "year": 2024,
@@ -200,7 +200,7 @@
       "จัดการ authentication flow ด้วย JWT และ protected routes ผ่าน React Router",
       "แจ้งเตือนผู้ใช้ด้วย react-toastify"
     ],
-    "techStack": ["React", "TypeScript", "Material-UI", "React Hook Form", "Joi", "React Router", "Vite"],
+    "techStack": ["React", "TypeScript", "Material-UI", "React Hook Form"],
     "githubUrl": "https://github.com/puttpoom/user-dashboard-typescript",
     "featured": false,
     "year": 2024,
