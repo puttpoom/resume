@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/lib/theme'
 import { DisplayProvider } from '@/lib/display'
 
 export const metadata: Metadata = {
-  icons: { icon: '/icon.svg' },
   title: 'Hello world~',
   description:
     'Full-Stack Developer with 1.5+ years experience in Go, PHP Laravel, ReactJS, and real-time systems. Based in Bangkok, Thailand.',
