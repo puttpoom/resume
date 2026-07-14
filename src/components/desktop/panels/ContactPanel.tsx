@@ -15,7 +15,7 @@ interface ContactRow {
 }
 
 const ROWS: ContactRow[] = [
-  { label: 'Email',    value: 'putthiphoom..bm@gmail.com', href: 'mailto:putthiphoom..bm@gmail.com', Icon: IoMailOutline,     iconBg: '#007AFF' },
+  { label: 'Email',    value: 'putthiphoom.bm@gmail.com', href: 'mailto:putthiphoom.bm@gmail.com', Icon: IoMailOutline,     iconBg: '#007AFF' },
   { label: 'GitHub',   value: 'github.com/puttpoom',             href: 'https://github.com/puttpoom',           Icon: IoLogoGithub,     iconBg: '#1d1d1f' },
   { label: 'LinkedIn', value: 'linkedin.com/in/putthiphoom',     href: 'https://linkedin.com/in/putthiphoom',   Icon: IoLogoLinkedin,   iconBg: '#0A66C2' },
   { label: 'Location', value: 'Bangkok, Thailand',               href: null,                                    Icon: IoLocationOutline, iconBg: '#FF3B30' },

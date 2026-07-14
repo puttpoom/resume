@@ -51,28 +51,29 @@ export function MenuBar({ appName = 'Portfolio' }: { appName?: string }) {
       className="menubar-chrome fixed top-0 inset-x-0 z-[9999] h-7 flex items-center px-3 gap-4 text-[var(--text-primary)]"
       role="menubar"
     >
-      {/* Mangosteen logo — B&W bitten */}
-      <svg width="16" height="16" viewBox="0 0 16 16" aria-label="Mangosteen">
+      {/* Bitten Cookie logo */}
+      <svg width="16" height="16" viewBox="0 0 100 100" aria-label="Cookie">
         <defs>
-          <mask id="mgbite">
-            <rect width="16" height="16" fill="white"/>
-            <circle cx="13.5" cy="8" r="3" fill="black"/>
-          </mask>
-          <clipPath id="mgfruit">
-            <circle cx="8" cy="10" r="5"/>
+          <clipPath id="ckshape">
+            <circle cx="50" cy="55" r="42"/>
           </clipPath>
+          <mask id="ckbite">
+            <rect width="100" height="100" fill="white"/>
+            <circle cx="93" cy="8" r="32" fill="black"/>
+          </mask>
         </defs>
-        {/* Flesh exposed at bite */}
-        <g clipPath="url(#mgfruit)">
-          <circle cx="13.5" cy="8" r="3" fill="white"/>
-          <path d="M10.8 7 L12.8 9.5" stroke="#aaa" strokeWidth="0.4" fill="none"/>
+        <g mask="url(#ckbite)">
+          <g clipPath="url(#ckshape)">
+            <circle cx="50" cy="55" r="42" fill="#ECC68A"/>
+            <circle cx="50" cy="55" r="39" fill="#C8834A"/>
+            <circle cx="33" cy="48" r="5.5" fill="#3D1F0A"/>
+            <circle cx="55" cy="52" r="5"   fill="#3D1F0A"/>
+            <circle cx="57" cy="39" r="4"   fill="#3D1F0A"/>
+            <circle cx="36" cy="65" r="4.5" fill="#3D1F0A"/>
+            <circle cx="62" cy="68" r="4.5" fill="#3D1F0A"/>
+            <circle cx="45" cy="76" r="4"   fill="#3D1F0A"/>
+          </g>
         </g>
-        {/* Fruit body with bite removed */}
-        <circle cx="8" cy="10" r="5" fill="currentColor" mask="url(#mgbite)"/>
-        {/* Crown sepals */}
-        <ellipse cx="8" cy="4" rx="0.7" ry="1.4" fill="currentColor"/>
-        <ellipse cx="6.1" cy="4.7" rx="0.65" ry="1.2" transform="rotate(-38 6.1 4.7)" fill="currentColor"/>
-        <ellipse cx="9.9" cy="4.7" rx="0.65" ry="1.2" transform="rotate(38 9.9 4.7)" fill="currentColor"/>
       </svg>
 
       {/* App name */}
