@@ -125,3 +125,14 @@ body.mobile-view {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ─── Semantic color utilities ──────────────────────────────────── */
+@utility text-primary      { color: var(--text-primary); }
+@utility text-secondary    { color: var(--text-secondary); }
+@utility text-tertiary     { color: var(--text-tertiary); }
+@utility text-system-blue  { color: var(--system-blue); }
+@utility bg-ios            { background: var(--ios-bg); }
+@utility bg-ios-card       { background: var(--ios-card-bg); }
+@utility border-ios        { border-color: var(--ios-separator); }
+@utility bg-system-blue    { background: var(--system-blue); }
+@utility divide-ios        { > * + * { border-top: 0.5px solid var(--ios-separator); } }

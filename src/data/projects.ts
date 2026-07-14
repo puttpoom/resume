@@ -1,51 +1,6 @@
 import type { Project } from '@/types'
+import projectsData from './projects.json'
 
-export const projects: Project[] = [
-  {
-    id: 'isupply',
-    title: 'iSupply — Inventory Management',
-    description: 'Multi-tenant inventory system for concrete plants. Reduced API response time ~30% via EXPLAIN-based query tuning. Fixed memory-crash bug in bulk Excel exports.',
-    descriptionTh: 'ระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ปรับปรุงความเร็วของ API ได้ 30% และแก้ปัญหาระบบล่มจากการ export Excel ขนาดใหญ่',
-    techStack: ['ReactJS', 'PHP Laravel', 'MySQL', 'MongoDB', 'OAuth 2.0'],
-    featured: true,
-    year: 2024,
-  },
-  {
-    id: 'icho-terminal',
-    title: 'ICHO Automate Plant',
-    description: 'On-site terminal app connecting to hardware (breathalyzer, gate, license-plate camera) for factory entry control. Migrated legacy PHP 5.5 codebase to PHP 8.3.',
-    descriptionTh: 'แอปพลิเคชันหน้างานที่เชื่อมต่อกับฮาร์ดแวร์ (เครื่องเป่าแอลกอฮอล์, กล้องอ่านป้ายทะเบียน) สำหรับควบคุมการเข้า-ออกโรงงาน พร้อมอัปเกรด PHP 5.5 → 8.3',
-    techStack: ['PHP 8.3', 'MySQL', 'Bootstrap 5', 'jQuery'],
-    featured: true,
-    year: 2024,
-  },
-  {
-    id: 'cloudtime',
-    title: 'Cloudtime Passenger GIS',
-    description: 'Map dashboard showing bus routes and real-time boarding counts for a passenger bus fleet. Built React UI from Figma; fixed GPS timestamp/schedule mismatches.',
-    descriptionTh: 'Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ สร้าง UI ด้วย React จากแบบ Figma และแก้ปัญหาเวลา GPS ไม่ตรงตารางเดินรถ',
-    techStack: ['Go (Gorilla/Mux)', 'ReactJS', 'MySQL', 'Google Maps API'],
-    featured: true,
-    year: 2024,
-  },
-  {
-    id: 'mena-gps',
-    title: 'Mena Transport GPS Interface',
-    description: 'Go program processing real-time GPS data from ~50 delivery vehicles. Validates and reformats GPS data to match third-party logistics system requirements.',
-    descriptionTh: 'โปรแกรม Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน ตรวจสอบและปรับรูปแบบข้อมูลให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม',
-    techStack: ['Go (Gorilla/Mux)', 'RabbitMQ'],
-    featured: false,
-    year: 2025,
-  },
-  {
-    id: 'spa-portfolio',
-    title: 'SPA Portfolio',
-    description: 'Personal portfolio with Apple-product-page scroll aesthetics. Built with Next.js, Framer Motion scroll-driven animations, and Lenis momentum scroll.',
-    descriptionTh: 'พอร์ตโฟลิโอส่วนตัวสไตล์ Apple product page มี scroll animations ด้วย Framer Motion และ Lenis smooth scroll',
-    techStack: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Lenis'],
-    githubUrl: 'https://github.com/puttpoom/spa-portfilo',
-    liveUrl: 'https://puttpoom.github.io/spa-portfilo',
-    featured: true,
-    year: 2025,
-  },
-]
+export const projects: Project[] = projectsData as Project[]
+
+export const featuredProjects = projects.filter((p) => p.featured)

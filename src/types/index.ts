@@ -3,11 +3,16 @@ export interface Project {
   title: string
   description: string
   descriptionTh?: string
+  bullets?: string[]
+  bulletsTh?: string[]
   techStack: string[]
   githubUrl?: string
   liveUrl?: string
   featured: boolean
   year: number
+  ownership: 'company' | 'co' | 'personal'
+  company?: string
+  repos?: string[]
 }
 
 export interface Skill {
@@ -38,27 +43,32 @@ export interface Experience {
 }
 
 export interface Education {
-  id: string
-  institution: string
-  institutionTh?: string
-  degree: string
-  degreeTh?: string
-  field: string
-  fieldTh?: string
-  startYear: number
-  endYear: number | null
-  gpa?: string
-  note?: string
-  noteTh?: string
+  id: string;
+  institution: string;
+  institutionTh?: string;
+  degree: string;
+  degreeTh?: string;
+  field: string;
+  fieldTh?: string;
+  startYear: number;
+  endYear: number | null;
+  startYearTh?: number;
+  endYearTh?: number;
+  gpa: string;
+  note?: string;
+  noteTh?: string;
 }
 
 export interface Certificate {
-  id: string
-  name: string
-  nameTh?: string
-  issuer: string
-  issuedDate: string
-  credentialUrl?: string
+  id: string;
+  name: string;
+  nameTh?: string;
+  issuer: string;
+  credentialUrl?: string;
+  note?: string;
+  noteTh?: string;
+  issuedDate: string;
+  issuedDateTh: string;
 }
 
 export interface SocialLink {

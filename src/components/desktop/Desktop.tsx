@@ -1,14 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import {
   IoPerson, IoFlash, IoFolder, IoBriefcase,
   IoSchool, IoMail, IoDocumentText,
-  IoChevronForward, IoSunny, IoMoon, IoGlobe,
-  IoDownload,
+  IoChevronForward, IoSunny, IoMoon, IoGlobe, IoDownload,
 } from 'react-icons/io5'
 import type { IconType } from 'react-icons'
+import { projects } from '@/data/projects'
 import { MenuBar } from './MenuBar'
 import { AboutPanel }      from './panels/AboutPanel'
 import { SkillsPanel }     from './panels/SkillsPanel'
@@ -17,9 +16,15 @@ import { ExperiencePanel } from './panels/ExperiencePanel'
 import { EducationPanel }  from './panels/EducationPanel'
 import { ContactPanel }    from './panels/ContactPanel'
 import { ResumePanel }     from './panels/ResumePanel'
-import { useLang } from '@/lib/lang'
-import { useTheme } from '@/lib/theme'
+import { PanelToolbar }    from './toolbar/PanelToolbar'
+import { AppIcon }   from '@/components/ui/AppIcon'
+import { IOSSwitch } from '@/components/ui/IOSSwitch'
+import { SectionLabel } from '@/components/ui/SectionLabel'
+import { useLang }    from '@/lib/lang'
+import { useTheme }   from '@/lib/theme'
+import { useDisplay, FONT_ZOOM } from '@/lib/display'
 import { getStrings } from '@/data/i18n'
+import { AVATAR_URL, resumeUrl } from '@/lib/assets'
 
 type Section = 'about' | 'skills' | 'projects' | 'experience' | 'education' | 'contact' | 'resume'
 
@@ -30,207 +35,152 @@ interface NavRow {
   label: string
 }
 
-const AVATAR =
-  (process.env.NODE_ENV === 'production' ? '/spa-portfilo' : '') +
-  '/assets/putthiphoom_pic.jpg'
-
-/* ── Shared sub-components ─────────────────────────────────────── */
-
-function AppIcon({ Icon, bg, size = 28 }: { Icon: IconType; bg: string; size?: number }) {
-  return (
-    <div
-      className="flex items-center justify-center shrink-0"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: Math.round(size * 0.2237),
-        background: bg,
-      }}
-    >
-      <Icon size={Math.round(size * 0.62)} color="#fff" />
-    </div>
-  )
-}
-
-function IOSSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button
-      onClick={onToggle}
-      role="switch"
-      aria-checked={on}
-      className="relative shrink-0 focus-visible:outline-none"
-      style={{
-        width: 44,
-        height: 26,
-        borderRadius: 13,
-        background: on ? '#34C759' : 'rgba(120,120,128,0.32)',
-        transition: 'background 0.2s ease',
-      }}
-    >
-      <motion.div
-        animate={{ x: on ? 20 : 2 }}
-        transition={{ type: 'spring', stiffness: 500, damping: 36 }}
-        style={{
-          position: 'absolute',
-          top: 2,
-          width: 22,
-          height: 22,
-          borderRadius: '50%',
-          background: '#fff',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.3)',
-        }}
-      />
-    </button>
-  )
-}
-
-function SidebarLabel({ children }: { children: string }) {
-  return (
-    <p className="text-[11px] uppercase px-3 pt-5 pb-1"
-      style={{ color: 'var(--text-secondary)', letterSpacing: '0.05em' }}>
-      {children}
-    </p>
-  )
-}
-
-/* ── Desktop ──────────────────────────────────────────────────── */
 export function Desktop() {
   const [active, setActive] = useState<Section>('about')
   const { lang, setLang } = useLang()
-  const { theme, toggle } = useTheme()
+  const { theme, toggle }  = useTheme()
+  const { fontSize, density } = useDisplay()
   const t = getStrings(lang)
 
   const navRows: NavRow[] = [
-    { id: 'about',      Icon: IoPerson,       iconBg: '#007AFF', label: t.nav.about },
-    { id: 'skills',     Icon: IoFlash,         iconBg: '#5856D6', label: t.nav.skills },
-    { id: 'projects',   Icon: IoFolder,        iconBg: '#FF9500', label: t.nav.projects },
-    { id: 'experience', Icon: IoBriefcase,     iconBg: '#FF3B30', label: t.nav.experience },
-    { id: 'education',  Icon: IoSchool,        iconBg: '#34C759', label: t.nav.education },
-    { id: 'contact',    Icon: IoMail,          iconBg: '#0A84FF', label: t.nav.contact },
+    { id: 'about',      Icon: IoPerson,    iconBg: '#007AFF', label: t.nav.about },
+    { id: 'skills',     Icon: IoFlash,     iconBg: '#5856D6', label: t.nav.skills },
+    { id: 'projects',   Icon: IoFolder,    iconBg: '#FF9500', label: t.nav.projects },
+    { id: 'experience', Icon: IoBriefcase, iconBg: '#FF3B30', label: t.nav.experience },
+    { id: 'education',  Icon: IoSchool,    iconBg: '#34C759', label: t.nav.education },
+    { id: 'contact',    Icon: IoMail,      iconBg: '#0A84FF', label: t.nav.contact },
   ]
 
-  const resumeUrl =
-    (process.env.NODE_ENV === 'production' ? '/spa-portfilo' : '') +
-    `/docs/resume_putthiphoom_${lang === 'th' ? 'thai' : 'eng'}.pdf`
+  const pdfUrl = resumeUrl(lang)
+  const rowPy = density === 'compact' ? '6px' : density === 'spacious' ? '12px' : '9px'
+  const activeLabel = active === 'resume'
+    ? t.ui.viewResume
+    : navRows.find(r => r.id === active)?.label ?? ''
 
   return (
-    <div
-      className="flex flex-col overflow-hidden"
-      style={{ height: '100dvh', background: 'var(--ios-bg)' }}
-    >
-      {/* macOS-style menu bar stays */}
+    <div className="flex flex-col overflow-hidden bg-ios" style={{ height: '100dvh' }}>
       <MenuBar />
 
-      {/* Two-column body below menubar */}
       <div className="flex flex-1 overflow-hidden" style={{ marginTop: 28 }}>
 
-        {/* ── Sidebar ──────────────────────────────────────────── */}
+        {/* Sidebar */}
         <aside
-          className="shrink-0 overflow-y-auto border-r flex flex-col"
-          style={{
-            width: 280,
-            borderColor: 'var(--ios-separator)',
-            background: 'var(--ios-bg)',
-          }}
+          className="shrink-0 overflow-y-auto border-r flex flex-col border-ios bg-ios"
+          style={{ width: 280 }}
         >
           {/* Profile */}
-          <div className="px-3 pt-5 pb-2">
-            <div
-              className="rounded-2xl px-3 py-3 flex items-center gap-3"
-              style={{ background: 'var(--ios-card-bg)' }}
-            >
+          <div className="px-3 pt-4 pb-2">
+            <div className="rounded-2xl px-3 py-3 flex items-center gap-3 bg-ios-card">
               <img
-                src={AVATAR}
+                src={AVATAR_URL}
                 alt="Putthiphoom"
                 className="w-12 h-12 rounded-full object-cover shrink-0"
                 style={{ border: '0.5px solid var(--ios-separator)' }}
               />
               <div className="min-w-0">
-                <p className="text-[14px] font-semibold leading-snug truncate"
-                  style={{ color: 'var(--text-primary)' }}>
+                <p className="text-[14px] font-semibold leading-snug truncate text-primary">
                   Putthiphoom B.
                 </p>
-                <p className="text-[12px] truncate" style={{ color: 'var(--system-blue)' }}>
-                  Full-Stack Developer
-                </p>
-                <p className="text-[11px] truncate mt-0.5" style={{ color: 'var(--text-tertiary)' }}>
-                  Bangkok, Thailand
-                </p>
+                <p className="text-[12px] truncate text-system-blue">Full-Stack Developer</p>
+                <p className="text-[11px] truncate mt-0.5 text-tertiary">Bangkok, Thailand</p>
               </div>
             </div>
           </div>
 
-          {/* Settings rows: Language + Dark mode */}
-          <SidebarLabel>{lang === 'th' ? 'การตั้งค่า' : 'Settings'}</SidebarLabel>
+          {/* Settings */}
+          <SectionLabel variant="sidebar">{t.ui.settings}</SectionLabel>
           <div className="px-3">
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
-              {/* Language */}
-              <div className="flex items-center gap-2.5 px-3 py-2.5"
-                style={{ borderBottom: '0.5px solid var(--ios-separator)' }}>
+            <div className="rounded-2xl overflow-hidden bg-ios-card">
+              <div
+                className="flex items-center gap-2.5 px-3"
+                style={{ paddingTop: rowPy, paddingBottom: rowPy, borderBottom: '0.5px solid var(--ios-separator)' }}
+              >
                 <AppIcon Icon={IoGlobe} bg="#007AFF" size={26} />
-                <span className="flex-1 text-[14px]" style={{ color: 'var(--text-primary)' }}>
-                  {lang === 'th' ? 'ภาษา' : 'Language'}
-                </span>
-                <button
-                  onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
-                  className="text-[12px] font-semibold transition-opacity hover:opacity-70"
-                  style={{ color: 'var(--system-blue)' }}
-                >
-                  {lang === 'en' ? 'ภาษาไทย' : 'English'}
-                </button>
+                <span className="flex-1 text-[14px] text-primary">{t.ui.language}</span>
+                <div className="relative">
+                  <select
+                    value={lang}
+                    onChange={(e) => setLang(e.target.value as 'en' | 'th')}
+                    className="appearance-none text-[12px] font-semibold pr-4 pl-1 py-0.5 rounded cursor-pointer focus:outline-none text-system-blue"
+                    style={{ background: 'transparent' }}
+                  >
+                    <option value="en">English</option>
+                    <option value="th">ภาษาไทย</option>
+                  </select>
+                  <IoChevronForward
+                    size={10}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none rotate-90 text-system-blue"
+                  />
+                </div>
               </div>
-              {/* Appearance */}
-              <div className="flex items-center gap-2.5 px-3 py-2.5">
+              <div
+                className="flex items-center gap-2.5 px-3"
+                style={{ paddingTop: rowPy, paddingBottom: rowPy }}
+              >
                 <AppIcon
                   Icon={theme === 'dark' ? IoMoon : IoSunny}
                   bg={theme === 'dark' ? '#636366' : '#FF9500'}
                   size={26}
                 />
-                <span className="flex-1 text-[14px]" style={{ color: 'var(--text-primary)' }}>
-                  {lang === 'th' ? 'โหมดมืด' : 'Dark Mode'}
-                </span>
-                <IOSSwitch on={theme === 'dark'} onToggle={toggle} />
+                <span className="flex-1 text-[14px] text-primary">{t.ui.darkMode}</span>
+                <IOSSwitch on={theme === 'dark'} onToggle={toggle} size="sm" />
               </div>
             </div>
           </div>
 
           {/* Nav rows */}
-          <SidebarLabel>{lang === 'th' ? 'พอร์ตโฟลิโอ' : 'Portfolio'}</SidebarLabel>
+          <SectionLabel variant="sidebar">{t.ui.portfolio}</SectionLabel>
           <div className="px-3">
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
+            <div className="rounded-2xl overflow-hidden bg-ios-card">
               {navRows.map((row, i) => (
                 <button
                   key={row.id}
                   onClick={() => setActive(row.id)}
-                  className="w-full flex items-center gap-2.5 px-3 py-2.5 transition-colors"
+                  className="w-full flex items-center gap-2.5 px-3 transition-colors"
                   style={{
+                    paddingTop: rowPy, paddingBottom: rowPy,
                     background: active === row.id ? 'var(--system-blue)' : 'transparent',
                     borderBottom: i < navRows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none',
                   }}
                 >
-                  <AppIcon Icon={row.Icon} bg={active === row.id ? 'rgba(255,255,255,0.25)' : row.iconBg} size={26} />
+                  <AppIcon
+                    Icon={row.Icon}
+                    bg={active === row.id ? 'rgba(255,255,255,0.25)' : row.iconBg}
+                    size={26}
+                  />
                   <span
                     className="flex-1 text-left text-[14px] font-medium"
                     style={{ color: active === row.id ? '#fff' : 'var(--text-primary)' }}
                   >
                     {row.label}
                   </span>
+                  {row.id === 'projects' && active !== row.id && (
+                    <span
+                      className="text-[11px] font-bold text-white rounded-full flex items-center justify-center"
+                      style={{ background: '#FF3B30', minWidth: 18, height: 18, padding: '0 4px' }}
+                    >
+                      {projects.length}
+                    </span>
+                  )}
                   {active !== row.id && (
-                    <IoChevronForward size={14} style={{ color: 'var(--text-tertiary)' }} />
+                    <IoChevronForward size={14} className="text-tertiary" />
                   )}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Resume download */}
-          <SidebarLabel>{lang === 'th' ? 'เอกสาร' : 'Documents'}</SidebarLabel>
+          {/* Resume */}
+          <SectionLabel variant="sidebar">{t.ui.documents}</SectionLabel>
           <div className="px-3 pb-6">
-            <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
+            <div className="rounded-2xl overflow-hidden bg-ios-card">
               <button
                 onClick={() => setActive('resume')}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 transition-colors"
-                style={{ background: active === 'resume' ? 'var(--system-blue)' : 'transparent' }}
+                className="w-full flex items-center gap-2.5 px-3 transition-colors"
+                style={{
+                  paddingTop: rowPy, paddingBottom: rowPy,
+                  background: active === 'resume' ? 'var(--system-blue)' : 'transparent',
+                }}
               >
                 <AppIcon
                   Icon={IoDocumentText}
@@ -241,15 +191,15 @@ export function Desktop() {
                   className="flex-1 text-left text-[14px] font-medium"
                   style={{ color: active === 'resume' ? '#fff' : 'var(--text-primary)' }}
                 >
-                  {lang === 'th' ? 'ดู CV' : 'View Résumé'}
+                  {t.ui.viewResume}
                 </span>
                 <a
-                  href={resumeUrl}
+                  href={pdfUrl}
                   download
                   onClick={(e) => e.stopPropagation()}
                   className="p-1 rounded-md transition-opacity hover:opacity-60"
                   style={{ color: active === 'resume' ? '#fff' : 'var(--text-tertiary)' }}
-                  title={lang === 'th' ? 'ดาวน์โหลด' : 'Download'}
+                  title={t.ui.download}
                 >
                   <IoDownload size={14} />
                 </a>
@@ -258,20 +208,19 @@ export function Desktop() {
           </div>
         </aside>
 
-        {/* ── Detail panel ─────────────────────────────────────── */}
-        <main
-          key={active}
-          className="flex-1 overflow-y-auto"
-          style={{ background: 'var(--ios-bg)' }}
-        >
-          {active === 'about'      && <AboutPanel />}
-          {active === 'skills'     && <SkillsPanel />}
-          {active === 'projects'   && <ProjectsPanel />}
-          {active === 'experience' && <ExperiencePanel />}
-          {active === 'education'  && <EducationPanel />}
-          {active === 'contact'    && <ContactPanel />}
-          {active === 'resume'     && <ResumePanel />}
-        </main>
+        {/* Detail panel */}
+        <div className="flex flex-1 flex-col overflow-hidden bg-ios">
+          <PanelToolbar title={activeLabel} />
+          <main key={active} className="flex-1 overflow-y-auto" style={{ zoom: FONT_ZOOM[fontSize] }}>
+            {active === 'about'      && <AboutPanel />}
+            {active === 'skills'     && <SkillsPanel />}
+            {active === 'projects'   && <ProjectsPanel />}
+            {active === 'experience' && <ExperiencePanel />}
+            {active === 'education'  && <EducationPanel />}
+            {active === 'contact'    && <ContactPanel />}
+            {active === 'resume'     && <ResumePanel />}
+          </main>
+        </div>
       </div>
     </div>
   )

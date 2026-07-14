@@ -4,10 +4,7 @@ import { IoMailOutline, IoLogoGithub, IoLogoLinkedin, IoLocationOutline } from '
 import type { IconType } from 'react-icons'
 import { useLang } from '@/lib/lang'
 import { getStrings } from '@/data/i18n'
-
-const AVATAR =
-  (process.env.NODE_ENV === 'production' ? '/spa-portfilo' : '') +
-  '/assets/putthiphoom_pic.jpg'
+import { AVATAR_URL } from '@/lib/assets'
 
 interface ContactRow {
   label: string
@@ -18,7 +15,7 @@ interface ContactRow {
 }
 
 const ROWS: ContactRow[] = [
-  { label: 'Email',    value: 'putthiphoom.boo@freewillfx.com', href: 'mailto:putthiphoom.boo@freewillfx.com', Icon: IoMailOutline,    iconBg: '#007AFF' },
+  { label: 'Email',    value: 'putthiphoom..bm@gmail.com', href: 'mailto:putthiphoom..bm@gmail.com', Icon: IoMailOutline,     iconBg: '#007AFF' },
   { label: 'GitHub',   value: 'github.com/puttpoom',             href: 'https://github.com/puttpoom',           Icon: IoLogoGithub,     iconBg: '#1d1d1f' },
   { label: 'LinkedIn', value: 'linkedin.com/in/putthiphoom',     href: 'https://linkedin.com/in/putthiphoom',   Icon: IoLogoLinkedin,   iconBg: '#0A66C2' },
   { label: 'Location', value: 'Bangkok, Thailand',               href: null,                                    Icon: IoLocationOutline, iconBg: '#FF3B30' },
@@ -30,28 +27,24 @@ export function ContactPanel() {
 
   return (
     <div className="p-6 max-w-xl mx-auto space-y-5">
-
       {/* Profile card */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
-        <div className="flex flex-col items-center py-8 px-6 gap-3"
-          style={{ borderBottom: '0.5px solid var(--ios-separator)' }}>
+      <div className="rounded-2xl overflow-hidden bg-ios-card">
+        <div
+          className="flex flex-col items-center py-8 px-6 gap-3"
+          style={{ borderBottom: '0.5px solid var(--ios-separator)' }}
+        >
           <img
-            src={AVATAR}
+            src={AVATAR_URL}
             alt="Putthiphoom"
             className="w-24 h-24 rounded-full object-cover shadow-lg"
             style={{ border: '2px solid var(--ios-separator)' }}
           />
           <div className="text-center">
-            <h2 className="text-[20px] font-bold" style={{ color: 'var(--text-primary)' }}>
-              Putthiphoom Boonmahatanasombut
-            </h2>
-            <p className="text-[14px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-              Full-Stack Developer
-            </p>
+            <h2 className="text-[20px] font-bold text-primary">Putthiphoom Boonmahatanasombut</h2>
+            <p className="text-[14px] mt-0.5 text-secondary">Full-Stack Developer</p>
           </div>
         </div>
 
-        {/* Contact rows */}
         {ROWS.map((row, i) => (
           <div
             key={row.label}
@@ -65,38 +58,34 @@ export function ContactPanel() {
               <row.Icon size={18} color="#fff" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[11px] uppercase font-medium mb-0.5"
-                style={{ color: 'var(--text-tertiary)', letterSpacing: '0.04em' }}>
+              <p className="text-[11px] uppercase font-medium mb-0.5 text-tertiary" style={{ letterSpacing: '0.04em' }}>
                 {row.label}
               </p>
               {row.href ? (
-                <a href={row.href}
+                <a
+                  href={row.href}
                   target={row.href.startsWith('mailto') ? undefined : '_blank'}
                   rel="noopener noreferrer"
-                  className="text-[15px] truncate block transition-opacity hover:opacity-70"
-                  style={{ color: 'var(--system-blue)' }}>
+                  className="text-[15px] truncate block transition-opacity hover:opacity-70 text-system-blue"
+                >
                   {row.value}
                 </a>
               ) : (
-                <p className="text-[15px]" style={{ color: 'var(--text-primary)' }}>{row.value}</p>
+                <p className="text-[15px] text-primary">{row.value}</p>
               )}
             </div>
           </div>
         ))}
       </div>
 
-      {/* CTA */}
       <a
-        href="mailto:putthiphoom.boo@freewillfx.com"
-        className="block w-full py-3.5 rounded-2xl text-center text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
-        style={{ background: 'var(--system-blue)' }}
+        href="mailto:putthiphoom..bm@gmail.com"
+        className="block w-full py-3.5 rounded-2xl text-center text-[16px] font-semibold text-white transition-opacity hover:opacity-90 bg-system-blue"
       >
         {t.cta}
       </a>
 
-      <p className="text-center text-[12px]" style={{ color: 'var(--text-tertiary)' }}>
-        {t.subtitle}
-      </p>
+      <p className="text-center text-[12px] text-tertiary">{t.subtitle}</p>
     </div>
   )
 }

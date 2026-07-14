@@ -34,3 +34,10 @@ export function LangProvider({ children }: { children: ReactNode }) {
 export function useLang() {
   return useContext(LangContext)
 }
+
+/** Pick Thai string when lang==='th' and thValue is defined; otherwise English. */
+export function loc(lang: Lang, th: string | undefined, en: string): string
+export function loc(lang: Lang, th: string | undefined, en: string | undefined): string | undefined
+export function loc(lang: Lang, th: string | undefined, en: string | undefined): string | undefined {
+  return lang === 'th' && th != null ? th : en
+}

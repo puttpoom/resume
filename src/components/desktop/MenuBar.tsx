@@ -1,10 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '@/lib/theme'
 import { useLang } from '@/lib/lang'
+import { useDisplay, type FontSize, type Density } from '@/lib/display'
 
 const MENUS = ['File', 'Edit', 'View', 'Window', 'Help']
+
+const FS_STEPS: FontSize[] = ['sm', 'md', 'lg', 'xl']
+const FS_PX = [11, 13, 15, 18]
+
+const DENSITY_OPTS: { value: Density; labelEn: string; labelTh: string }[] = [
+  { value: 'compact',  labelEn: 'Compact',  labelTh: 'กะทัดรัด' },
+  { value: 'normal',   labelEn: 'Normal',   labelTh: 'ปกติ' },
+  { value: 'spacious', labelEn: 'Spacious', labelTh: 'กว้าง' },
+]
+
 
 function LiveClock() {
   const [time, setTime] = useState('')
@@ -19,16 +30,6 @@ function LiveClock() {
   }, [])
 
   return <span className="text-[13px] tabular-nums">{time}</span>
-}
-
-function WifiIcon() {
-  return (
-    <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" aria-label="Wi-Fi">
-      <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
-      <path fillRule="evenodd" d="M8 5.5C10.2 5.5 12.2 6.4 13.6 7.9l1.1-1.2A8.5 8.5 0 0 0 8 4a8.5 8.5 0 0 0-6.7 2.7l1.1 1.2A6.5 6.5 0 0 1 8 5.5z" opacity=".5"/>
-      <path fillRule="evenodd" d="M8 1.5C11.5 1.5 14.6 3 16.7 5.5l-1.1 1.2A10.5 10.5 0 0 0 8 0 10.5 10.5 0 0 0-.6 6.7l1.1-1.2C2.4 3 5.5 1.5 8 1.5z" opacity=".3" clipPath="none"/>
-    </svg>
-  )
 }
 
 function BatteryIcon() {
@@ -50,9 +51,28 @@ export function MenuBar({ appName = 'Portfolio' }: { appName?: string }) {
       className="menubar-chrome fixed top-0 inset-x-0 z-[9999] h-7 flex items-center px-3 gap-4 text-[var(--text-primary)]"
       role="menubar"
     >
-      {/* Apple logo */}
-      <svg width="13" height="16" viewBox="0 0 814 1000" fill="currentColor" aria-label="Apple" className="opacity-90">
-        <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.4C46 790.7 0 663.4 0 541.8 0 316.3 155.5 196.8 280.8 196.8c70.8 0 129.3 46.8 173.3 46.8 42.8 0 110.1-50.2 196.8-50.2a213.3 213.3 0 0 1 137.2 52.6zm-160.5-191.4c32.9-39.5 56.5-94.5 56.5-149.5 0-7.7-.6-15.5-2-22.5-54.3 2-119.3 36.2-160.5 81.6-31.2 35.5-60 90.6-60 146.4 0 8.6 1.5 17.2 2 19.8 3.4.6 8.6 1.5 13.8 1.5 49.5 0 112.7-33.3 150.2-77.3z"/>
+      {/* Mangosteen logo — B&W bitten */}
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-label="Mangosteen">
+        <defs>
+          <mask id="mgbite">
+            <rect width="16" height="16" fill="white"/>
+            <circle cx="13.5" cy="8" r="3" fill="black"/>
+          </mask>
+          <clipPath id="mgfruit">
+            <circle cx="8" cy="10" r="5"/>
+          </clipPath>
+        </defs>
+        {/* Flesh exposed at bite */}
+        <g clipPath="url(#mgfruit)">
+          <circle cx="13.5" cy="8" r="3" fill="white"/>
+          <path d="M10.8 7 L12.8 9.5" stroke="#aaa" strokeWidth="0.4" fill="none"/>
+        </g>
+        {/* Fruit body with bite removed */}
+        <circle cx="8" cy="10" r="5" fill="currentColor" mask="url(#mgbite)"/>
+        {/* Crown sepals */}
+        <ellipse cx="8" cy="4" rx="0.7" ry="1.4" fill="currentColor"/>
+        <ellipse cx="6.1" cy="4.7" rx="0.65" ry="1.2" transform="rotate(-38 6.1 4.7)" fill="currentColor"/>
+        <ellipse cx="9.9" cy="4.7" rx="0.65" ry="1.2" transform="rotate(38 9.9 4.7)" fill="currentColor"/>
       </svg>
 
       {/* App name */}
@@ -95,7 +115,7 @@ export function MenuBar({ appName = 'Portfolio' }: { appName?: string }) {
           )}
         </button>
 
-        <WifiIcon />
+        {/* <WifiIcon /> */}
         <BatteryIcon />
         <LiveClock />
       </div>

@@ -3,13 +3,35 @@ import type { Lang } from '@/lib/lang'
 export interface I18n {
   nav: { about: string; projects: string; skills: string; experience: string; education: string; contact: string; hire: string }
   hero: { role: string; tagline: string; viewWork: string; getInTouch: string; scroll: string }
-  about: { overline: string; title: string; bio: string[]; stats: { value: string; label: string }[] }
-  projects: { overline: string; title: string; subtitle: string }
+  about: {
+    overline: string; title: string; bio: string[]
+    stats: { value: string; label: string }[]
+    role: string
+    biography: string
+    softSkills: string
+  }
+  projects: { overline: string; title: string; subtitle: string; techStack: string }
   skills: { overline: string; title: string; subtitle: string; categories: Record<string, string> }
   experience: { overline: string; title: string }
-  education: { overline: string; title: string; degreesLabel: string; certsLabel: string }
+  education: {
+    overline: string; title: string; degreesLabel: string; certsLabel: string
+    educationLabel: string
+    certificatesLabel: string
+  }
   contact: { overline: string; title: string; subtitle: string; findMeOn: string; footer: string; cta: string }
   resume: { title: string; download: string }
+  ui: {
+    settings: string
+    language: string
+    darkMode: string
+    portfolio: string
+    documents: string
+    viewResume: string
+    downloadResume: string
+    download: string
+    aboutMe: string
+    back: string
+  }
 }
 
 export const i18n: Record<Lang, I18n> = {
@@ -43,11 +65,15 @@ export const i18n: Record<Lang, I18n> = {
         { value: '5+', label: 'Projects Shipped' },
         { value: '10+', label: 'Technologies' },
       ],
+      role: 'Full-Stack Developer',
+      biography: 'Biography',
+      softSkills: 'Soft Skills',
     },
     projects: {
       overline: 'Selected Work',
       title: 'Projects',
       subtitle: 'A selection of things I\'ve built — from real-time systems to modern web apps.',
+      techStack: 'Tech Stack',
     },
     skills: {
       overline: 'Capabilities',
@@ -70,6 +96,8 @@ export const i18n: Record<Lang, I18n> = {
       title: 'Education & Certificates',
       degreesLabel: 'Degrees',
       certsLabel: 'Certificates',
+      educationLabel: 'Education',
+      certificatesLabel: 'Certificates',
     },
     contact: {
       overline: "Let's Connect",
@@ -82,6 +110,18 @@ export const i18n: Record<Lang, I18n> = {
     resume: {
       title: 'Résumé',
       download: 'Download PDF',
+    },
+    ui: {
+      settings: 'Settings',
+      language: 'Language',
+      darkMode: 'Dark Mode',
+      portfolio: 'Portfolio',
+      documents: 'Documents',
+      viewResume: 'View Résumé',
+      downloadResume: 'Download Résumé',
+      download: 'Download',
+      aboutMe: 'About Me',
+      back: 'Portfolio',
     },
   },
   th: {
@@ -114,11 +154,15 @@ export const i18n: Record<Lang, I18n> = {
         { value: '5+', label: 'โปรเจกต์' },
         { value: '10+', label: 'เทคโนโลยี' },
       ],
+      role: 'นักพัฒนา Full-Stack',
+      biography: 'เกี่ยวกับฉัน',
+      softSkills: 'ทักษะอื่น',
     },
     projects: {
       overline: 'ผลงานที่เลือก',
       title: 'ผลงาน',
       subtitle: 'ตัวอย่างสิ่งที่ฉันสร้าง ตั้งแต่ระบบเรียลไทม์ไปจนถึงเว็บแอปสมัยใหม่',
+      techStack: 'เทคโนโลยี',
     },
     skills: {
       overline: 'ความสามารถ',
@@ -141,6 +185,8 @@ export const i18n: Record<Lang, I18n> = {
       title: 'การศึกษา & ใบรับรอง',
       degreesLabel: 'ปริญญา',
       certsLabel: 'ใบรับรอง',
+      educationLabel: 'การศึกษา',
+      certificatesLabel: 'ใบรับรอง',
     },
     contact: {
       overline: 'ติดต่อกัน',
@@ -153,6 +199,18 @@ export const i18n: Record<Lang, I18n> = {
     resume: {
       title: 'ประวัติย่อ',
       download: 'ดาวน์โหลด PDF',
+    },
+    ui: {
+      settings: 'การตั้งค่า',
+      language: 'ภาษา',
+      darkMode: 'โหมดมืด',
+      portfolio: 'พอร์ตโฟลิโอ',
+      documents: 'เอกสาร',
+      viewResume: 'ดู CV',
+      downloadResume: 'ดาวน์โหลด CV',
+      download: 'ดาวน์โหลด',
+      aboutMe: 'เกี่ยวกับฉัน',
+      back: 'พอร์ตโฟลิโอ',
     },
   },
 }

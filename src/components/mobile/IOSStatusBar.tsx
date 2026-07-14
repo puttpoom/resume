@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 /* ── iOS 17+ status bar with Dynamic Island ───────────────────── */
-export function IOSStatusBar() {
+export function IOSStatusBar({ onTimeClick }: { onTimeClick?: () => void }) {
   const [time, setTime] = useState('')
 
   useEffect(() => {
@@ -24,23 +24,24 @@ export function IOSStatusBar() {
   return (
     <div
       className="fixed top-0 inset-x-0 z-[9999]"
-      style={{ height: 59, background: 'var(--ios-bg)' }}
+      style={{ height: 44, background: 'var(--ios-bg)' }}
     >
-      {/* Dynamic Island */}
-      <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[126px] h-[37px] rounded-full bg-black" />
-
-      {/* Left — time */}
-      <div className="absolute left-[21px] top-[14px]">
+      {/* Left — time (tappable → Control Center) */}
+      <button
+        className="absolute left-[21px] top-1/2 -translate-y-1/2 focus:outline-none active:opacity-60 transition-opacity"
+        onClick={onTimeClick}
+        aria-label="Open Control Center"
+      >
         <span
           className="text-[15px] font-semibold tabular-nums"
           style={{ color: 'var(--text-primary)' }}
         >
           {time}
         </span>
-      </div>
+      </button>
 
       {/* Right — signal + wifi + battery */}
-      <div className="absolute right-[17px] top-[17px] flex items-center gap-[6px]">
+      <div className="absolute right-[17px] top-1/2 -translate-y-1/2 flex items-center gap-[6px]">
         {/* Cellular signal dots */}
         <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
           {[2,5,8,12].map((h, i) => (
@@ -59,18 +60,17 @@ export function IOSStatusBar() {
         </svg>
 
         {/* WiFi */}
-        <svg width="17" height="13" viewBox="0 0 17 13" fill="none">
-          <circle cx="8.5" cy="11.5" r="1.5" fill="currentColor" style={{ color: 'var(--text-primary)' }} />
-          <path
-            d="M5.5 8.5C6.4 7.6 7.4 7 8.5 7s2.1.6 3 1.5"
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <circle cx="8" cy="11" r="1.5" fill="currentColor" style={{ color: 'var(--text-primary)' }} />
+          <path d="M5.1 8.2a4.1 4.1 0 0 1 5.8 0"
             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
-            style={{ color: 'var(--text-primary)' }}
-          />
-          <path
-            d="M2.5 5.5C4.2 3.8 6.2 3 8.5 3s4.3.8 6 2.5"
+            style={{ color: 'var(--text-primary)' }} />
+          <path d="M2.2 5.4a8 8 0 0 1 11.6 0"
             stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
-            style={{ color: 'var(--text-primary)' }}
-          />
+            style={{ color: 'var(--text-primary)' }} />
+          <path d="M0 2.7C2.6.2 5.1 0 8 0s5.4.2 8 2.7"
+            stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+            strokeOpacity="0.38" style={{ color: 'var(--text-primary)' }} />
         </svg>
 
         {/* Battery */}

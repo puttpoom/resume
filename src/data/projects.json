@@ -1,0 +1,147 @@
+[
+  {
+    "id": "isupply",
+    "title": "iSupply — Inventory Management",
+    "description": "Multi-tenant inventory system for concrete plants. Reduced API response time ~30% via EXPLAIN-based query tuning. Fixed memory-crash bug in bulk Excel exports.",
+    "descriptionTh": "ระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ปรับปรุงความเร็วของ API ได้ 30% และแก้ปัญหาระบบล่มจากการ export Excel ขนาดใหญ่",
+    "bullets": [
+      "Owned full-stack development (Frontend + Backend) of a multi-tenant inventory system for concrete plants",
+      "Reduced API response time by ~30% by fixing slow queries and adding indexes (EXPLAIN-based tuning)",
+      "Fixed a memory-crash bug in bulk Excel exports by processing stock reports in smaller batches",
+      "Connected a Go authentication service to the PHP application using OAuth 2.0",
+      "Designed relational database schema for multi-warehouse stock tracking across branches"
+    ],
+    "bulletsTh": [
+      "พัฒนาระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ทั้งฝั่ง Frontend และ Backend ด้วยตนเอง",
+      "ปรับปรุงความเร็วของ API ได้ประมาณ 30% โดยแก้ไข query ที่ทำงานช้าและเพิ่ม index ให้เหมาะสม",
+      "แก้ปัญหาระบบล่มจากการใช้หน่วยความจำเกิน ในฟีเจอร์ export รายงานสต็อกเป็น Excel โดยแบ่งประมวลผลเป็นชุดย่อย",
+      "เชื่อมต่อระบบ Login ที่เขียนด้วย Go เข้ากับระบบ PHP โดยใช้ OAuth 2.0",
+      "ออกแบบโครงสร้างฐานข้อมูลเชิงสัมพันธ์สำหรับติดตามสต็อกหลายคลังสินค้าข้ามสาขา"
+    ],
+    "techStack": ["ReactJS", "PHP Laravel", "Go", "MySQL", "MongoDB", "OAuth 2.0", "SnapLogic"],
+    "featured": true,
+    "year": 2024,
+    "ownership": "company",
+    "company": "FreewillFX Co., Ltd.",
+    "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs", "cpac-isupply-report-go", "cpac-isupply-snaplogic", "cpac-authen-sevice-go"]
+  },
+  {
+    "id": "icho-plant",
+    "title": "ICHO Automate Plant",
+    "description": "Led full migration of legacy PHP 5.5 codebase to PHP 8.3. Built MVC CRUD for vehicle/driver data with Excel import/export for factory operations.",
+    "descriptionTh": "รับผิดชอบหลักในการอัปเกรดระบบ PHP 5.5 ทั้งหมดเป็น PHP 8.3 พัฒนาระบบ MVC จัดการข้อมูลรถและพนักงานพร้อม Excel import/export",
+    "bullets": [
+      "Led full migration of legacy PHP 5.5 codebase to PHP 8.3, including DEV/QAS/Production environment setup",
+      "Built MVC-based CRUD system for vehicle and driver data with Excel import/export for factory operations",
+      "Fixed security issues from a VA scan: access-token authentication and session handling",
+      "Deployed and maintained separate environments (DEV → QAS → Production) with proper config management"
+    ],
+    "bulletsTh": [
+      "รับผิดชอบหลักในการอัปเกรดระบบ PHP เวอร์ชันเก่า (5.5) ทั้งหมดเป็นเวอร์ชัน 8.3 พร้อมจัดเตรียมระบบ Test และ Production",
+      "พัฒนาระบบจัดการข้อมูลรถและพนักงานขับรถ (CRUD) พร้อมฟีเจอร์นำเข้า-ส่งออกข้อมูลผ่าน Excel สำหรับงานหน้าโรงงาน",
+      "แก้ไขช่องโหว่ด้านความปลอดภัยที่พบจากการสแกน ปรับปรุงระบบ authentication และการจัดการ session",
+      "ดูแลและ deploy ระบบแยก Environment (DEV → QAS → Production) พร้อมจัดการ config อย่างเป็นระบบ"
+    ],
+    "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
+    "featured": true,
+    "year": 2024,
+    "ownership": "company",
+    "company": "FreewillFX Co., Ltd.",
+    "repos": ["icho-automateplant", "automateplant"]
+  },
+  {
+    "id": "icho-terminal",
+    "title": "ICHO Terminal — Factory Gate",
+    "description": "On-site terminal app connecting hardware (breathalyzer, gate controller, license-plate camera) for factory entry control.",
+    "descriptionTh": "แอปพลิเคชันหน้างานที่เชื่อมต่อกับฮาร์ดแวร์ (เครื่องเป่าแอลกอฮอล์, กล้องอ่านป้ายทะเบียน) สำหรับควบคุมการเข้า-ออกโรงงาน",
+    "bullets": [
+      "Built on-site terminal app connecting hardware (breathalyzer, gate controller, license-plate camera) for factory entry control",
+      "Integrated with ICHO Automate Plant backend for real-time gate open/close decisions",
+      "Handled offline-first edge cases — queued transactions when server unreachable"
+    ],
+    "bulletsTh": [
+      "พัฒนาแอปพลิเคชันหน้างานที่เชื่อมต่อกับอุปกรณ์ฮาร์ดแวร์ เช่น เครื่องเป่าแอลกอฮอล์และกล้องอ่านป้ายทะเบียน สำหรับควบคุมการเข้า-ออกโรงงาน",
+      "เชื่อมต่อกับ Backend ของ ICHO Automate Plant เพื่อตัดสินใจเปิด/ปิดประตูแบบเรียลไทม์",
+      "จัดการ edge case แบบ offline-first — บันทึก transaction ไว้ในคิวเมื่อ server ไม่พร้อมใช้งาน"
+    ],
+    "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
+    "featured": false,
+    "year": 2024,
+    "ownership": "company",
+    "company": "FreewillFX Co., Ltd.",
+    "repos": ["icho-automateplant-terminal", "icho-service"]
+  },
+  {
+    "id": "cloudtime-passenger",
+    "title": "Cloudtime Passenger GIS",
+    "description": "Map dashboard showing bus routes and real-time boarding counts for a passenger bus fleet. Built React UI from Figma; fixed GPS timestamp/schedule mismatches.",
+    "descriptionTh": "Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ สร้าง UI ด้วย React จากแบบ Figma และแก้ปัญหาเวลา GPS ไม่ตรงตารางเดินรถ",
+    "bullets": [
+      "Built map dashboard showing bus routes and real-time boarding counts; fixed GPS timestamp/schedule mismatches",
+      "Implemented React UI from Figma designs with custom map overlays using Google Maps API",
+      "Built Go REST API aggregating GPS data from multiple vehicle sources into a unified feed",
+      "Resolved timezone handling bugs causing route display mismatches across regions"
+    ],
+    "bulletsTh": [
+      "พัฒนา Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ แก้ปัญหาข้อมูลเวลาจาก GPS ไม่ตรงกับตารางเดินรถ",
+      "สร้าง UI ด้วย React จากแบบ Figma พร้อม custom map overlay โดยใช้ Google Maps API",
+      "พัฒนา Go REST API รวบรวมข้อมูล GPS จากหลายแหล่งเข้าสู่ feed เดียวกัน",
+      "แก้ปัญหา timezone ที่ทำให้แสดงเส้นทางผิดพลาดในบางพื้นที่"
+    ],
+    "techStack": ["Go (Gorilla/Mux)", "ReactJS", "MySQL", "Google Maps API"],
+    "featured": true,
+    "year": 2024,
+    "ownership": "co",
+    "company": "FreewillFX Co., Ltd.",
+    "repos": ["cloudtime-passenger-api", "cloudtime-passenger-react"]
+  },
+  {
+    "id": "mena-gps",
+    "title": "Mena Transport GPS Interface",
+    "description": "Go program processing real-time GPS data from ~50 delivery vehicles. Validates and reformats GPS data to match third-party logistics system requirements.",
+    "descriptionTh": "โปรแกรม Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน ตรวจสอบและปรับรูปแบบข้อมูลให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม",
+    "bullets": [
+      "Built a Go program to process real-time GPS data from ~50 delivery vehicles and reformat to third-party logistics system requirements",
+      "Used RabbitMQ as message broker to decouple GPS ingestion from downstream consumers",
+      "Handled data validation, deduplication, and format transformation at high throughput"
+    ],
+    "bulletsTh": [
+      "พัฒนาโปรแกรมด้วย Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน และปรับรูปแบบให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม",
+      "ใช้ RabbitMQ เป็น message broker เพื่อแยก GPS ingestion ออกจาก downstream consumers",
+      "จัดการ validation, deduplication และการแปลงรูปแบบข้อมูลที่ throughput สูง"
+    ],
+    "techStack": ["Go (Gorilla/Mux)", "RabbitMQ"],
+    "featured": false,
+    "year": 2025,
+    "ownership": "company",
+    "company": "FreewillFX Co., Ltd.",
+    "repos": ["interface-gps-data", "interface-gps-tcp"]
+  },
+  {
+    "id": "spa-portfolio",
+    "title": "SPA Portfolio",
+    "description": "Personal portfolio with Apple-product-page iOS/macOS aesthetic. Built with Next.js 16, Framer Motion, and Lenis smooth scroll.",
+    "descriptionTh": "พอร์ตโฟลิโอส่วนตัวสไตล์ Apple iOS/macOS มี scroll animations ด้วย Framer Motion และ Lenis smooth scroll",
+    "bullets": [
+      "Designed and built full-stack SPA portfolio with macOS desktop UI (desktop) and iOS Settings UI (mobile)",
+      "Implemented draggable macOS windows with Framer Motion drag controls and spring physics",
+      "Built dock with magnification effect using useMotionValue + useTransform + useSpring",
+      "Full EN/TH bilingual support with localStorage persistence via custom LangProvider",
+      "Static export to GitHub Pages via GitHub Actions CI/CD pipeline"
+    ],
+    "bulletsTh": [
+      "ออกแบบและพัฒนา SPA portfolio แบบ macOS desktop (desktop) และ iOS Settings (mobile)",
+      "พัฒนา macOS window ที่ลากได้ด้วย Framer Motion drag controls และ spring physics",
+      "สร้าง dock ที่มี magnification effect โดยใช้ useMotionValue + useTransform + useSpring",
+      "รองรับ 2 ภาษา EN/TH พร้อม localStorage persistence ผ่าน LangProvider",
+      "Export แบบ static ไปยัง GitHub Pages ผ่าน GitHub Actions CI/CD"
+    ],
+    "techStack": ["Next.js 16", "TypeScript", "Framer Motion", "Tailwind CSS v4", "Lenis"],
+    "githubUrl": "https://github.com/puttpoom/spa-portfilo",
+    "liveUrl": "https://puttpoom.github.io/spa-portfilo",
+    "featured": true,
+    "year": 2025,
+    "ownership": "personal",
+    "repos": ["spa-portfilo"]
+  }
+]

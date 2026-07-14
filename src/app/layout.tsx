@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { LangProvider } from '@/lib/lang'
 import { ThemeProvider } from '@/lib/theme'
+import { DisplayProvider } from '@/lib/display'
 
 export const metadata: Metadata = {
-  title: 'Putthiphoom Boonmahatanasombut — Full Stack Developer',
+  title: 'Hello world~',
   description:
     'Full-Stack Developer with 1.5+ years experience in Go, PHP Laravel, ReactJS, and real-time systems. Based in Bangkok, Thailand.',
   openGraph: {
-    title: 'Putthiphoom Boonmahatanasombut — Full Stack Developer',
+    title: 'Hello world~',
     description: 'Full-Stack Developer based in Bangkok, Thailand',
     type: 'website',
   },
@@ -20,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-dvh antialiased">
       <body className="h-full" style={{ overflow: 'hidden' }}>
         <LangProvider>
           <ThemeProvider>
-            {children}
+            <DisplayProvider>
+              {children}
+            </DisplayProvider>
           </ThemeProvider>
         </LangProvider>
       </body>

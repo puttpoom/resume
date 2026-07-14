@@ -3,31 +3,28 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
-  IoPerson,
-  IoFlash,
-  IoFolder,
-  IoBriefcase,
-  IoMail,
-  IoDocumentText,
-  IoChevronForward,
-  IoChevronBack,
-  IoSunny,
-  IoMoon,
-  IoGlobe,
-  IoDownload,
+  IoPerson, IoFlash, IoFolder, IoBriefcase, IoSchool, IoMail, IoDocumentText,
+  IoChevronForward, IoChevronBack, IoSunny, IoMoon, IoGlobe, IoDownload,
 } from 'react-icons/io5'
 import type { IconType } from 'react-icons'
+import { projects } from '@/data/projects'
 import { IOSStatusBar } from './IOSStatusBar'
 import { AboutDetail } from './detail/AboutDetail'
 import { SkillsDetail } from './detail/SkillsDetail'
 import { ProjectsDetail } from './detail/ProjectsDetail'
 import { ExperienceDetail } from './detail/ExperienceDetail'
 import { ContactDetail } from './detail/ContactDetail'
-import { useLang } from '@/lib/lang'
+import { EducationDetail } from './detail/EducationDetail'
+import { AppIcon }      from '@/components/ui/AppIcon'
+import { IOSSwitch }    from '@/components/ui/IOSSwitch'
+import { SectionLabel } from '@/components/ui/SectionLabel'
+import { useLang }  from '@/lib/lang'
 import { useTheme } from '@/lib/theme'
+import { useDisplay, FONT_ZOOM } from '@/lib/display'
 import { getStrings } from '@/data/i18n'
+import { AVATAR_URL, resumeUrl } from '@/lib/assets'
 
-type Section = 'about' | 'skills' | 'projects' | 'experience' | 'contact' | null
+type Section = 'about' | 'skills' | 'projects' | 'experience' | 'education' | 'contact' | null
 
 interface SettingsRow {
   id: Section
@@ -36,202 +33,139 @@ interface SettingsRow {
   label: string
 }
 
-/* ── iOS-style rounded square app icon ────────────────────────── */
-function AppIcon({ Icon, bg, size = 29 }: { Icon: IconType; bg: string; size?: number }) {
-  return (
-    <div
-      className="flex items-center justify-center shrink-0"
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size * 0.2237, /* iOS icon radius formula */
-        background: bg,
-      }}
-    >
-      <Icon size={size * 0.62} color="#fff" />
-    </div>
-  )
-}
-
-/* ── iOS toggle switch ────────────────────────────────────────── */
-function IOSSwitch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button
-      onClick={onToggle}
-      role="switch"
-      aria-checked={on}
-      className="relative shrink-0 focus-visible:ring-2 focus-visible:ring-offset-1"
-      style={{
-        width: 51,
-        height: 31,
-        borderRadius: 15.5,
-        background: on ? '#34C759' : 'rgba(120,120,128,0.32)',
-        transition: 'background 0.2s ease',
-      }}
-    >
-      <motion.div
-        animate={{ x: on ? 22 : 2 }}
-        transition={{ type: 'spring', stiffness: 500, damping: 36 }}
-        style={{
-          position: 'absolute',
-          top: 2,
-          width: 27,
-          height: 27,
-          borderRadius: '50%',
-          background: '#fff',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.28)',
-        }}
-      />
-    </button>
-  )
-}
-
-/* ── Chevron ───────────────────────────────────────────────────── */
 function Chevron() {
-  return <IoChevronForward size={17} style={{ color: 'var(--text-tertiary)', flexShrink: 0 }} />
+  return <IoChevronForward size={17} className="text-tertiary shrink-0" />
 }
 
-/* ── Section label ─────────────────────────────────────────────── */
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <p
-      className="text-[13px] uppercase px-4 mb-1 mt-6"
-      style={{ color: 'var(--text-secondary)', letterSpacing: '0.03em' }}
-    >
-      {children}
-    </p>
-  )
-}
-
-/* ── Main ─────────────────────────────────────────────────────── */
 export function IOSSettings() {
   const [active, setActive] = useState<Section>(null)
   const { lang, setLang } = useLang()
   const { theme, toggle } = useTheme()
+  const { fontSize } = useDisplay()
+  const zoom = FONT_ZOOM[fontSize]
   const t = getStrings(lang)
 
   const rows: SettingsRow[] = [
-    { id: 'about',      Icon: IoPerson,       iconBg: '#007AFF', label: t.nav.about },
-    { id: 'skills',     Icon: IoFlash,         iconBg: '#5856D6', label: t.nav.skills },
-    { id: 'projects',   Icon: IoFolder,        iconBg: '#FF9500', label: t.nav.projects },
-    { id: 'experience', Icon: IoBriefcase,     iconBg: '#FF3B30', label: t.nav.experience },
-    { id: 'contact',    Icon: IoMail,          iconBg: '#34C759', label: t.nav.contact },
+    { id: 'about',      Icon: IoPerson,    iconBg: '#007AFF', label: t.nav.about },
+    { id: 'skills',     Icon: IoFlash,     iconBg: '#5856D6', label: t.nav.skills },
+    { id: 'projects',   Icon: IoFolder,    iconBg: '#FF9500', label: t.nav.projects },
+    { id: 'experience', Icon: IoBriefcase, iconBg: '#FF3B30', label: t.nav.experience },
+    { id: 'education',  Icon: IoSchool,    iconBg: '#34C759', label: t.nav.education },
+    { id: 'contact',    Icon: IoMail,      iconBg: '#0A84FF', label: t.nav.contact },
   ]
 
-  const resumeUrl =
-    (process.env.NODE_ENV === 'production' ? '/spa-portfilo' : '') +
-    `/docs/resume_putthiphoom_${lang === 'th' ? 'thai' : 'eng'}.pdf`
-
+  const pdfUrl = resumeUrl(lang)
   const activeRow = rows.find((r) => r.id === active)
 
   return (
-    <div className="relative w-full h-screen overflow-hidden" style={{ background: 'var(--ios-bg)' }}>
+    <div className="relative w-full h-dvh overflow-hidden bg-ios">
       <IOSStatusBar />
 
-      {/* ── Root scroll list ─────────────────────────────────── */}
-      <div className="absolute inset-0 overflow-y-auto" style={{ paddingTop: 59 }}>
-        <div className="pb-12">
+      {/* Root scroll list */}
+      <div className="absolute inset-0 overflow-y-auto" style={{ paddingTop: 44 }}>
+        <div className="pb-12" style={{ zoom }}>
 
-          {/* Page title */}
           <div className="px-4 pt-5 pb-2">
-            <h1 className="text-[34px] font-bold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-              {lang === 'th' ? 'พอร์ตโฟลิโอ' : 'Portfolio'}
+            <h1 className="text-[34px] font-bold tracking-tight text-primary">
+              {t.ui.portfolio}
             </h1>
           </div>
 
           {/* Profile card */}
-          <div className="mx-4 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 mb-1"
-            style={{ background: 'var(--ios-card-bg)' }}>
+          <div className="mx-4 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 mb-1 bg-ios-card">
             <img
-              src={(process.env.NODE_ENV === 'production' ? '/spa-portfilo' : '') + '/assets/putthiphoom_pic.jpg'}
+              src={AVATAR_URL}
               alt="Putthiphoom"
-              className="w-[60px] h-[60px] rounded-full object-cover shrink-0"
+              className="w-15 h-15 rounded-full object-cover shrink-0"
               style={{ border: '0.5px solid var(--ios-separator)' }}
             />
             <div className="min-w-0">
-              <p className="text-[17px] font-semibold leading-snug" style={{ color: 'var(--text-primary)' }}>
-                Putthiphoom
-              </p>
-              <p className="text-[17px] font-semibold leading-snug" style={{ color: 'var(--text-primary)' }}>
-                Boonmahatanasombut
-              </p>
-              <p className="text-[13px] mt-0.5" style={{ color: 'var(--system-blue)' }}>
-                Full-Stack Developer · Bangkok
+              <p className="text-[17px] font-semibold leading-snug text-primary">Putthiphoom</p>
+              <p className="text-[17px] font-semibold leading-snug text-primary">Boonmahatanasombut</p>
+              <p className="text-[13px] mt-0.5 text-system-blue">
+                {t.about.role} · Bangkok
               </p>
             </div>
           </div>
 
-          {/* Appearance section */}
-          <SectionLabel>{lang === 'th' ? 'การตั้งค่า' : 'Settings'}</SectionLabel>
-          <div className="mx-4 rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
-            {/* Language row */}
-            <div className="flex items-center gap-3 px-4 py-[11px]"
-              style={{ borderBottom: '0.5px solid var(--ios-separator)' }}>
+          {/* Settings */}
+          <SectionLabel>{t.ui.settings}</SectionLabel>
+          <div className="mx-4 rounded-2xl overflow-hidden bg-ios-card">
+            <div
+              className="flex items-center gap-3 px-4 py-2.75"
+              style={{ borderBottom: '0.5px solid var(--ios-separator)' }}
+            >
               <AppIcon Icon={IoGlobe} bg="#007AFF" />
-              <span className="flex-1 text-[16px]" style={{ color: 'var(--text-primary)' }}>
-                {lang === 'th' ? 'ภาษา' : 'Language'}
-              </span>
-              <button
-                onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
-                className="text-[15px] font-medium"
-                style={{ color: 'var(--system-blue)' }}
-              >
-                {lang === 'en' ? 'ภาษาไทย' : 'English'}
-              </button>
+              <span className="flex-1 text-[16px] text-primary">{t.ui.language}</span>
+              <div className="relative">
+                <select
+                  value={lang}
+                  onChange={(e) => setLang(e.target.value as 'en' | 'th')}
+                  className="appearance-none text-[15px] font-medium pr-5 pl-1 py-0.5 rounded-md cursor-pointer focus:outline-none text-system-blue"
+                  style={{ background: 'transparent' }}
+                >
+                  <option value="en">English</option>
+                  <option value="th">ภาษาไทย</option>
+                </select>
+                <IoChevronForward
+                  size={12}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none rotate-90 text-system-blue"
+                />
+              </div>
             </div>
-            {/* Appearance row */}
-            <div className="flex items-center gap-3 px-4 py-[11px]">
+            <div className="flex items-center gap-3 px-4 py-2.75">
               <AppIcon Icon={theme === 'dark' ? IoMoon : IoSunny} bg={theme === 'dark' ? '#636366' : '#FF9500'} />
-              <span className="flex-1 text-[16px]" style={{ color: 'var(--text-primary)' }}>
-                {lang === 'th' ? 'โหมดมืด' : 'Dark Mode'}
-              </span>
+              <span className="flex-1 text-[16px] text-primary">{t.ui.darkMode}</span>
               <IOSSwitch on={theme === 'dark'} onToggle={toggle} />
             </div>
           </div>
 
-          {/* Navigation sections */}
-          <SectionLabel>{lang === 'th' ? 'เกี่ยวกับฉัน' : 'About Me'}</SectionLabel>
-          <div className="mx-4 rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
+          {/* Nav rows */}
+          <SectionLabel>{t.ui.aboutMe}</SectionLabel>
+          <div className="mx-4 rounded-2xl overflow-hidden bg-ios-card">
             {rows.map((row, i) => (
               <button
                 key={row.id}
                 onClick={() => setActive(row.id)}
-                className="w-full flex items-center gap-3 px-4 py-[11px] active:opacity-70 transition-opacity"
+                className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
                 style={{ borderBottom: i < rows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none' }}
               >
                 <AppIcon Icon={row.Icon} bg={row.iconBg} />
-                <span className="flex-1 text-left text-[16px]" style={{ color: 'var(--text-primary)' }}>
-                  {row.label}
-                </span>
+                <span className="flex-1 text-left text-[16px] text-primary">{row.label}</span>
+                {row.id === 'projects' && (
+                  <span
+                    className="text-[12px] font-bold text-white rounded-full flex items-center justify-center mr-1"
+                    style={{ background: '#FF3B30', minWidth: 20, height: 20, padding: '0 5px' }}
+                  >
+                    {projects.length}
+                  </span>
+                )}
                 <Chevron />
               </button>
             ))}
           </div>
 
-          {/* Resume download */}
-          <SectionLabel>{lang === 'th' ? 'เอกสาร' : 'Documents'}</SectionLabel>
-          <div className="mx-4 rounded-2xl overflow-hidden" style={{ background: 'var(--ios-card-bg)' }}>
+          {/* Resume */}
+          <SectionLabel>{t.ui.documents}</SectionLabel>
+          <div className="mx-4 rounded-2xl overflow-hidden bg-ios-card">
             <a
-              href={resumeUrl}
+              href={pdfUrl}
               download
-              className="flex items-center gap-3 px-4 py-[11px] active:opacity-70 transition-opacity"
+              className="flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
             >
               <AppIcon Icon={IoDocumentText} bg="#FF2D55" />
-              <span className="flex-1 text-[16px]" style={{ color: 'var(--text-primary)' }}>
-                {lang === 'th' ? 'ดาวน์โหลด CV' : 'Download Résumé'}
-              </span>
-              <IoDownload size={17} style={{ color: 'var(--text-tertiary)' }} />
+              <span className="flex-1 text-[16px] text-primary">{t.ui.downloadResume}</span>
+              <IoDownload size={17} className="text-tertiary" />
             </a>
           </div>
 
-          {/* Footer */}
-          <p className="text-center text-[12px] mt-8 px-4" style={{ color: 'var(--text-tertiary)' }}>
+          <p className="text-center text-[12px] mt-8 px-4 text-tertiary">
             Built with Next.js · Framer Motion · Tailwind CSS
           </p>
         </div>
       </div>
 
-      {/* ── Detail push panels ───────────────────────────────── */}
+      {/* Detail push panels */}
       <AnimatePresence>
         {active !== null && (
           <motion.div
@@ -240,16 +174,14 @@ export function IOSSettings() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 380, damping: 38 }}
-            className="absolute inset-0 z-40 flex flex-col"
-            style={{ background: 'var(--ios-bg)' }}
+            className="absolute inset-0 z-40 flex flex-col bg-ios"
           >
             {/* Navigation bar */}
             <div
-              className="shrink-0 flex items-end px-2 pb-2"
+              className="shrink-0 flex items-end px-2 pb-2 bg-ios-card"
               style={{
-                height: 59 + 44,
-                paddingTop: 59,
-                background: 'var(--ios-card-bg)',
+                height: 44 + 44,
+                paddingTop: 44,
                 borderBottom: '0.5px solid var(--ios-separator)',
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
@@ -257,29 +189,23 @@ export function IOSSettings() {
             >
               <button
                 onClick={() => setActive(null)}
-                className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity"
-                style={{ color: 'var(--system-blue)' }}
+                className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
               >
                 <IoChevronBack size={20} />
-                <span className="text-[17px]">
-                  {lang === 'th' ? 'พอร์ตโฟลิโอ' : 'Portfolio'}
-                </span>
+                <span className="text-[17px]">{t.ui.back}</span>
               </button>
-
-              <p
-                className="absolute inset-x-0 bottom-2 text-center text-[17px] font-semibold pointer-events-none"
-                style={{ color: 'var(--text-primary)' }}
-              >
+              <p className="absolute inset-x-0 bottom-2 text-center text-[17px] font-semibold pointer-events-none text-primary">
                 {activeRow?.label}
               </p>
             </div>
 
-            {/* Scrollable panel content */}
+            {/* Panel content */}
             <div className="flex-1 relative overflow-hidden">
               {active === 'about'      && <AboutDetail />}
               {active === 'skills'     && <SkillsDetail />}
               {active === 'projects'   && <ProjectsDetail />}
               {active === 'experience' && <ExperienceDetail />}
+              {active === 'education'  && <EducationDetail />}
               {active === 'contact'    && <ContactDetail />}
             </div>
           </motion.div>
