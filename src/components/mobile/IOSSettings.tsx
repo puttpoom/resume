@@ -23,6 +23,7 @@ import { getStrings } from '@/data/i18n'
 import { AVATAR_URL, resumeUrl } from '@/lib/assets'
 import { profile } from '@/lib/content'
 import { NAV_ITEMS, type NavId } from '@/lib/navigation'
+import { pageview, trackEvent } from '@/lib/gtag'
 
 type Section = NavId | null
 
@@ -45,6 +46,19 @@ export function IOSSettings() {
   const activeRow = rows.find((r) => r.id === active)
 
   useEffect(() => { setSelectedProjectId(null) }, [active])
+
+  useEffect(() => {
+    if (active !== null) {
+      pageview(`/${active}`, active)
+    }
+  }, [active])
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      const project = localizedProjects.find(p => p.id === selectedProjectId)
+      trackEvent('project_view', { project_id: selectedProjectId, project_title: project?.title ?? selectedProjectId })
+    }
+  }, [selectedProjectId])
 
   const localizedProjects = useLocalizedProjects(lang)
   const localizedSelectedProject = selectedProjectId
@@ -149,6 +163,7 @@ export function IOSSettings() {
             <a
               href={pdfUrl}
               download
+              onClick={() => trackEvent('resume_download', { lang })}
               className="flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
             >
               <AppIcon Icon={IoDocumentText} bg="#FF2D55" />

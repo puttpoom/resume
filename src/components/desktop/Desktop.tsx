@@ -22,6 +22,7 @@ import { getStrings } from '@/data/i18n'
 import { AVATAR_URL, resumeUrl } from '@/lib/assets'
 import { profile } from '@/lib/content'
 import { NAV_ITEMS, type NavId } from '@/lib/navigation'
+import { pageview, trackEvent } from '@/lib/gtag'
 
 type Section = NavId | 'resume'
 
@@ -44,6 +45,17 @@ export function Desktop() {
       : navRows.find(r => r.id === active)?.label ?? ''
 
   useEffect(() => { setSelectedProjectId(null) }, [active])
+
+  useEffect(() => {
+    pageview(`/${active}`, active)
+  }, [active])
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      const project = projects.find(p => p.id === selectedProjectId)
+      trackEvent('project_view', { project_id: selectedProjectId, project_title: project?.title ?? selectedProjectId })
+    }
+  }, [selectedProjectId])
 
   return (
     <div className="flex flex-col overflow-hidden bg-ios" style={{ height: '100dvh' }}>
@@ -184,7 +196,7 @@ export function Desktop() {
                 <a
                   href={pdfUrl}
                   download
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); trackEvent('resume_download', { lang }) }}
                   className="p-1 rounded-md transition-opacity hover:opacity-60"
                   style={{ color: active === 'resume' ? '#fff' : 'var(--text-tertiary)' }}
                   title={t.ui.download}
