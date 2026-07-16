@@ -5,7 +5,6 @@ import { LangProvider } from '@/lib/lang'
 import { ThemeProvider } from '@/lib/theme'
 import { DisplayProvider } from '@/lib/display'
 import { GA_MEASUREMENT_ID } from '@/lib/gtag'
-import { GAPageview } from '@/lib/gaPageview'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://puttpoom.github.io/resume'),
@@ -41,12 +40,11 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
       </head>
       <body className="h-full" suppressHydrationWarning>
-        <GAPageview />
         <LangProvider>
           <ThemeProvider>
             <DisplayProvider>

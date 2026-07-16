@@ -28,15 +28,16 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
     onSelectProject(id)
   }
 
-  // Reset detail on language switch to avoid stale localized content (skip the mount run,
-  // otherwise a deep-linked /projects/[slug] URL gets cleared immediately on load)
-  const isFirstRender = useRef(true)
+  // Reset detail on an actual language switch to avoid stale localized content.
+  // Compared against the previous value (not an "isFirstRender" flag) so this
+  // survives React StrictMode's double effect-invocation on mount without
+  // misfiring and clearing the selected project right after opening it.
+  const prevLangRef = useRef(lang)
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
+    if (prevLangRef.current !== lang) {
+      prevLangRef.current = lang
+      onSelectProject(null)
     }
-    onSelectProject(null)
   }, [lang]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Restore scroll position when list remounts after back navigation

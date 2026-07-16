@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { IoDocumentText, IoChevronForward, IoChevronBack, IoSunny, IoMoon, IoGlobe, IoDownload } from 'react-icons/io5'
 import { projects } from '@/data/projects'
@@ -30,15 +30,9 @@ function Chevron() {
   return <IoChevronForward size={17} className="text-tertiary shrink-0" />
 }
 
-const NAV_IDS: string[] = NAV_ITEMS.map((i) => i.id)
-
 export function IOSSettings() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const segments = pathname.split('/').filter(Boolean)
-  const active: Section = NAV_IDS.includes(segments[0]) ? (segments[0] as NavId) : null
-  const selectedProjectId = active === 'projects' ? segments[1] ?? null : null
-
+  const [active, setActive] = useState<Section>(null)
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const { lang, setLang } = useLang()
   const { theme, toggle } = useTheme()
   const { fontSize } = useDisplay()
@@ -49,6 +43,8 @@ export function IOSSettings() {
 
   const pdfUrl = resumeUrl(lang)
   const activeRow = rows.find((r) => r.id === active)
+
+  useEffect(() => { setSelectedProjectId(null) }, [active])
 
   const localizedProjects = useLocalizedProjects(lang)
   const localizedSelectedProject = selectedProjectId
@@ -128,7 +124,7 @@ export function IOSSettings() {
             {rows.map((row, i) => (
               <button
                 key={row.id}
-                onClick={() => router.push(`/${row.id}`)}
+                onClick={() => setActive(row.id)}
                 className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
                 style={{ borderBottom: i < rows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none', touchAction: 'manipulation' }}
               >
@@ -190,7 +186,7 @@ export function IOSSettings() {
               }}
             >
               <button
-                onClick={() => router.push('/')}
+                onClick={() => setActive(null)}
                 className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
                 style={{ touchAction: 'manipulation' }}
               >
@@ -208,7 +204,7 @@ export function IOSSettings() {
               {active === 'skills'     && <SkillsSection />}
               {active === 'projects'   && (
                 <ProjectsDetail
-                  onSelectProject={(id) => router.push(`/projects/${id}`)}
+                  onSelectProject={setSelectedProjectId}
                   isSubDetailOpen={!!selectedProjectId}
                 />
               )}
@@ -235,7 +231,7 @@ export function IOSSettings() {
                   >
                     <div className="h-[44px] grid items-center px-2" style={{ gridTemplateColumns: 'auto 1fr auto' }}>
                       <button
-                        onClick={() => router.push('/projects')}
+                        onClick={() => setSelectedProjectId(null)}
                         className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
                         style={{ touchAction: 'manipulation' }}
                       >

@@ -1,7 +1,6 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { IoDocumentText, IoChevronForward, IoSunny, IoMoon, IoGlobe, IoDownload } from 'react-icons/io5'
 import { projects } from '@/data/projects'
 import { MenuBar } from './MenuBar'
@@ -25,15 +24,10 @@ import { profile } from '@/lib/content'
 import { NAV_ITEMS, type NavId } from '@/lib/navigation'
 
 type Section = NavId | 'resume'
-const SECTION_IDS: Section[] = [...NAV_ITEMS.map((i) => i.id), 'resume']
 
 export function Desktop() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const segments = pathname.split('/').filter(Boolean)
-  const active: Section = (SECTION_IDS as string[]).includes(segments[0]) ? (segments[0] as Section) : 'about'
-  const selectedProjectId = active === 'projects' ? segments[1] ?? null : null
-
+  const [active, setActive] = useState<Section>('about')
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const { lang, setLang } = useLang()
   const { theme, toggle }  = useTheme()
   const { fontSize, density } = useDisplay()
@@ -48,6 +42,8 @@ export function Desktop() {
     : selectedProjectId
       ? projects.find(p => p.id === selectedProjectId)?.title ?? navRows.find(r => r.id === active)?.label ?? ''
       : navRows.find(r => r.id === active)?.label ?? ''
+
+  useEffect(() => { setSelectedProjectId(null) }, [active])
 
   return (
     <div className="flex flex-col overflow-hidden bg-ios" style={{ height: '100dvh' }}>
@@ -127,7 +123,7 @@ export function Desktop() {
               {navRows.map((row, i) => (
                 <button
                   key={row.id}
-                  onClick={() => router.push(`/${row.id}`)}
+                  onClick={() => setActive(row.id)}
                   className="w-full flex items-center gap-2.5 px-3 transition-colors"
                   style={{
                     paddingTop: rowPy, paddingBottom: rowPy,
@@ -167,7 +163,7 @@ export function Desktop() {
           <div className="px-3 pb-6">
             <div className="rounded-2xl overflow-hidden bg-ios-card">
               <button
-                onClick={() => router.push('/resume')}
+                onClick={() => setActive('resume')}
                 className="w-full flex items-center gap-2.5 px-3 transition-colors"
                 style={{
                   paddingTop: rowPy, paddingBottom: rowPy,
@@ -204,31 +200,21 @@ export function Desktop() {
         <div className="flex flex-1 flex-col overflow-hidden bg-ios">
           <PanelToolbar
             title={activeLabel}
-            onBack={selectedProjectId && active === 'projects' ? () => router.push('/projects') : undefined}
+            onBack={selectedProjectId && active === 'projects' ? () => setSelectedProjectId(null) : undefined}
             backLabel={t.nav.projects}
           />
           <main
+            key={active}
             className={`flex-1 ${active === 'projects' ? 'overflow-hidden' : 'overflow-y-auto'}`}
             style={{ zoom: FONT_ZOOM[fontSize] }}
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.18, ease: 'easeOut' }}
-                className="h-full"
-              >
-                {active === 'about'      && <AboutSection />}
-                {active === 'skills'     && <SkillsSection />}
-                {active === 'projects'   && <ProjectsPanel selectedProjectId={selectedProjectId} onSelectProject={(id) => router.push(id ? `/projects/${id}` : '/projects')} />}
-                {active === 'experience' && <ExperienceSection />}
-                {active === 'education'  && <EducationSection />}
-                {active === 'contact'    && <ContactSection />}
-                {active === 'resume'     && <ResumePanel />}
-              </motion.div>
-            </AnimatePresence>
+            {active === 'about'      && <AboutSection />}
+            {active === 'skills'     && <SkillsSection />}
+            {active === 'projects'   && <ProjectsPanel selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} />}
+            {active === 'experience' && <ExperienceSection />}
+            {active === 'education'  && <EducationSection />}
+            {active === 'contact'    && <ContactSection />}
+            {active === 'resume'     && <ResumePanel />}
           </main>
         </div>
       </div>
