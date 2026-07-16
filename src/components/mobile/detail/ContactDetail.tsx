@@ -1,6 +1,6 @@
 'use client'
 
-import { IoMailOutline, IoLogoGithub, IoLogoLinkedin, IoLocationOutline } from 'react-icons/io5'
+import { IoMailOutline, IoLogoGithub, IoLogoLinkedin, IoLocationOutline, IoCallOutline } from 'react-icons/io5'
 import type { IconType } from 'react-icons'
 import { useLang } from '@/lib/lang'
 import { getStrings } from '@/data/i18n'
@@ -15,10 +15,11 @@ interface Row {
 }
 
 const ROWS: Row[] = [
-  { label: 'Email',    value: 'putthiphoom..bm@gmail.com', href: 'mailto:putthiphoom..bm@gmail.com', Icon: IoMailOutline,    iconBg: '#007AFF' },
-  { label: 'GitHub',   value: 'github.com/puttpoom',             href: 'https://github.com/puttpoom',           Icon: IoLogoGithub,    iconBg: '#1d1d1f' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/putthiphoom',     href: 'https://linkedin.com/in/putthiphoom',   Icon: IoLogoLinkedin,  iconBg: '#0A66C2' },
-  { label: 'Location', value: 'Bangkok, Thailand',               href: null,                                    Icon: IoLocationOutline, iconBg: '#FF3B30' },
+  { label: 'Email',    value: 'putthiphoom.bm@gmail.com',   href: 'mailto:putthiphoom.bm@gmail.com',     Icon: IoMailOutline,     iconBg: '#007AFF' },
+  { label: 'Phone',    value: '+66 80-074-5611',             href: 'tel:+66800745611',                    Icon: IoCallOutline,     iconBg: '#34C759' },
+  { label: 'GitHub',   value: 'github.com/puttpoom',         href: 'https://github.com/puttpoom',         Icon: IoLogoGithub,      iconBg: '#1d1d1f' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/putthiphoom', href: 'https://linkedin.com/in/putthiphoom', Icon: IoLogoLinkedin,    iconBg: '#0A66C2' },
+  { label: 'Location', value: 'Bangkok, Thailand',            href: null,                                  Icon: IoLocationOutline, iconBg: '#FF3B30' },
 ]
 
 export function ContactDetail() {
@@ -74,7 +75,7 @@ export function ContactDetail() {
         </div>
 
         <a
-          href="mailto:putthiphoom..bm@gmail.com"
+          href="mailto:putthiphoom.bm@gmail.com"
           className="block w-full py-3.5 rounded-2xl text-center text-[17px] font-semibold text-white bg-system-blue"
         >
           {t.cta}
