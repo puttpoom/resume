@@ -4,14 +4,14 @@ import { IoDownload } from 'react-icons/io5'
 import { useLang } from '@/lib/lang'
 import { getStrings } from '@/data/i18n'
 import { trackEvent } from '@/lib/gtag'
+import { resumeUrl } from '@/lib/assets'
 
 export function ResumePanel() {
   const { lang } = useLang()
   const t = getStrings(lang).resume
 
-  const basePath = process.env.NODE_ENV === 'production' ? '/resume' : ''
   const fileName = `resume_putthiphoom_${lang === 'th' ? 'thai' : 'eng'}.pdf`
-  const fileUrl = `${basePath}/docs/${fileName}`
+  const fileUrl = resumeUrl(lang)
 
   return (
     <div className="flex flex-col h-full">

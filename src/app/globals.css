@@ -121,6 +121,14 @@ body.mobile-view {
   outline-offset: 2px;
 }
 
+/* ─── Mobile touch fix ──────────────────────────────────────────── */
+/* Tailwind v4 does not generate touch-manipulation utility — apply globally */
+@media (max-width: 820px) {
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
 /* ─── Reduced motion ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

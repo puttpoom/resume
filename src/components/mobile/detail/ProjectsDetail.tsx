@@ -1,12 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { projects } from '@/data/projects'
-import { useLang, loc } from '@/lib/lang'
+import { useLang } from '@/lib/lang'
+import { useLocalizedProjects, PANEL_SPRING as SPRING } from '@/lib/useLocalizedProjects'
 import { ProjectCard } from '@/components/shared/ProjectCard'
-import type { LocalizedProject } from '@/types'
-
-const SPRING = { type: 'spring', stiffness: 380, damping: 38 } as const
 
 interface Props {
   onSelectProject: (id: string) => void
@@ -16,11 +13,7 @@ interface Props {
 export function ProjectsDetail({ onSelectProject, isSubDetailOpen }: Props) {
   const { lang } = useLang()
 
-  const localizedProjects: LocalizedProject[] = projects.map((p) => ({
-    ...p,
-    description: loc(lang, p.descriptionTh, p.description),
-    bullets: (lang === 'th' && p.bulletsTh) ? p.bulletsTh : (p.bullets ?? []),
-  }))
+  const localizedProjects = useLocalizedProjects(lang)
 
   return (
     <motion.div

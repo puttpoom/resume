@@ -13,17 +13,17 @@ import {
 import { TbApi, TbDatabase } from 'react-icons/tb'
 import type { IconType } from 'react-icons'
 
-const ICON_MAP: Record<string, { Icon: IconType; color: string }> = {
+export const SKILL_ICON_MAP: Record<string, { Icon: IconType; color: string }> = {
   'Go':                { Icon: SiGo,         color: '#00ACD7' },
   'PHP':               { Icon: SiPhp,         color: '#8892BE' },
   'JavaScript (ES6+)': { Icon: SiJavascript,  color: '#F7DF1E' },
   'SQL':               { Icon: TbDatabase,    color: '#4479A1' },
   'React':             { Icon: SiReact,       color: '#61DAFB' },
-  'Next.js':           { Icon: SiNextdotjs,   color: '#6e6e73' },
+  'Next.js':           { Icon: SiNextdotjs,   color: '#000000' },
   'React Hook Form':   { Icon: SiReact,       color: '#EC5990' },
   'TanStack Query':    { Icon: SiReact,       color: '#FF4154' },
   'Tailwind CSS':      { Icon: SiTailwindcss, color: '#06B6D4' },
-  'shadcn/ui':         { Icon: SiShadcnui,    color: '#6e6e73' },
+  'shadcn/ui':         { Icon: SiShadcnui,    color: '#1d1d1f' },
   'Go (Gorilla/Mux)':  { Icon: SiGo,          color: '#00ACD7' },
   'PHP Laravel':       { Icon: SiLaravel,     color: '#FF2D20' },
   'REST API':          { Icon: TbApi,         color: '#6366F1' },
@@ -39,7 +39,7 @@ const ICON_MAP: Record<string, { Icon: IconType; color: string }> = {
 }
 
 function SkillTile({ name }: { name: string }) {
-  const entry = ICON_MAP[name]
+  const entry = SKILL_ICON_MAP[name]
   const color = entry?.color ?? '#6e6e73'
   const Icon = entry?.Icon
   const shortName = name
@@ -65,27 +65,60 @@ function SkillTile({ name }: { name: string }) {
   )
 }
 
-export function SkillsPanel() {
+function SkillRow({ name, isLast }: { name: string; isLast: boolean }) {
+  const entry = SKILL_ICON_MAP[name]
+  return (
+    <div
+      className="flex items-center gap-3 px-4 py-[11px]"
+      style={{ borderBottom: isLast ? 'none' : '0.5px solid var(--ios-separator)' }}
+    >
+      {entry ? (
+        <div
+          className="w-[29px] h-[29px] flex items-center justify-center rounded-[6px] shrink-0"
+          style={{ background: `${entry.color}22` }}
+        >
+          <entry.Icon size={18} style={{ color: entry.color }} />
+        </div>
+      ) : (
+        <div className="w-[29px] h-[29px] rounded-[6px] shrink-0 bg-ios" />
+      )}
+      <span className="text-[16px] text-primary">{name}</span>
+    </div>
+  )
+}
+
+export function SkillsSection() {
   const { lang } = useLang()
   const t = getStrings(lang).skills
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-5">
-      {skillCategories.map((cat) => {
-        const items = getSkillsByCategory(cat)
-        return (
-          <div key={cat}>
-            <p className="text-[12px] uppercase px-1 mb-1.5 text-secondary" style={{ letterSpacing: '0.04em' }}>
-              {t.categories[cat]}
-            </p>
-            <div className="rounded-2xl p-5 bg-ios-card">
-              <div className="flex flex-wrap gap-5">
-                {items.map((skill) => <SkillTile key={skill.name} name={skill.name} />)}
+    <div className="h-full overflow-y-auto bg-ios">
+      <div className="px-4 pt-5 pb-12 space-y-5 min-[821px]:p-6 min-[821px]:max-w-3xl min-[821px]:mx-auto">
+        {skillCategories.map((cat) => {
+          const items = getSkillsByCategory(cat)
+          return (
+            <div key={cat}>
+              <p className="text-[13px] min-[821px]:text-[12px] uppercase px-1 mb-1 min-[821px]:mb-1.5 text-secondary" style={{ letterSpacing: '0.04em' }}>
+                {t.categories[cat]}
+              </p>
+
+              {/* Desktop: icon-tile grid */}
+              <div className="hidden min-[821px]:block rounded-2xl p-5 bg-ios-card">
+                <div className="flex flex-wrap gap-5">
+                  {items.map((skill) => <SkillTile key={skill.name} name={skill.name} />)}
+                </div>
+              </div>
+
+              {/* Mobile: list rows */}
+              <div className="min-[821px]:hidden rounded-2xl overflow-hidden bg-ios-card">
+                {items.map((skill, i) => (
+                  <SkillRow key={skill.name} name={skill.name} isLast={i === items.length - 1} />
+                ))}
               </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }

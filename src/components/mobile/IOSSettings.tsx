@@ -1,78 +1,58 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
-import {
-  IoPerson, IoFlash, IoFolder, IoBriefcase, IoSchool, IoMail, IoDocumentText,
-  IoChevronForward, IoChevronBack, IoSunny, IoMoon, IoGlobe, IoDownload,
-} from 'react-icons/io5'
-import type { IconType } from 'react-icons'
+import { IoDocumentText, IoChevronForward, IoChevronBack, IoSunny, IoMoon, IoGlobe, IoDownload } from 'react-icons/io5'
 import { projects } from '@/data/projects'
-import { loc } from '@/lib/lang'
 import { IOSStatusBar } from './IOSStatusBar'
-import { AboutDetail } from './detail/AboutDetail'
-import { SkillsDetail } from './detail/SkillsDetail'
+import { AboutSection }      from '@/components/sections/AboutSection'
+import { SkillsSection }     from '@/components/sections/SkillsSection'
 import { ProjectsDetail } from './detail/ProjectsDetail'
 import { ProjectDetailView } from '@/components/shared/ProjectDetailView'
-import type { LocalizedProject } from '@/types'
-import { ExperienceDetail } from './detail/ExperienceDetail'
-import { ContactDetail } from './detail/ContactDetail'
-import { EducationDetail } from './detail/EducationDetail'
+import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { ContactSection }    from '@/components/sections/ContactSection'
+import { EducationSection }  from '@/components/sections/EducationSection'
 import { AppIcon }      from '@/components/ui/AppIcon'
 import { IOSSwitch }    from '@/components/ui/IOSSwitch'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { useLang }  from '@/lib/lang'
 import { useTheme } from '@/lib/theme'
 import { useDisplay, FONT_ZOOM } from '@/lib/display'
+import { useLocalizedProjects } from '@/lib/useLocalizedProjects'
 import { getStrings } from '@/data/i18n'
 import { AVATAR_URL, resumeUrl } from '@/lib/assets'
+import { profile } from '@/lib/content'
+import { NAV_ITEMS, type NavId } from '@/lib/navigation'
 
-type Section = 'about' | 'skills' | 'projects' | 'experience' | 'education' | 'contact' | null
-
-interface SettingsRow {
-  id: Section
-  Icon: IconType
-  iconBg: string
-  label: string
-}
+type Section = NavId | null
 
 function Chevron() {
   return <IoChevronForward size={17} className="text-tertiary shrink-0" />
 }
 
+const NAV_IDS: string[] = NAV_ITEMS.map((i) => i.id)
+
 export function IOSSettings() {
-  const [active, setActive] = useState<Section>(null)
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
+  const pathname = usePathname()
+  const router = useRouter()
+  const segments = pathname.split('/').filter(Boolean)
+  const active: Section = NAV_IDS.includes(segments[0]) ? (segments[0] as NavId) : null
+  const selectedProjectId = active === 'projects' ? segments[1] ?? null : null
+
   const { lang, setLang } = useLang()
   const { theme, toggle } = useTheme()
   const { fontSize } = useDisplay()
   const zoom = FONT_ZOOM[fontSize]
   const t = getStrings(lang)
 
-  const rows: SettingsRow[] = [
-    { id: 'about',      Icon: IoPerson,    iconBg: '#007AFF', label: t.nav.about },
-    { id: 'skills',     Icon: IoFlash,     iconBg: '#5856D6', label: t.nav.skills },
-    { id: 'projects',   Icon: IoFolder,    iconBg: '#FF9500', label: t.nav.projects },
-    { id: 'experience', Icon: IoBriefcase, iconBg: '#FF3B30', label: t.nav.experience },
-    { id: 'education',  Icon: IoSchool,    iconBg: '#34C759', label: t.nav.education },
-    { id: 'contact',    Icon: IoMail,      iconBg: '#0A84FF', label: t.nav.contact },
-  ]
+  const rows = NAV_ITEMS.map((item) => ({ ...item, label: t.nav[item.id] }))
 
   const pdfUrl = resumeUrl(lang)
   const activeRow = rows.find((r) => r.id === active)
 
-  useEffect(() => { setSelectedProjectId(null) }, [active])
-
-  const localizedSelectedProject: LocalizedProject | null = selectedProjectId
-    ? (() => {
-        const p = projects.find((p) => p.id === selectedProjectId)
-        if (!p) return null
-        return {
-          ...p,
-          description: loc(lang, p.descriptionTh, p.description),
-          bullets: (lang === 'th' && p.bulletsTh) ? p.bulletsTh : (p.bullets ?? []),
-        }
-      })()
+  const localizedProjects = useLocalizedProjects(lang)
+  const localizedSelectedProject = selectedProjectId
+    ? localizedProjects.find((p) => p.id === selectedProjectId) ?? null
     : null
 
   return (
@@ -85,7 +65,7 @@ export function IOSSettings() {
 
       {/* Root scroll list */}
       <div className="absolute inset-0 overflow-y-auto" style={{ paddingTop: 44 }}>
-        <div className="pb-12" style={{ zoom }}>
+        <div className="pb-12" style={zoom !== 1 ? { zoom } : undefined}>
 
           <div className="px-4 pt-5 pb-2">
             <h1 className="text-[34px] font-bold tracking-tight text-primary">
@@ -97,15 +77,15 @@ export function IOSSettings() {
           <div className="mx-4 rounded-2xl px-4 py-3.5 flex items-center gap-3.5 mb-1 bg-ios-card">
             <img
               src={AVATAR_URL}
-              alt="Putthiphoom"
+              alt={profile.name}
               className="w-15 h-15 rounded-full object-cover shrink-0"
               style={{ border: '0.5px solid var(--ios-separator)' }}
             />
             <div className="min-w-0">
-              <p className="text-[17px] font-semibold leading-snug text-primary">Putthiphoom</p>
-              <p className="text-[17px] font-semibold leading-snug text-primary">Boonmahatanasombut</p>
+              <p className="text-[17px] font-semibold leading-snug text-primary">{profile.firstName}</p>
+              <p className="text-[17px] font-semibold leading-snug text-primary">{profile.lastName}</p>
               <p className="text-[13px] mt-0.5 text-system-blue">
-                {t.about.role} · Bangkok
+                {t.about.role} · {profile.location.split(',')[0]}
               </p>
             </div>
           </div>
@@ -148,9 +128,9 @@ export function IOSSettings() {
             {rows.map((row, i) => (
               <button
                 key={row.id}
-                onClick={() => setActive(row.id)}
-                className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity touch-manipulation"
-                style={{ borderBottom: i < rows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none' }}
+                onClick={() => router.push(`/${row.id}`)}
+                className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
+                style={{ borderBottom: i < rows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none', touchAction: 'manipulation' }}
               >
                 <AppIcon Icon={row.Icon} bg={row.iconBg} />
                 <span className="flex-1 text-left text-[16px] text-primary">{row.label}</span>
@@ -210,8 +190,9 @@ export function IOSSettings() {
               }}
             >
               <button
-                onClick={() => setActive(null)}
+                onClick={() => router.push('/')}
                 className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
+                style={{ touchAction: 'manipulation' }}
               >
                 <IoChevronBack size={20} />
                 <span className="text-[17px]">{t.ui.back}</span>
@@ -223,17 +204,17 @@ export function IOSSettings() {
 
             {/* Panel content */}
             <div className="flex-1 relative overflow-hidden">
-              {active === 'about'      && <AboutDetail />}
-              {active === 'skills'     && <SkillsDetail />}
+              {active === 'about'      && <AboutSection />}
+              {active === 'skills'     && <SkillsSection />}
               {active === 'projects'   && (
                 <ProjectsDetail
-                  onSelectProject={setSelectedProjectId}
+                  onSelectProject={(id) => router.push(`/projects/${id}`)}
                   isSubDetailOpen={!!selectedProjectId}
                 />
               )}
-              {active === 'experience' && <ExperienceDetail />}
-              {active === 'education'  && <EducationDetail />}
-              {active === 'contact'    && <ContactDetail />}
+              {active === 'experience' && <ExperienceSection />}
+              {active === 'education'  && <EducationSection />}
+              {active === 'contact'    && <ContactSection />}
             </div>
 
             {/* 3rd level: project detail — covers entire 2nd level panel incl nav bar */}
@@ -254,8 +235,9 @@ export function IOSSettings() {
                   >
                     <div className="h-[44px] grid items-center px-2" style={{ gridTemplateColumns: 'auto 1fr auto' }}>
                       <button
-                        onClick={() => setSelectedProjectId(null)}
+                        onClick={() => router.push('/projects')}
                         className="flex items-center gap-0.5 px-2 py-1 -ml-1 active:opacity-60 transition-opacity text-system-blue"
+                        style={{ touchAction: 'manipulation' }}
                       >
                         <IoChevronBack size={20} />
                         <span className="text-[17px]">{t.nav.projects}</span>

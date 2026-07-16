@@ -1,22 +1,18 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import {
-  IoPerson, IoFlash, IoFolder, IoBriefcase,
-  IoSchool, IoMail, IoDocumentText,
-  IoChevronForward, IoSunny, IoMoon, IoGlobe, IoDownload,
-} from 'react-icons/io5'
-import type { IconType } from 'react-icons'
+import { usePathname, useRouter } from 'next/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { IoDocumentText, IoChevronForward, IoSunny, IoMoon, IoGlobe, IoDownload } from 'react-icons/io5'
 import { projects } from '@/data/projects'
 import { MenuBar } from './MenuBar'
-import { AboutPanel }      from './panels/AboutPanel'
-import { SkillsPanel }     from './panels/SkillsPanel'
-import { ProjectsPanel }   from './panels/ProjectsPanel'
-import { ExperiencePanel } from './panels/ExperiencePanel'
-import { EducationPanel }  from './panels/EducationPanel'
-import { ContactPanel }    from './panels/ContactPanel'
-import { ResumePanel }     from './panels/ResumePanel'
-import { PanelToolbar }    from './toolbar/PanelToolbar'
+import { AboutSection }      from '@/components/sections/AboutSection'
+import { SkillsSection }     from '@/components/sections/SkillsSection'
+import { ProjectsPanel }     from './panels/ProjectsPanel'
+import { ExperienceSection } from '@/components/sections/ExperienceSection'
+import { EducationSection }  from '@/components/sections/EducationSection'
+import { ContactSection }    from '@/components/sections/ContactSection'
+import { ResumePanel }       from './panels/ResumePanel'
+import { PanelToolbar }      from './toolbar/PanelToolbar'
 import { AppIcon }   from '@/components/ui/AppIcon'
 import { IOSSwitch } from '@/components/ui/IOSSwitch'
 import { SectionLabel } from '@/components/ui/SectionLabel'
@@ -25,32 +21,25 @@ import { useTheme }   from '@/lib/theme'
 import { useDisplay, FONT_ZOOM } from '@/lib/display'
 import { getStrings } from '@/data/i18n'
 import { AVATAR_URL, resumeUrl } from '@/lib/assets'
+import { profile } from '@/lib/content'
+import { NAV_ITEMS, type NavId } from '@/lib/navigation'
 
-type Section = 'about' | 'skills' | 'projects' | 'experience' | 'education' | 'contact' | 'resume'
-
-interface NavRow {
-  id: Section
-  Icon: IconType
-  iconBg: string
-  label: string
-}
+type Section = NavId | 'resume'
+const SECTION_IDS: Section[] = [...NAV_ITEMS.map((i) => i.id), 'resume']
 
 export function Desktop() {
-  const [active, setActive] = useState<Section>('about')
-  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
+  const pathname = usePathname()
+  const router = useRouter()
+  const segments = pathname.split('/').filter(Boolean)
+  const active: Section = (SECTION_IDS as string[]).includes(segments[0]) ? (segments[0] as Section) : 'about'
+  const selectedProjectId = active === 'projects' ? segments[1] ?? null : null
+
   const { lang, setLang } = useLang()
   const { theme, toggle }  = useTheme()
   const { fontSize, density } = useDisplay()
   const t = getStrings(lang)
 
-  const navRows: NavRow[] = [
-    { id: 'about',      Icon: IoPerson,    iconBg: '#007AFF', label: t.nav.about },
-    { id: 'skills',     Icon: IoFlash,     iconBg: '#5856D6', label: t.nav.skills },
-    { id: 'projects',   Icon: IoFolder,    iconBg: '#FF9500', label: t.nav.projects },
-    { id: 'experience', Icon: IoBriefcase, iconBg: '#FF3B30', label: t.nav.experience },
-    { id: 'education',  Icon: IoSchool,    iconBg: '#34C759', label: t.nav.education },
-    { id: 'contact',    Icon: IoMail,      iconBg: '#0A84FF', label: t.nav.contact },
-  ]
+  const navRows = NAV_ITEMS.map((item) => ({ ...item, label: t.nav[item.id] }))
 
   const pdfUrl = resumeUrl(lang)
   const rowPy = density === 'compact' ? '6px' : density === 'spacious' ? '12px' : '9px'
@@ -59,8 +48,6 @@ export function Desktop() {
     : selectedProjectId
       ? projects.find(p => p.id === selectedProjectId)?.title ?? navRows.find(r => r.id === active)?.label ?? ''
       : navRows.find(r => r.id === active)?.label ?? ''
-
-  useEffect(() => { setSelectedProjectId(null) }, [active])
 
   return (
     <div className="flex flex-col overflow-hidden bg-ios" style={{ height: '100dvh' }}>
@@ -78,16 +65,16 @@ export function Desktop() {
             <div className="rounded-2xl px-3 py-3 flex items-center gap-3 bg-ios-card">
               <img
                 src={AVATAR_URL}
-                alt="Putthiphoom"
+                alt={profile.name}
                 className="w-12 h-12 rounded-full object-cover shrink-0"
                 style={{ border: '0.5px solid var(--ios-separator)' }}
               />
               <div className="min-w-0">
                 <p className="text-[14px] font-semibold leading-snug truncate text-primary">
-                  Putthiphoom B.
+                  {profile.shortName}
                 </p>
-                <p className="text-[12px] truncate text-system-blue">Full-Stack Developer</p>
-                <p className="text-[11px] truncate mt-0.5 text-tertiary">Bangkok, Thailand</p>
+                <p className="text-[12px] truncate text-system-blue">{profile.role}</p>
+                <p className="text-[11px] truncate mt-0.5 text-tertiary">{profile.location}</p>
               </div>
             </div>
           </div>
@@ -140,7 +127,7 @@ export function Desktop() {
               {navRows.map((row, i) => (
                 <button
                   key={row.id}
-                  onClick={() => setActive(row.id)}
+                  onClick={() => router.push(`/${row.id}`)}
                   className="w-full flex items-center gap-2.5 px-3 transition-colors"
                   style={{
                     paddingTop: rowPy, paddingBottom: rowPy,
@@ -180,7 +167,7 @@ export function Desktop() {
           <div className="px-3 pb-6">
             <div className="rounded-2xl overflow-hidden bg-ios-card">
               <button
-                onClick={() => setActive('resume')}
+                onClick={() => router.push('/resume')}
                 className="w-full flex items-center gap-2.5 px-3 transition-colors"
                 style={{
                   paddingTop: rowPy, paddingBottom: rowPy,
@@ -217,21 +204,31 @@ export function Desktop() {
         <div className="flex flex-1 flex-col overflow-hidden bg-ios">
           <PanelToolbar
             title={activeLabel}
-            onBack={selectedProjectId && active === 'projects' ? () => setSelectedProjectId(null) : undefined}
+            onBack={selectedProjectId && active === 'projects' ? () => router.push('/projects') : undefined}
             backLabel={t.nav.projects}
           />
           <main
-            key={active}
             className={`flex-1 ${active === 'projects' ? 'overflow-hidden' : 'overflow-y-auto'}`}
             style={{ zoom: FONT_ZOOM[fontSize] }}
           >
-            {active === 'about'      && <AboutPanel />}
-            {active === 'skills'     && <SkillsPanel />}
-            {active === 'projects'   && <ProjectsPanel selectedProjectId={selectedProjectId} onSelectProject={setSelectedProjectId} />}
-            {active === 'experience' && <ExperiencePanel />}
-            {active === 'education'  && <EducationPanel />}
-            {active === 'contact'    && <ContactPanel />}
-            {active === 'resume'     && <ResumePanel />}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.18, ease: 'easeOut' }}
+                className="h-full"
+              >
+                {active === 'about'      && <AboutSection />}
+                {active === 'skills'     && <SkillsSection />}
+                {active === 'projects'   && <ProjectsPanel selectedProjectId={selectedProjectId} onSelectProject={(id) => router.push(id ? `/projects/${id}` : '/projects')} />}
+                {active === 'experience' && <ExperienceSection />}
+                {active === 'education'  && <EducationSection />}
+                {active === 'contact'    && <ContactSection />}
+                {active === 'resume'     && <ResumePanel />}
+              </motion.div>
+            </AnimatePresence>
           </main>
         </div>
       </div>

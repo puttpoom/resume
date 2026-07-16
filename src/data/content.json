@@ -1,0 +1,508 @@
+{
+  "profile": {
+    "name": "Putthiphoom Boonmahatanasombut",
+    "firstName": "Putthiphoom",
+    "lastName": "Boonmahatanasombut",
+    "shortName": "Putthiphoom B.",
+    "role": "Full-Stack Developer",
+    "location": "Bangkok, Thailand",
+    "email": "putthiphoom.bm@gmail.com",
+    "phone": "+66 80-074-5611",
+    "phoneHref": "tel:+66800745611",
+    "github": "https://github.com/puttpoom",
+    "githubLabel": "github.com/puttpoom",
+    "linkedin": "https://linkedin.com/in/putthiphoom",
+    "linkedinLabel": "linkedin.com/in/putthiphoom"
+  },
+  "ui": {
+    "en": {
+      "nav": {
+        "about": "About",
+        "projects": "Projects",
+        "skills": "Skills",
+        "experience": "Experience",
+        "education": "Education",
+        "contact": "Contact"
+      },
+      "about": {
+        "overline": "About Me",
+        "title": "Crafting digital experiences",
+        "bio": [
+          "Full-Stack Developer with 1.5+ years of experience, passionate about solving real business problems with software. Built web systems for logistics, GPS tracking, and ERP companies — including factory inventory management and real-time fleet tracking for transport businesses.",
+          "Designed database structures and built REST APIs using Go, PHP Laravel, and ReactJS. Improved system speed and fixed critical bugs across several live projects, with a strong focus on secure coding (OAuth 2.0, access control).",
+          "Currently looking for a new Full-Stack or Backend Developer role to keep growing and take on bigger challenges."
+        ],
+        "stats": [
+          { "value": "1.5+", "label": "Years Experience" },
+          { "value": "5+", "label": "Projects Shipped" },
+          { "value": "10+", "label": "Technologies" }
+        ],
+        "role": "Full-Stack Developer",
+        "biography": "Biography",
+        "softSkills": "Soft Skills"
+      },
+      "projects": {
+        "overline": "Selected Work",
+        "title": "Projects",
+        "subtitle": "A selection of things I've built — from real-time systems to modern web apps.",
+        "techStack": "Tech Stack"
+      },
+      "skills": {
+        "overline": "Capabilities",
+        "title": "Tech Stack",
+        "subtitle": "Tools and technologies I work with daily.",
+        "categories": {
+          "Languages": "Languages",
+          "Frontend": "Frontend",
+          "Backend": "Backend",
+          "Databases": "Databases",
+          "Tools": "Tools"
+        }
+      },
+      "experience": {
+        "overline": "Career",
+        "title": "Experience"
+      },
+      "education": {
+        "overline": "Background",
+        "title": "Education & Certificates",
+        "degreesLabel": "Degrees",
+        "certsLabel": "Certificates",
+        "educationLabel": "Education",
+        "certificatesLabel": "Certificates"
+      },
+      "contact": {
+        "overline": "Let's Connect",
+        "title": "Get in Touch",
+        "subtitle": "Have a project in mind or just want to say hello? My inbox is always open.",
+        "findMeOn": "Or find me on",
+        "footer": "Built with Next.js · Framer Motion · Tailwind CSS",
+        "cta": "Send Message"
+      },
+      "resume": {
+        "title": "Résumé",
+        "download": "Download PDF"
+      },
+      "ui": {
+        "settings": "Settings",
+        "language": "Language",
+        "darkMode": "Dark Mode",
+        "portfolio": "Portfolio",
+        "documents": "Documents",
+        "viewResume": "View Résumé",
+        "downloadResume": "Download Résumé",
+        "download": "Download",
+        "aboutMe": "About Me",
+        "back": "Portfolio",
+        "gallery": "Gallery"
+      }
+    },
+    "th": {
+      "nav": {
+        "about": "เกี่ยวกับ",
+        "projects": "ผลงาน",
+        "skills": "ทักษะ",
+        "experience": "ประสบการณ์",
+        "education": "การศึกษา",
+        "contact": "ติดต่อ"
+      },
+      "about": {
+        "overline": "เกี่ยวกับฉัน",
+        "title": "สร้างประสบการณ์ดิจิทัล",
+        "bio": [
+          "นักพัฒนาซอฟต์แวร์สาย Full-Stack ประสบการณ์กว่า 1.5 ปี มีความมุ่งมั่นและหลงใหลในการแก้ปัญหาทางธุรกิจด้วยซอฟต์แวร์ พัฒนาและดูแลเว็บแอปพลิเคชันด้านโลจิสติกส์ ระบบติดตาม GPS และระบบ ERP รวมถึงระบบจัดการสต็อกสินค้าสำหรับโรงงานและระบบติดตามยานพาหนะแบบเรียลไทม์สำหรับธุรกิจขนส่ง",
+          "ออกแบบโครงสร้างฐานข้อมูลและพัฒนา REST API ด้วย Go, PHP Laravel และ ReactJS ปรับปรุงประสิทธิภาพระบบและแก้ไขบั๊กสำคัญในโปรเจคที่ใช้งานจริงหลายโปรเจค โดยให้ความสำคัญกับความปลอดภัยของระบบ เช่น OAuth 2.0 และการควบคุมสิทธิ์การเข้าถึง",
+          "กำลังมองหาโอกาสในตำแหน่ง Full-Stack หรือ Backend Developer เพื่อเติบโตและรับความท้าทายใหม่ๆ"
+        ],
+        "stats": [
+          { "value": "1.5+", "label": "ปีประสบการณ์" },
+          { "value": "5+", "label": "โปรเจกต์" },
+          { "value": "10+", "label": "เทคโนโลยี" }
+        ],
+        "role": "นักพัฒนา Full-Stack",
+        "biography": "เกี่ยวกับฉัน",
+        "softSkills": "ทักษะอื่น"
+      },
+      "projects": {
+        "overline": "ผลงานที่เลือก",
+        "title": "ผลงาน",
+        "subtitle": "ตัวอย่างสิ่งที่ฉันสร้าง ตั้งแต่ระบบเรียลไทม์ไปจนถึงเว็บแอปสมัยใหม่",
+        "techStack": "เทคโนโลยี"
+      },
+      "skills": {
+        "overline": "ความสามารถ",
+        "title": "เทคโนโลยี",
+        "subtitle": "เครื่องมือและเทคโนโลยีที่ใช้งานทุกวัน",
+        "categories": {
+          "Languages": "ภาษาโปรแกรม",
+          "Frontend": "Frontend",
+          "Backend": "Backend",
+          "Databases": "ฐานข้อมูล",
+          "Tools": "เครื่องมือ"
+        }
+      },
+      "experience": {
+        "overline": "ประวัติการทำงาน",
+        "title": "ประสบการณ์"
+      },
+      "education": {
+        "overline": "ภูมิหลัง",
+        "title": "การศึกษา & ใบรับรอง",
+        "degreesLabel": "ปริญญา",
+        "certsLabel": "ใบรับรอง",
+        "educationLabel": "การศึกษา",
+        "certificatesLabel": "ใบรับรอง"
+      },
+      "contact": {
+        "overline": "ติดต่อกัน",
+        "title": "ติดต่อฉัน",
+        "subtitle": "มีโปรเจกต์ในใจหรืออยากแค่ทักทาย? กล่องข้อความเปิดรับเสมอ",
+        "findMeOn": "หรือหาฉันได้ที่",
+        "footer": "สร้างด้วย Next.js · Framer Motion · Tailwind CSS",
+        "cta": "ส่งข้อความ"
+      },
+      "resume": {
+        "title": "ประวัติย่อ",
+        "download": "ดาวน์โหลด PDF"
+      },
+      "ui": {
+        "settings": "การตั้งค่า",
+        "language": "ภาษา",
+        "darkMode": "โหมดมืด",
+        "portfolio": "พอร์ตโฟลิโอ",
+        "documents": "เอกสาร",
+        "viewResume": "ดู CV",
+        "downloadResume": "ดาวน์โหลด CV",
+        "download": "ดาวน์โหลด",
+        "aboutMe": "เกี่ยวกับฉัน",
+        "back": "พอร์ตโฟลิโอ",
+        "gallery": "แกลเลอรี่"
+      }
+    }
+  },
+  "softSkills": [
+    "Communication",
+    "Teamwork",
+    "Ownership",
+    "Problem Solving",
+    "Adaptability",
+    "Time Management",
+    "Self-directed",
+    "Attention to Detail"
+  ],
+  "skillCategories": ["Languages", "Frontend", "Backend", "Databases", "Tools"],
+  "skills": [
+    { "name": "Go", "category": "Languages" },
+    { "name": "PHP", "category": "Languages" },
+    { "name": "JavaScript (ES6+)", "category": "Languages" },
+    { "name": "SQL", "category": "Languages" },
+    { "name": "React", "category": "Frontend" },
+    { "name": "Next.js", "category": "Frontend" },
+    { "name": "React Hook Form", "category": "Frontend" },
+    { "name": "TanStack Query", "category": "Frontend" },
+    { "name": "Tailwind CSS", "category": "Frontend" },
+    { "name": "shadcn/ui", "category": "Frontend" },
+    { "name": "Go (Gorilla/Mux)", "category": "Backend" },
+    { "name": "PHP Laravel", "category": "Backend" },
+    { "name": "REST API", "category": "Backend" },
+    { "name": "OAuth 2.0", "category": "Backend" },
+    { "name": "RabbitMQ", "category": "Backend" },
+    { "name": "MySQL", "category": "Databases" },
+    { "name": "MongoDB", "category": "Databases" },
+    { "name": "Git", "category": "Tools" },
+    { "name": "Docker", "category": "Tools" },
+    { "name": "Bitbucket", "category": "Tools" },
+    { "name": "Google Maps API", "category": "Tools" },
+    { "name": "Longdo Maps API", "category": "Tools" }
+  ],
+  "experience": [
+    {
+      "id": "freewillfx",
+      "company": "FreewillFX Co., Ltd.",
+      "role": "Full-Stack Developer",
+      "startDate": "2024-10",
+      "endDate": null,
+      "description": [
+        "iSupply — Owned full-stack development (Frontend + Backend) of a multi-tenant inventory system for concrete plants",
+        "Reduced API response time by ~30% by fixing slow queries and adding indexes (EXPLAIN-based tuning)",
+        "Fixed a memory-crash bug in bulk Excel exports by processing stock reports in smaller batches",
+        "Connected a Go authentication service to the PHP application using OAuth 2.0",
+        "Mena Transport — Built a Go program to process real-time GPS data from ~50 delivery vehicles and reformat to third-party logistics system requirements",
+        "ICHO Automate Plant — Led full migration of legacy PHP 5.5 codebase to PHP 8.3, including DEV/QAS/Production setup",
+        "Built MVC-based CRUD system for vehicle and driver data with Excel import/export for factory operations",
+        "Fixed security issues from a VA scan: access-token authentication and session handling",
+        "ICHO Terminal — Built on-site terminal app connecting hardware (breathalyzer, gate, license-plate camera) for factory entry control",
+        "Cloudtime Passenger — Built map dashboard showing bus routes and real-time boarding counts; fixed GPS timestamp/schedule mismatches"
+      ],
+      "descriptionTh": [
+        "iSupply — พัฒนาระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ทั้งฝั่ง Frontend และ Backend ด้วยตนเอง",
+        "ปรับปรุงความเร็วของ API ได้ประมาณ 30% โดยแก้ไข query ที่ทำงานช้าและเพิ่ม index ให้เหมาะสม",
+        "แก้ปัญหาระบบล่มจากการใช้หน่วยความจำเกิน ในฟีเจอร์ export รายงานสต็อกเป็น Excel โดยแบ่งประมวลผลเป็นชุดย่อย",
+        "เชื่อมต่อระบบ Login ที่เขียนด้วย Go เข้ากับระบบ PHP โดยใช้ OAuth 2.0",
+        "Mena Transport — พัฒนาโปรแกรมด้วย Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน และปรับรูปแบบให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม",
+        "ICHO Automate Plant — รับผิดชอบหลักในการอัปเกรดระบบ PHP เวอร์ชันเก่า (5.5) ทั้งหมดเป็นเวอร์ชัน 8.3 พร้อมจัดเตรียมระบบ Test และ Production",
+        "พัฒนาระบบจัดการข้อมูลรถและพนักงานขับรถ (CRUD) พร้อมฟีเจอร์นำเข้า-ส่งออกข้อมูลผ่าน Excel สำหรับงานหน้าโรงงาน",
+        "แก้ไขช่องโหว่ด้านความปลอดภัยที่พบจากการสแกน ปรับปรุงระบบ authentication และการจัดการ session",
+        "ICHO Terminal — พัฒนาแอปพลิเคชันหน้างานที่เชื่อมต่อกับอุปกรณ์ฮาร์ดแวร์ เช่น เครื่องเป่าแอลกอฮอล์และกล้องอ่านป้ายทะเบียน สำหรับควบคุมการเข้า-ออกโรงงาน",
+        "Cloudtime Passenger — พัฒนา Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ แก้ปัญหาข้อมูลเวลาจาก GPS ไม่ตรงกับตารางเดินรถ"
+      ],
+      "techStack": ["Go", "PHP Laravel", "ReactJS", "MySQL", "MongoDB", "RabbitMQ", "Bootstrap 5", "jQuery", "Google Maps API"]
+    },
+    {
+      "id": "payment-platform",
+      "company": "Payment Platform",
+      "role": "Frontend Developer",
+      "note": "Contract · Part-time",
+      "noteTh": "สัญญาจ้าง · Part-time",
+      "startDate": "2025-04",
+      "endDate": "2025-07",
+      "description": [
+        "Built pages, forms, and navigation (React Hook Form + TanStack Query) for an internal support ticketing system",
+        "Used existing components to match the team's design system (DaisyUI + shadcn/ui)"
+      ],
+      "descriptionTh": [
+        "พัฒนาหน้าเว็บ ฟอร์ม และระบบนำทางสำหรับระบบ Ticket ของทีม support ภายในองค์กร ด้วย React",
+        "นำ Component ที่มีอยู่แล้วมาปรับใช้ให้ตรงกับ Design System ของทีม"
+      ],
+      "techStack": ["ReactJS", "React Hook Form", "TanStack Query", "DaisyUI", "shadcn/ui"]
+    }
+  ],
+  "education": [
+    {
+      "id": "kmutnb",
+      "institution": "King Mongkut's University of Technology North Bangkok (KMUTNB)",
+      "institutionTh": "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (KMUTNB)",
+      "degree": "Bachelor's Degree of Engineering",
+      "degreeTh": "วิศวกรรมศาสตรบัณฑิต",
+      "field": "Electrical and Electronic Engineering Technology",
+      "fieldTh": "สาขาเทคโนโลยีวิศวกรรมไฟฟ้าและอิเล็กทรอนิกส์",
+      "startYear": 2019,
+      "startYearTh": 2562,
+      "endYear": 2023,
+      "endYearTh": 2566,
+      "gpa": "3.03"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "toeic",
+      "name": "TOEIC",
+      "nameTh": "TOEIC",
+      "note": "Score 630 (Listening 405 / Reading 225)",
+      "noteTh": "คะแนน: 630 (การฟัง 405 / การอ่าน 225)",
+      "issuer": "ETS (Educational Testing Service)",
+      "issuedDate": "Tested 25 Jun 2026",
+      "issuedDateTh": "สอบวันที่ 25 มิ.ย. 2569"
+    }
+  ],
+  "projects": [
+    {
+      "id": "isupply",
+      "title": "iSupply — Inventory Management",
+      "description": "Multi-tenant inventory system for concrete plants. Reduced API response time ~30% via EXPLAIN-based query tuning. Fixed memory-crash bug in bulk Excel exports.",
+      "descriptionTh": "ระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ปรับปรุงความเร็วของ API ได้ 30% และแก้ปัญหาระบบล่มจากการ export Excel ขนาดใหญ่",
+      "bullets": [
+        "Owned full-stack development (Frontend + Backend) of a multi-tenant inventory system for concrete plants",
+        "Reduced API response time by ~30% by fixing slow queries and adding indexes (EXPLAIN-based tuning)",
+        "Fixed a memory-crash bug in bulk Excel exports by processing stock reports in smaller batches",
+        "Connected a Go authentication service to the PHP application using OAuth 2.0",
+        "Designed relational database schema for multi-warehouse stock tracking across branches"
+      ],
+      "bulletsTh": [
+        "พัฒนาระบบจัดการสต็อกวัตถุดิบสำหรับหลายโรงงานปูนซีเมนต์ ทั้งฝั่ง Frontend และ Backend ด้วยตนเอง",
+        "ปรับปรุงความเร็วของ API ได้ประมาณ 30% โดยแก้ไข query ที่ทำงานช้าและเพิ่ม index ให้เหมาะสม",
+        "แก้ปัญหาระบบล่มจากการใช้หน่วยความจำเกิน ในฟีเจอร์ export รายงานสต็อกเป็น Excel โดยแบ่งประมวลผลเป็นชุดย่อย",
+        "เชื่อมต่อระบบ Login ที่เขียนด้วย Go เข้ากับระบบ PHP โดยใช้ OAuth 2.0",
+        "ออกแบบโครงสร้างฐานข้อมูลเชิงสัมพันธ์สำหรับติดตามสต็อกหลายคลังสินค้าข้ามสาขา"
+      ],
+      "techStack": ["ReactJS", "PHP Laravel", "Go", "MySQL", "MongoDB", "OAuth 2.0"],
+      "featured": true,
+      "year": 2024,
+      "ownership": "company",
+      "company": "FreewillFX Co., Ltd.",
+      "repos": ["isupply/cpac-isupply-api", "cpac-isupply-api-go", "isupply/cpac-isupply-reactjs"],
+      "images": [
+        "/projects/isupply/SCR-20260714-spxw.png",
+        "/projects/isupply/SCR-20260714-sqqr.png"
+      ]
+    },
+    {
+      "id": "icho-plant",
+      "title": "ICHO Automate Plant",
+      "description": "Led full migration of legacy PHP 5.5 codebase to PHP 8.3. Built MVC CRUD for vehicle/driver data with Excel import/export for factory operations.",
+      "descriptionTh": "รับผิดชอบหลักในการอัปเกรดระบบ PHP 5.5 ทั้งหมดเป็น PHP 8.3 พัฒนาระบบ MVC จัดการข้อมูลรถและพนักงานพร้อม Excel import/export",
+      "bullets": [
+        "Led full migration of legacy PHP 5.5 codebase to PHP 8.3, including DEV/QAS/Production environment setup",
+        "Built MVC-based CRUD system for vehicle and driver data with Excel import/export for factory operations",
+        "Fixed security issues from a VA scan: access-token authentication and session handling",
+        "Deployed and maintained separate environments (DEV → QAS → Production) with proper config management"
+      ],
+      "bulletsTh": [
+        "รับผิดชอบหลักในการอัปเกรดระบบ PHP เวอร์ชันเก่า (5.5) ทั้งหมดเป็นเวอร์ชัน 8.3 พร้อมจัดเตรียมระบบ Test และ Production",
+        "พัฒนาระบบจัดการข้อมูลรถและพนักงานขับรถ (CRUD) พร้อมฟีเจอร์นำเข้า-ส่งออกข้อมูลผ่าน Excel สำหรับงานหน้าโรงงาน",
+        "แก้ไขช่องโหว่ด้านความปลอดภัยที่พบจากการสแกน ปรับปรุงระบบ authentication และการจัดการ session",
+        "ดูแลและ deploy ระบบแยก Environment (DEV → QAS → Production) พร้อมจัดการ config อย่างเป็นระบบ"
+      ],
+      "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
+      "featured": true,
+      "year": 2024,
+      "ownership": "company",
+      "company": "FreewillFX Co., Ltd.",
+      "repos": ["icho-automateplant", "automateplant"]
+    },
+    {
+      "id": "icho-terminal",
+      "title": "ICHO Terminal — Factory Gate",
+      "description": "On-site terminal app connecting hardware (breathalyzer, gate controller, license-plate camera) for factory entry control.",
+      "descriptionTh": "แอปพลิเคชันหน้างานที่เชื่อมต่อกับฮาร์ดแวร์ (เครื่องเป่าแอลกอฮอล์, กล้องอ่านป้ายทะเบียน) สำหรับควบคุมการเข้า-ออกโรงงาน",
+      "bullets": [
+        "Built on-site terminal app connecting hardware (breathalyzer, gate controller, license-plate camera) for factory entry control",
+        "Integrated with ICHO Automate Plant backend for real-time gate open/close decisions",
+        "Handled offline-first edge cases — queued transactions when server unreachable"
+      ],
+      "bulletsTh": [
+        "พัฒนาแอปพลิเคชันหน้างานที่เชื่อมต่อกับอุปกรณ์ฮาร์ดแวร์ เช่น เครื่องเป่าแอลกอฮอล์และกล้องอ่านป้ายทะเบียน สำหรับควบคุมการเข้า-ออกโรงงาน",
+        "เชื่อมต่อกับ Backend ของ ICHO Automate Plant เพื่อตัดสินใจเปิด/ปิดประตูแบบเรียลไทม์",
+        "จัดการ edge case แบบ offline-first — บันทึก transaction ไว้ในคิวเมื่อ server ไม่พร้อมใช้งาน"
+      ],
+      "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
+      "featured": false,
+      "year": 2024,
+      "ownership": "company",
+      "company": "FreewillFX Co., Ltd.",
+      "repos": ["icho-automateplant-terminal", "icho-service"]
+    },
+    {
+      "id": "cloudtime-passenger",
+      "title": "Cloudtime Passenger GIS",
+      "description": "Map dashboard showing bus routes and real-time boarding counts for a passenger bus fleet. Built React UI from Figma; fixed GPS timestamp/schedule mismatches.",
+      "descriptionTh": "Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ สร้าง UI ด้วย React จากแบบ Figma และแก้ปัญหาเวลา GPS ไม่ตรงตารางเดินรถ",
+      "bullets": [
+        "Built map dashboard showing bus routes and real-time boarding counts; fixed GPS timestamp/schedule mismatches",
+        "Implemented React UI from Figma designs with custom map overlays using Google Maps API",
+        "Built Go REST API aggregating GPS data from multiple vehicle sources into a unified feed",
+        "Resolved timezone handling bugs causing route display mismatches across regions"
+      ],
+      "bulletsTh": [
+        "พัฒนา Dashboard แสดงแผนที่เส้นทางเดินรถและจำนวนผู้โดยสารแบบเรียลไทม์ แก้ปัญหาข้อมูลเวลาจาก GPS ไม่ตรงกับตารางเดินรถ",
+        "สร้าง UI ด้วย React จากแบบ Figma พร้อม custom map overlay โดยใช้ Google Maps API",
+        "พัฒนา Go REST API รวบรวมข้อมูล GPS จากหลายแหล่งเข้าสู่ feed เดียวกัน",
+        "แก้ปัญหา timezone ที่ทำให้แสดงเส้นทางผิดพลาดในบางพื้นที่"
+      ],
+      "techStack": ["Go (Gorilla/Mux)", "ReactJS", "MySQL", "Google Maps API"],
+      "featured": true,
+      "year": 2024,
+      "ownership": "co",
+      "company": "FreewillFX Co., Ltd.",
+      "repos": ["cloudtime-passenger-api", "cloudtime-passenger-react"],
+      "images": ["/projects/ct-gis/SCR-20260714-srep.png", "/projects/ct-gis/SCR-20260714-srlu.png", "/projects/ct-gis/SCR-20260714-srnq.png"]
+    },
+    {
+      "id": "mena-gps",
+      "title": "Mena Transport GPS Interface",
+      "description": "Go program processing real-time GPS data from ~50 delivery vehicles. Validates and reformats GPS data to match third-party logistics system requirements.",
+      "descriptionTh": "โปรแกรม Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน ตรวจสอบและปรับรูปแบบข้อมูลให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม",
+      "bullets": [
+        "Built a Go program to process real-time GPS data from ~50 delivery vehicles and reformat to third-party logistics system requirements",
+        "Used RabbitMQ as message broker to decouple GPS ingestion from downstream consumers",
+        "Handled data validation, deduplication, and format transformation at high throughput"
+      ],
+      "bulletsTh": [
+        "พัฒนาโปรแกรมด้วย Go สำหรับประมวลผลข้อมูล GPS แบบเรียลไทม์จากรถขนส่งประมาณ 50 คัน และปรับรูปแบบให้ตรงตามระบบโลจิสติกส์ของบุคคลที่สาม",
+        "ใช้ RabbitMQ เป็น message broker เพื่อแยก GPS ingestion ออกจาก downstream consumers",
+        "จัดการ validation, deduplication และการแปลงรูปแบบข้อมูลที่ throughput สูง"
+      ],
+      "techStack": ["Go (Gorilla/Mux)", "RabbitMQ"],
+      "featured": false,
+      "year": 2025,
+      "ownership": "company",
+      "company": "FreewillFX Co., Ltd.",
+      "repos": ["interface-gps-data"]
+    },
+    {
+      "id": "whaledorm",
+      "title": "WhaleDorm — Dormitory Management",
+      "description": "Full-stack dormitory management system with Google Maps integration, Google OAuth, and image uploads. Handles room booking, tenant management, and location-based search.",
+      "descriptionTh": "ระบบจัดการหอพักแบบ Full-stack พร้อม Google Maps, Google OAuth และอัปโหลดรูปภาพ รองรับการจองห้อง จัดการผู้เช่า และค้นหาตามพื้นที่",
+      "bullets": [
+        "Built full-stack dormitory management system with room booking and tenant management features",
+        "Integrated Google Maps API for location-based dormitory search and display",
+        "Implemented Google OAuth for authentication and JWT-based session management",
+        "Handled image uploads via Cloudinary with Multer for dormitory photos",
+        "Built REST API with Express.js, Prisma ORM, and bcryptjs password hashing"
+      ],
+      "bulletsTh": [
+        "พัฒนาระบบจัดการหอพักแบบ Full-stack พร้อมฟีเจอร์จองห้องและจัดการข้อมูลผู้เช่า",
+        "เชื่อมต่อ Google Maps API สำหรับค้นหาและแสดงตำแหน่งหอพักตามพื้นที่",
+        "ใช้ Google OAuth สำหรับการ login และจัดการ session ด้วย JWT",
+        "รองรับอัปโหลดรูปภาพผ่าน Cloudinary โดยใช้ Multer",
+        "พัฒนา REST API ด้วย Express.js, Prisma ORM และเข้ารหัสรหัสผ่านด้วย bcryptjs"
+      ],
+      "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "Google Maps API", "Google OAuth", "Cloudinary", "Tailwind CSS"],
+      "githubUrl": "https://github.com/puttpoom/whaledorm-fronted",
+      "featured": true,
+      "year": 2024,
+      "ownership": "personal",
+      "repos": ["whaledorm-fronted", "whealdorm-backend"],
+      "images": [
+        "/projects/wheal-dorm/SCR-20260714-tipb.png",
+        "/projects/wheal-dorm/SCR-20260714-tiiv.png",
+        "/projects/wheal-dorm/SCR-20260714-tinp.png",
+        "/projects/wheal-dorm/SCR-20260714-tirl.png"
+      ]
+    },
+    {
+      "id": "shopping-bot",
+      "title": "Shopping Bot — Lazada Auto-Buy",
+      "description": "Browser extension + backend system to automate product purchases on Lazada. Frontend built as a Chrome extension with FingerprintJS device tracking; backend uses LINE Bot for notifications and node-cron for scheduled buying.",
+      "descriptionTh": "Browser extension และ backend สำหรับซื้อสินค้าบน Lazada แบบอัตโนมัติ ฝั่ง Frontend เป็น Chrome extension ติดตาม device ด้วย FingerprintJS ฝั่ง Backend แจ้งเตือนผ่าน LINE Bot และตั้งเวลาซื้อด้วย node-cron",
+      "bullets": [
+        "Built Chrome extension with vite-plugin-web-extension to automate Lazada purchases",
+        "Tracked device sessions using FingerprintJS for multi-device support",
+        "Built Express.js backend with LINE Bot SDK for purchase notifications",
+        "Implemented scheduled buying with node-cron and JWT authentication",
+        "Used Prisma + MySQL for user and purchase history persistence"
+      ],
+      "bulletsTh": [
+        "พัฒนา Chrome extension ด้วย vite-plugin-web-extension สำหรับซื้อสินค้าบน Lazada อัตโนมัติ",
+        "ติดตาม device session ด้วย FingerprintJS รองรับหลายอุปกรณ์",
+        "พัฒนา backend ด้วย Express.js เชื่อมต่อ LINE Bot SDK สำหรับแจ้งเตือนการซื้อ",
+        "ตั้งเวลาซื้อสินค้าอัตโนมัติด้วย node-cron และรักษาความปลอดภัยด้วย JWT",
+        "ใช้ Prisma + MySQL สำหรับเก็บข้อมูลผู้ใช้และประวัติการซื้อ"
+      ],
+      "techStack": ["ReactJS", "Express.js", "Prisma", "MySQL", "LINE Bot SDK", "Tailwind CSS"],
+      "githubUrl": "https://github.com/puttpoom/shopping-bot-reactjs-ui",
+      "featured": true,
+      "year": 2024,
+      "ownership": "personal",
+      "images": [
+        "/projects/shopping-bot/SCR-20260714-thyr.png"
+      ],
+      "repos": ["shopping-bot-reactjs-ui", "shopping-bot-expressjs-api"]
+    },
+    {
+      "id": "user-dashboard",
+      "title": "User Dashboard — TypeScript",
+      "description": "Admin dashboard built with React TypeScript and Material-UI. Features form validation with React Hook Form + Joi, JWT-based auth flow, and toast notifications.",
+      "descriptionTh": "Admin dashboard สร้างด้วย React TypeScript และ Material-UI มีการ validate form ด้วย React Hook Form + Joi, ระบบ login ด้วย JWT และแจ้งเตือนด้วย toast",
+      "bullets": [
+        "Built admin dashboard with Material-UI v6 and React TypeScript",
+        "Implemented form validation using React Hook Form with Joi schema resolvers",
+        "Handled JWT-based authentication flow with protected routes via React Router",
+        "Used react-toastify for user feedback on actions"
+      ],
+      "bulletsTh": [
+        "พัฒนา admin dashboard ด้วย Material-UI v6 และ React TypeScript",
+        "Validate form ด้วย React Hook Form เชื่อมกับ Joi schema",
+        "จัดการ authentication flow ด้วย JWT และ protected routes ผ่าน React Router",
+        "แจ้งเตือนผู้ใช้ด้วย react-toastify"
+      ],
+      "techStack": ["React", "TypeScript", "Material-UI", "React Hook Form"],
+      "githubUrl": "https://github.com/puttpoom/user-dashboard-typescript",
+      "featured": false,
+      "year": 2024,
+      "ownership": "personal",
+      "repos": ["user-dashboard-typescript"]
+    }
+  ]
+}

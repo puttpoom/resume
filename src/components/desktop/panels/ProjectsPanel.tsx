@@ -2,13 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { projects } from '@/data/projects'
-import { useLang, loc } from '@/lib/lang'
+import { useLang } from '@/lib/lang'
+import { useLocalizedProjects, PANEL_SPRING as SPRING } from '@/lib/useLocalizedProjects'
 import { ProjectCard } from '@/components/shared/ProjectCard'
 import { ProjectDetailView } from '@/components/shared/ProjectDetailView'
-import type { LocalizedProject } from '@/types'
-
-const SPRING = { type: 'spring', stiffness: 380, damping: 38 } as const
 
 interface Props {
   selectedProjectId: string | null
@@ -20,11 +17,7 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const savedScrollY = useRef(0)
 
-  const localizedProjects: LocalizedProject[] = projects.map((p) => ({
-    ...p,
-    description: loc(lang, p.descriptionTh, p.description),
-    bullets: (lang === 'th' && p.bulletsTh) ? p.bulletsTh : (p.bullets ?? []),
-  }))
+  const localizedProjects = useLocalizedProjects(lang)
 
   const selectedProject = localizedProjects.find((p) => p.id === selectedProjectId) ?? null
 
@@ -35,8 +28,14 @@ export function ProjectsPanel({ selectedProjectId, onSelectProject }: Props) {
     onSelectProject(id)
   }
 
-  // Reset detail on language switch to avoid stale localized content
+  // Reset detail on language switch to avoid stale localized content (skip the mount run,
+  // otherwise a deep-linked /projects/[slug] URL gets cleared immediately on load)
+  const isFirstRender = useRef(true)
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     onSelectProject(null)
   }, [lang]) // eslint-disable-line react-hooks/exhaustive-deps
 

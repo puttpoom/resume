@@ -20,11 +20,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light')
 
   useEffect(() => {
-    const stored = localStorage.getItem('portfolio-theme') as Theme | null
-    const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    const t = stored ?? sys
-    setThemeState(t)
-    document.documentElement.classList.toggle('dark', t === 'dark')
+    setThemeState(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
   }, [])
 
   function setTheme(t: Theme) {
