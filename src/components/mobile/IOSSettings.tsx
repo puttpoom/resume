@@ -76,8 +76,12 @@ export function IOSSettings() {
     : null
 
   return (
-    <div className="relative w-full h-dvh overflow-hidden bg-ios">
+    <div className="relative w-full h-dvh bg-ios">
+      {/* Status bar outside overflow-hidden — avoids iOS Safari fixed-in-overflow bug */}
       <IOSStatusBar />
+
+      {/* Clip container for slide animations */}
+      <div className="absolute inset-0 overflow-hidden">
 
       {/* Root scroll list */}
       <div className="absolute inset-0 overflow-y-auto" style={{ paddingTop: 44 }}>
@@ -145,7 +149,7 @@ export function IOSSettings() {
               <button
                 key={row.id}
                 onClick={() => setActive(row.id)}
-                className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity"
+                className="w-full flex items-center gap-3 px-4 py-2.75 active:opacity-70 transition-opacity touch-manipulation"
                 style={{ borderBottom: i < rows.length - 1 ? '0.5px solid var(--ios-separator)' : 'none' }}
               >
                 <AppIcon Icon={row.Icon} bg={row.iconBg} />
@@ -274,6 +278,8 @@ export function IOSSettings() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      </div>{/* end clip container */}
     </div>
   )
 }
