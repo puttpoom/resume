@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://puttpoom.github.io/resume'),
   title: 'Putthiphoom B. — Full-Stack Developer',
   description:
-    'Full-Stack Developer with 1.5+ years experience in Go, PHP Laravel, ReactJS, and real-time systems. Based in Bangkok, Thailand.',
+    'Full-Stack Developer with 1.10 years experience in Go, PHP Laravel, ReactJS, and real-time systems. Based in Bangkok, Thailand.',
   openGraph: {
     title: 'Putthiphoom B. — Full-Stack Developer',
     description: 'Full-Stack Developer based in Bangkok, Thailand',

@@ -1,4 +1,4 @@
-import { IoSchool, IoRibbon } from 'react-icons/io5'
+import { IoSchool, IoRibbon, IoMan, IoReaderSharp } from "react-icons/io5";
 import type { Education, Certificate } from '@/types'
 import type { Lang } from '@/lib/lang'
 import { loc } from '@/lib/lang'
@@ -28,7 +28,10 @@ export function EducationList({ education, certificates, lang }: Props) {
     <>
       {education.length > 0 && (
         <div>
-          <p className="text-[12px] uppercase px-1 mb-1.5 text-secondary" style={{ letterSpacing: '0.04em' }}>
+          <p
+            className="text-[12px] uppercase px-1 mb-1.5 text-secondary"
+            style={{ letterSpacing: "0.04em" }}
+          >
             {t.education.educationLabel}
           </p>
           <div className="rounded-2xl overflow-hidden bg-ios-card">
@@ -36,9 +39,23 @@ export function EducationList({ education, certificates, lang }: Props) {
               <div
                 key={edu.id}
                 className="px-5 py-4 flex gap-4"
-                style={{ borderBottom: i < education.length - 1 ? '0.5px solid var(--ios-separator)' : 'none' }}
+                style={{
+                  borderBottom:
+                    i < education.length - 1
+                      ? "0.5px solid var(--ios-separator)"
+                      : "none",
+                }}
               >
-                <EduIcon color="#5856D6"><IoSchool size={22} color="#fff" /></EduIcon>
+                {edu.id === "kmutnb" && (
+                  <EduIcon color="#5856D6">
+                    <IoSchool size={22} color="#fff" />
+                  </EduIcon>
+                )}
+                {edu.id === "catc" && (
+                  <EduIcon color="#7c7be4">
+                    <IoReaderSharp size={22} color="#fff" />
+                  </EduIcon>
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-[15px] font-semibold text-primary">
                     {loc(lang, edu.degreeTh, edu.degree)}
@@ -49,9 +66,11 @@ export function EducationList({ education, certificates, lang }: Props) {
                   <p className="text-[13px] mt-0.5 text-secondary">
                     {loc(lang, edu.fieldTh, edu.field)}
                   </p>
-                  <p className="text-[13px] mt-0.5 text-secondary">GPA {edu.gpa}</p>
+                  <p className="text-[13px] mt-0.5 text-secondary">
+                    GPA {edu.gpa}
+                  </p>
                   <p className="text-[12px] mt-2 text-tertiary">
-                    {lang === 'th' && edu.startYearTh
+                    {lang === "th" && edu.startYearTh
                       ? `${edu.startYearTh} –${edu.endYearTh}`
                       : `${edu.startYear} –${edu.endYear}`}
                   </p>
@@ -64,7 +83,10 @@ export function EducationList({ education, certificates, lang }: Props) {
 
       {certificates.length > 0 && (
         <div>
-          <p className="text-[12px] uppercase px-1 mb-1.5 text-secondary" style={{ letterSpacing: '0.04em' }}>
+          <p
+            className="text-[12px] uppercase px-1 mb-1.5 text-secondary"
+            style={{ letterSpacing: "0.04em" }}
+          >
             {t.education.certificatesLabel}
           </p>
           <div className="rounded-2xl overflow-hidden bg-ios-card">
@@ -72,17 +94,33 @@ export function EducationList({ education, certificates, lang }: Props) {
               <div
                 key={cert.id}
                 className="px-5 py-4 flex gap-4"
-                style={{ borderBottom: i < certificates.length - 1 ? '0.5px solid var(--ios-separator)' : 'none' }}
+                style={{
+                  borderBottom:
+                    i < certificates.length - 1
+                      ? "0.5px solid var(--ios-separator)"
+                      : "none",
+                }}
               >
-                <EduIcon color="#FF9500"><IoRibbon size={22} color="#fff" /></EduIcon>
+                {cert?.id === "toeic" && (
+                  <EduIcon color="#FF9500">
+                    <IoRibbon size={22} color="#fff" />
+                  </EduIcon>
+                )}
+                {cert?.id === "military" && (
+                  <EduIcon color="#2f7115">
+                    <IoMan size={22} color="#fff" />
+                  </EduIcon>
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-[15px] font-semibold text-primary">
                     {loc(lang, cert.nameTh, cert.name)}
                   </p>
-                  <p className="text-[13px] mt-0.5 text-system-blue">{cert.issuer}</p>
+                  <p className="text-[13px] mt-0.5 text-system-blue">
+                    {cert.issuer}
+                  </p>
                   {(cert.note || cert.noteTh) && (
                     <p className="text-[13px] mt-0.5 text-secondary">
-                      {loc(lang, cert.noteTh, cert.note ?? '')}
+                      {loc(lang, cert.noteTh, cert.note ?? "")}
                     </p>
                   )}
                   <p className="text-[12px] mt-2 text-tertiary">
@@ -95,5 +133,5 @@ export function EducationList({ education, certificates, lang }: Props) {
         </div>
       )}
     </>
-  )
+  );
 }

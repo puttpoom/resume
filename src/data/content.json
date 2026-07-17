@@ -28,12 +28,12 @@
         "overline": "About Me",
         "title": "Crafting digital experiences",
         "bio": [
-          "Full-Stack Developer with 1.5+ years of experience, passionate about solving real business problems with software. Built web systems for logistics, GPS tracking, and ERP companies — including factory inventory management and real-time fleet tracking for transport businesses.",
+          "Full-Stack Developer with 1.10 years of experience, passionate about solving real business problems with software. Built web systems for logistics, GPS tracking, and ERP companies — including factory inventory management and real-time fleet tracking for transport businesses.",
           "Designed database structures and built REST APIs using Go, PHP Laravel, and ReactJS. Improved system speed and fixed critical bugs across several live projects, with a strong focus on secure coding (OAuth 2.0, access control).",
           "Currently looking for a new Full-Stack or Backend Developer role to keep growing and take on bigger challenges."
         ],
         "stats": [
-          { "value": "1.5+", "label": "Years Experience" },
+          { "value": "1.10", "label": "Years Experience" },
           { "value": "5+", "label": "Projects Shipped" },
           { "value": "10+", "label": "Technologies" }
         ],
@@ -110,12 +110,12 @@
         "overline": "เกี่ยวกับฉัน",
         "title": "สร้างประสบการณ์ดิจิทัล",
         "bio": [
-          "นักพัฒนาซอฟต์แวร์สาย Full-Stack ประสบการณ์กว่า 1.5 ปี มีความมุ่งมั่นและหลงใหลในการแก้ปัญหาทางธุรกิจด้วยซอฟต์แวร์ พัฒนาและดูแลเว็บแอปพลิเคชันด้านโลจิสติกส์ ระบบติดตาม GPS และระบบ ERP รวมถึงระบบจัดการสต็อกสินค้าสำหรับโรงงานและระบบติดตามยานพาหนะแบบเรียลไทม์สำหรับธุรกิจขนส่ง",
+          "นักพัฒนาซอฟต์แวร์สาย Full-Stack ประสบการณ์กว่า 1.10 ปี มีความมุ่งมั่นและหลงใหลในการแก้ปัญหาทางธุรกิจด้วยซอฟต์แวร์ พัฒนาและดูแลเว็บแอปพลิเคชันด้านโลจิสติกส์ ระบบติดตาม GPS และระบบ ERP รวมถึงระบบจัดการสต็อกสินค้าสำหรับโรงงานและระบบติดตามยานพาหนะแบบเรียลไทม์สำหรับธุรกิจขนส่ง",
           "ออกแบบโครงสร้างฐานข้อมูลและพัฒนา REST API ด้วย Go, PHP Laravel และ ReactJS ปรับปรุงประสิทธิภาพระบบและแก้ไขบั๊กสำคัญในโปรเจคที่ใช้งานจริงหลายโปรเจค โดยให้ความสำคัญกับความปลอดภัยของระบบ เช่น OAuth 2.0 และการควบคุมสิทธิ์การเข้าถึง",
           "กำลังมองหาโอกาสในตำแหน่ง Full-Stack หรือ Backend Developer เพื่อเติบโตและรับความท้าทายใหม่ๆ"
         ],
         "stats": [
-          { "value": "1.5+", "label": "ปีประสบการณ์" },
+          { "value": "1.10", "label": "ปีประสบการณ์" },
           { "value": "5+", "label": "โปรเจกต์" },
           { "value": "10+", "label": "เทคโนโลยี" }
         ],
@@ -258,11 +258,11 @@
       "endDate": "2025-07",
       "description": [
         "Built pages, forms, and navigation (React Hook Form + TanStack Query) for an internal support ticketing system",
-        "Used existing components to match the team's design system (DaisyUI + shadcn/ui)"
+        "Applied existing components to match the team's design system"
       ],
       "descriptionTh": [
         "พัฒนาหน้าเว็บ ฟอร์ม และระบบนำทางสำหรับระบบ Ticket ของทีม support ภายในองค์กร ด้วย React",
-        "นำ Component ที่มีอยู่แล้วมาปรับใช้ให้ตรงกับ Design System ของทีม"
+        "ปรับใช้ Component ที่มีอยู่แล้วมาปรับใช้ให้ตรงกับ Design System ของทีม"
       ],
       "techStack": ["ReactJS", "React Hook Form", "TanStack Query", "DaisyUI", "shadcn/ui"]
     }
@@ -276,11 +276,25 @@
       "degreeTh": "วิศวกรรมศาสตรบัณฑิต",
       "field": "Electrical and Electronic Engineering Technology",
       "fieldTh": "สาขาเทคโนโลยีวิศวกรรมไฟฟ้าและอิเล็กทรอนิกส์",
-      "startYear": 2019,
-      "startYearTh": 2562,
-      "endYear": 2023,
-      "endYearTh": 2566,
+      "startYear": 2020,
+      "startYearTh": 2563,
+      "endYear": 2024,
+      "endYearTh": 2567,
       "gpa": "3.03"
+    },
+    {
+      "id": "catc",
+      "institution": "Civil Aviation Training Center (CATC)",
+      "institutionTh": "สถาบันการบินพลเรือน (CATC)",
+      "degree": "Diploma",
+      "degreeTh": "อนุปริญญา",
+      "field": "Aircarft Technology - Avionics",
+      "fieldTh": "อิเล็กทรอนิกส์การบิน",
+      "startYear": 2018,
+      "startYearTh": 2561,
+      "endYear": 2020,
+      "endYearTh": 2563,
+      "gpa": "2.94"
     }
   ],
   "certificates": [
@@ -293,6 +307,16 @@
       "issuer": "ETS (Educational Testing Service)",
       "issuedDate": "Tested 25 Jun 2026",
       "issuedDateTh": "สอบวันที่ 25 มิ.ย. 2569"
+    },
+    {
+      "id": "military",
+      "name": "Military Status",
+      "nameTh": "สถานะทางทหาร",
+      "note": "Entroll Miratary Crouse (Exempted)",
+      "noteTh": "เรียนรักษาดินแดน (รด.) ได้รับการยกเว้น",
+      "issuer": "",
+      "issuedDate": "Expried in 2041",
+      "issuedDateTh": "พ้นราชการทหาร 2584"
     }
   ],
   "projects": [
@@ -345,7 +369,7 @@
       ],
       "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
       "featured": true,
-      "year": 2024,
+      "year": 2026,
       "ownership": "company",
       "company": "FreewillFX Co., Ltd.",
       "repos": ["icho-automateplant", "automateplant"]
@@ -367,7 +391,7 @@
       ],
       "techStack": ["PHP 8.3", "MySQL", "Bootstrap 5", "jQuery"],
       "featured": false,
-      "year": 2024,
+      "year": 2026,
       "ownership": "company",
       "company": "FreewillFX Co., Ltd.",
       "repos": ["icho-automateplant-terminal", "icho-service"]
@@ -391,7 +415,7 @@
       ],
       "techStack": ["Go (Gorilla/Mux)", "ReactJS", "MySQL", "Google Maps API"],
       "featured": true,
-      "year": 2024,
+      "year": 2025,
       "ownership": "co",
       "company": "FreewillFX Co., Ltd.",
       "repos": ["cloudtime-passenger-api", "cloudtime-passenger-react"],
