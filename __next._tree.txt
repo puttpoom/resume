@@ -1,2 +1,2 @@
 :HL["/resume/_next/static/chunks/2q6-dvf4m8c5v.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"RS1w1eVJBK4lMlwohDb5E"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"8GI8v--brZrXaWEeCTo5J"}
