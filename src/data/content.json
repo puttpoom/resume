@@ -675,6 +675,7 @@
         "Firebase",
         "Tailwind CSS"
       ],
+      "liveUrl": "https://weather-dashboard-sigma-teal.vercel.app/",
       "githubUrl": "https://github.com/puttpoom/weather-dashboard-nextjs",
       "featured": false,
       "year": 2024,
