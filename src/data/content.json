@@ -307,28 +307,28 @@
       "startDate": "2024-10",
       "endDate": null,
       "description": [
-        "iSupply — Owned full-stack development of a multi-tenant inventory system for concrete plants",
+        "Owned full-stack development of a multi-tenant inventory system for concrete plants",
         "Reduced API response time by ~30% via EXPLAIN-based query tuning and indexing",
         "Fixed a memory-crash bug in bulk Excel exports by batch-processing stock reports",
         "Built a Go-based OAuth 2.0 SSO service integrated with PHP applications for single sign-on",
-        "Mena Transport — Built a Go program processing real-time GPS data from ~50 delivery vehicles",
-        "ICHO Automate Plant — Led full migration of a legacy PHP 5.5 codebase to PHP 8.3",
+        "Built a Go program processing real-time GPS data from ~50 delivery vehicles",
+        "Led a full migration of a legacy PHP 5.5 codebase to PHP 8.3 across DEV/QAS/Production",
         "Built an MVC CRUD system for vehicle and driver data with Excel import/export",
         "Fixed security issues from a VA scan: access-token authentication and session handling",
-        "ICHO Terminal — Built an on-site app integrating breathalyzer, gate, and plate-camera hardware",
-        "Cloudtime Passenger — Built a bus-route map dashboard with real-time boarding counts"
+        "Built an on-site terminal app integrating breathalyzer, gate, and plate-camera hardware",
+        "Built a map dashboard for bus routes with real-time passenger boarding counts"
       ],
       "descriptionTh": [
-        "iSupply — พัฒนาระบบจัดการสต็อกสินค้าโรงงานคอนกรีตแบบ Full-stack ด้วยตนเอง",
+        "พัฒนาระบบจัดการสต็อกสินค้าโรงงานคอนกรีตแบบ Full-stack ด้วยตนเอง",
         "ปรับปรุงความเร็ว API ขึ้น ~30% ด้วยการ tuning query แบบ EXPLAIN และเพิ่ม index",
         "แก้บั๊ก memory crash ในฟีเจอร์ export Excel ด้วยการแบ่งประมวลผลเป็นชุดย่อย",
         "พัฒนาระบบ SSO ด้วย Go เชื่อมต่อ OAuth 2.0 กับแอปพลิเคชัน PHP เพื่อ Single Sign-On",
-        "Mena Transport — พัฒนาโปรแกรม Go ประมวลผล GPS เรียลไทม์จากรถขนส่งประมาณ 50 คัน",
-        "ICHO Automate Plant — อัปเกรดระบบ PHP เวอร์ชันเก่า (5.5) ทั้งหมดเป็นเวอร์ชัน 8.3",
+        "พัฒนาโปรแกรม Go ประมวลผล GPS เรียลไทม์จากรถขนส่งประมาณ 50 คัน",
+        "อัปเกรดระบบ PHP เวอร์ชันเก่า (5.5) ทั้งหมดเป็นเวอร์ชัน 8.3 ครบทุก Environment",
         "พัฒนาระบบ MVC CRUD สำหรับข้อมูลรถและคนขับ พร้อม Excel import/export",
         "แก้ไขช่องโหว่จากการสแกน VA ด้าน access token และการจัดการ session",
-        "ICHO Terminal — พัฒนาแอปหน้างานเชื่อมฮาร์ดแวร์ควบคุมประตูเข้า-ออกโรงงาน",
-        "Cloudtime Passenger — พัฒนาแดชบอร์ดแผนที่เส้นทางรถบัสและผู้โดยสารเรียลไทม์"
+        "พัฒนาแอปหน้างานเชื่อมฮาร์ดแวร์ควบคุมประตูเข้า-ออกโรงงาน",
+        "พัฒนาแดชบอร์ดแผนที่เส้นทางรถบัสพร้อมจำนวนผู้โดยสารเรียลไทม์"
       ],
       "techStack": [
         "Go",
@@ -652,6 +652,34 @@
       "year": 2024,
       "ownership": "personal",
       "repos": ["user-dashboard-typescript"]
+    },
+    {
+      "id": "weather-dashboard",
+      "title": "Weather Dashboard",
+      "description": "Weather dashboard built with Next.js and Redux Toolkit, using Firebase Firestore to save locations and preferences.",
+      "descriptionTh": "แดชบอร์ดพยากรณ์อากาศพัฒนาด้วย Next.js และ Redux Toolkit ใช้ Firebase Firestore เก็บตำแหน่งที่บันทึกไว้และการตั้งค่า",
+      "bullets": [
+        "Built a weather dashboard with Next.js, using Redux Toolkit for global state management",
+        "Used Firebase Firestore to persist saved locations and user preferences",
+        "Styled the UI with Tailwind CSS and lucide-react icons"
+      ],
+      "bulletsTh": [
+        "พัฒนาแดชบอร์ดพยากรณ์อากาศด้วย Next.js และจัดการ state ด้วย Redux Toolkit",
+        "ใช้ Firebase Firestore เก็บข้อมูลตำแหน่งที่บันทึกไว้และการตั้งค่าผู้ใช้",
+        "ออกแบบ UI ด้วย Tailwind CSS และไอคอนจาก lucide-react"
+      ],
+      "techStack": [
+        "Next.js",
+        "React",
+        "Redux Toolkit",
+        "Firebase",
+        "Tailwind CSS"
+      ],
+      "githubUrl": "https://github.com/puttpoom/weather-dashboard-nextjs",
+      "featured": false,
+      "year": 2024,
+      "ownership": "personal",
+      "repos": ["weather-dashboard-nextjs"]
     }
   ]
 }
